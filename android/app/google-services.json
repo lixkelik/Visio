@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "939000884905",
+    "project_id": "seekers-df759",
+    "storage_bucket": "seekers-df759.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939000884905:android:abd25e30d87e3b800b43b8",
+        "android_client_info": {
+          "package_name": "com.example.seekers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "939000884905-acbkpahl4gpkdop02ss9ane7ko997e1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBferQY65rf3aPTiRi_QVqwdEes5HC4m6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "939000884905-acbkpahl4gpkdop02ss9ane7ko997e1q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
