@@ -5,38 +5,38 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "TacTile",
+            "name": "Visio",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "TacTile (profile mode)",
+            "name": "Visio (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "TacTile (release mode)",
+            "name": "Visio (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
         },
         {
-            "name": "tactile",
-            "cwd": "tactile",
+            "name": "visio",
+            "cwd": "visio",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "tactile (profile mode)",
-            "cwd": "tactile",
+            "name": "visio (profile mode)",
+            "cwd": "visio",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "tactile (release mode)",
-            "cwd": "tactile",
+            "name": "visio (release mode)",
+            "cwd": "visio",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

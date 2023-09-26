@@ -238,7 +238,7 @@ class _ProfilePageState extends State<ProfilePage> {
       builder: (BuildContext context) {
         return Dialog(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20)
+            borderRadius: BorderRadius.circular(30)
           ),
           child: Container(
             padding: const EdgeInsets.all(15),

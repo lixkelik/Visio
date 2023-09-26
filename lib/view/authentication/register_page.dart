@@ -1,6 +1,7 @@
 import 'package:visio/constant/constant_builder.dart';
 import 'package:visio/view/authentication/choose_role_page.dart';
 import 'package:visio/view/authentication/login_page.dart';
+import 'package:visio/view/widget/exit_dialog.dart';
 
 import 'auth_widget.dart';
 
@@ -32,23 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async{
-        final shouldExit = await showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Exit App'),
-            content: const Text('Are you sure you want to exit?'),
-            actions: [
-              TextButton(
-                  child: const Text('No'),
-                  onPressed: () => Navigator.of(context).pop(false),
-                ),
-                TextButton(
-                  child: const Text('Yes'),
-                  onPressed: () => Navigator.of(context).pop(true),
-                ),
-            ],
-          )
-        );
+        final shouldExit = showExitDialog(context);
         return shouldExit ?? false;
       },
       child: Scaffold(
