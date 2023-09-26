@@ -32,6 +32,7 @@ class _GameImpairedState extends State<GameImpaired> {
   }
 
   void _startListening() async {
+    await flutterTts.stop();
     await speech.listen(onResult: _onSpeechResult);
     setState(() {});
   }

@@ -33,31 +33,6 @@ class _HomePageState extends State<MyApp> {
       title: 'visio',
       theme: ThemeData(
         fontFamily: 'Poppins',
-        navigationBarTheme:  NavigationBarThemeData(
-          backgroundColor: white,
-          indicatorColor: selectedNavBar,
-          indicatorShape:  const CircleBorder(
-            side: BorderSide(
-              color: appOrange,
-              width: 14,
-              strokeAlign: BorderSide.strokeAlignCenter,
-            )
-          ),
-          labelTextStyle: MaterialStateProperty.all(
-              const TextStyle(
-                color: lightGrey,
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-              )
-            ), 
-          iconTheme: MaterialStateProperty.all(
-            const IconThemeData(
-              size: 35,
-              color: lightGrey,
-            )
-          ),
-          height: 90,
-        )
       ),
       
       home: (user != null)

@@ -53,6 +53,7 @@ class _DescribePageState extends State<DescribePage> {
   }
 
   void _startListening() async {
+    await flutterTts.stop();
     await speech.listen(onResult: _onSpeechResult);
     setState(() {});
   }

@@ -2,6 +2,7 @@ import 'package:visio/constant/constant_builder.dart';
 import 'package:visio/constant/firebase_constant.dart';
 import 'package:visio/view/impaired/history_impaired_page.dart';
 import 'package:visio/view/impaired/game_impaired_page.dart';
+import 'package:visio/view/impaired/texttospeech.dart';
 import 'package:visio/view/peer/choose_game_page.dart';
 import 'package:visio/view/peer/history_peer_page.dart';
 import 'package:visio/view/peer/home_peer_page.dart';
@@ -38,53 +39,45 @@ class _MainPageState extends State<MainPage> {
       },
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          bottomNavigationBar: NavigationBar(
-            animationDuration: const Duration(milliseconds: 1000),
-            height: 85,
-            destinations:  <Widget> [
-              (userRoles == 1) 
-              ? const NavigationDestination(
-                icon: Icon(Icons.explore_outlined),
-                label: 'Explore',
-              )
-              : const NavigationDestination(
-                icon: Icon(Icons.home_outlined),
-                label: 'Home',
-              ),
-              const NavigationDestination(
+          bottomNavigationBar: BottomNavigationBar(
+            elevation: 20,
+            currentIndex: currentPageIndex,
+            onTap: _onItemTapped,
+            iconSize: 40,
+            selectedItemColor: appOrange,
+            unselectedItemColor: lightGrey,
+            showUnselectedLabels: true,
+            enableFeedback: true,
+            type: BottomNavigationBarType.fixed,
+            items: [
+              (userRoles == 1)
+              ? const BottomNavigationBarItem(
+                  icon: Icon(Icons.explore_outlined,),
+                  label: 'Explore',
+                )
+              : const BottomNavigationBarItem(
+                  icon: Icon(Icons.home_outlined),
+                  label: 'Home',
+                ),
+
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.gamepad_outlined),
                 label: 'Game',
               ),
-              const NavigationDestination(
+              
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.access_time),
                 label: 'History',
               ),
-              const NavigationDestination(
+
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.account_circle_outlined),
                 label: 'Profile',
               )
             ],
-            onDestinationSelected: (int index) {
-              setState(() {
-                currentPageIndex = index;
-              });
-            },
-            selectedIndex: currentPageIndex,
           ),
-      
-          body: <Widget>[
-            (userRoles == 1)
-            ? const ExplorePage()
-            : HomePeerPage(updateCurrentPageIndex: updateCurrentPageIndex,),
-            (userRoles == 1)
-            ? const GameImpaired()
-            : const ChooseGamePage(),
-            (userRoles == 1)
-            ? HistoryImpairedPage(auth.currentUser!.uid)
-            : HistoryPeerPage(auth.currentUser!.uid),
-            ProfilePage(userRoles!),
-          ][currentPageIndex],
-        ),
+          body: _pageItem.elementAt(currentPageIndex)
+        )
       );
     } else {
       return const Scaffold(
@@ -129,5 +122,34 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       currentPageIndex = index;
     });
+  }
+
+  List<Widget> get _pageItem {
+    return <Widget>[
+      (userRoles == 1)
+      ? const ExplorePage()
+      : HomePeerPage(updateCurrentPageIndex: updateCurrentPageIndex,),
+
+      (userRoles == 1)
+      ? const GameImpaired()
+      : const ChooseGamePage(),
+
+      (userRoles == 1)
+      ? HistoryImpairedPage(auth.currentUser!.uid)
+      : HistoryPeerPage(auth.currentUser!.uid),
+
+      ProfilePage(userRoles!),
+    ];
+  }
+
+  void _onItemTapped(int index) {
+    stopVoice();
+    setState(() {
+      currentPageIndex = index;
+    });
+  }
+
+  stopVoice() async{
+    await flutterTts.stop();
   }
 }

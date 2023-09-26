@@ -131,7 +131,7 @@ class _ScanObjectPageState extends State<ScanObjectPage> {
                                   backgroundColor: appOrange,
                                   alignment: Alignment.center,
                                   shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(0)), // remove border radius
+                                    borderRadius: BorderRadius.all(Radius.circular(0)),
                                   ),
                                 ),
                                 onPressed: () async {
@@ -146,7 +146,7 @@ class _ScanObjectPageState extends State<ScanObjectPage> {
                                     if(flag){
                                       if (_currentImage != null) {
                                         final rgbImage = ImageUtils.convertCameraImage(_currentImage!);
-                                        if (rgbImage != null) {
+                                        if (rgbImage != null  && objText.isNotEmpty) {
                                           try {
                                             String image = await ImageUtils.saveImage(rgbImage, objText);
                                             if(image != ''){

@@ -29,7 +29,8 @@ class _SuccessPageState extends State<SuccessPage> {
       },
       child: Scaffold(
         backgroundColor: lightPink,
-        body: Padding(
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,8 +39,6 @@ class _SuccessPageState extends State<SuccessPage> {
                 'Good job!',
                 style: styleB35
               ),
-
-              const SizedBox(height: 8,),
               Image.asset(
                 kingCircleills,
                 width: 160,
@@ -47,10 +46,10 @@ class _SuccessPageState extends State<SuccessPage> {
               const SizedBox(
                 height: 8,
               ),
-
+        
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 decoration: const BoxDecoration(
                   color: white,
                   borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -62,53 +61,58 @@ class _SuccessPageState extends State<SuccessPage> {
                       "You have scanned\n5 objects!",
                       style: styleB20,
                     ),
-                    ListView(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      itemExtent: 35,
-                      children: [
-                        ListTile(
-                          title: Text(
-                            widget.gameObj.obj[0].objName,
-                            style: const TextStyle(fontSize: 23),
+                    SizedBox(
+                      height: 190,
+                      child: ListView(
+                        physics: const BouncingScrollPhysics(),
+                        padding: const EdgeInsets.symmetric(vertical: 2),
+                        itemExtent: 35,
+                        children: [
+                          ListTile(
+                            title: Text(
+                              widget.gameObj.obj[0].objName,
+                              style: const TextStyle(fontSize: 23),
+                            ),
+                            leading: const Icon(Icons.add_task),
                           ),
-                          leading: const Icon(Icons.add_task),
-                        ),
-                        ListTile(
-                          title: Text(
-                            widget.gameObj.obj[1].objName,
-                            style: const TextStyle(fontSize: 23),
+                          ListTile(
+                            title: Text(
+                              widget.gameObj.obj[1].objName,
+                              style: const TextStyle(fontSize: 23),
+                            ),
+                            leading: const Icon(Icons.add_task),
                           ),
-                          leading: const Icon(Icons.add_task),
-                        ),
-                        ListTile(
-                          title: Text(
-                            widget.gameObj.obj[2].objName,
-                            style: const TextStyle(fontSize: 23),
+                          ListTile(
+                            title: Text(
+                              widget.gameObj.obj[2].objName,
+                              style: const TextStyle(fontSize: 23),
+                            ),
+                            leading: const Icon(Icons.add_task),
                           ),
-                          leading: const Icon(Icons.add_task),
-                        ),
-                        ListTile(
-                          title: Text(
-                            widget.gameObj.obj[3].objName,
-                            style: const TextStyle(fontSize: 23),
+                          ListTile(
+                            title: Text(
+                              widget.gameObj.obj[3].objName,
+                              style: const TextStyle(fontSize: 23),
+                            ),
+                            leading: const Icon(Icons.add_task),
                           ),
-                          leading: const Icon(Icons.add_task),
-                        ),
-                        ListTile(
-                          title: Text(
-                            widget.gameObj.obj[4].objName,
-                            style: const TextStyle(fontSize: 23),
+                          ListTile(
+                            title: Text(
+                              widget.gameObj.obj[4].objName,
+                              style: const TextStyle(fontSize: 23),
+                            ),
+                            leading: const Icon(Icons.add_task),
                           ),
-                          leading: const Icon(Icons.add_task),
-                        ),
-                      ]
+                        ]
+                      ),
                     ),
                     const SizedBox(
-                      height: 15,
-                    ),
-                    const Text('Share with your friend!\nGive him this code below',
-                        softWrap: true,
-                        style: styleR20
+                      width: double.infinity,
+                      child: Text('Share with your friend!\nGive him this code below',
+                          softWrap: true,
+                          style: styleR20,
+                          textAlign: TextAlign.center,
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -133,7 +137,7 @@ class _SuccessPageState extends State<SuccessPage> {
                         ),
                       )
                     ),
-
+        
                   ],
                 ),
               ),
