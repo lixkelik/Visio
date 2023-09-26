@@ -38,14 +38,14 @@ class _HomePageState extends State<MyApp> {
           indicatorColor: selectedNavBar,
           indicatorShape:  const CircleBorder(
             side: BorderSide(
-              color: selectedNavBar,
+              color: appOrange,
               width: 14,
               strokeAlign: BorderSide.strokeAlignCenter,
             )
           ),
           labelTextStyle: MaterialStateProperty.all(
               const TextStyle(
-                color: fontColor,
+                color: lightGrey,
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
               )
@@ -53,7 +53,7 @@ class _HomePageState extends State<MyApp> {
           iconTheme: MaterialStateProperty.all(
             const IconThemeData(
               size: 35,
-              color: fontColor,
+              color: lightGrey,
             )
           ),
           height: 90,

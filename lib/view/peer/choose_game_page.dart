@@ -120,7 +120,7 @@ class ChooseGamePage extends StatelessWidget {
       
                   ElevatedButton(
                     onPressed: () {
-                      
+                      showPopUp(context);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: white,
@@ -157,6 +157,38 @@ class ChooseGamePage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  showPopUp(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20)
+          ),
+          child: Container(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(sickills, width: 60,),
+                const SizedBox(height: 5),
+                const Text('Coming Soon!', style: styleB20,),
+                const Text('Keep supporting Visio\nand wait until new game released :D', style: styleR15, textAlign: TextAlign.center,),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Sure!'),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

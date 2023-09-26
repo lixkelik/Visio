@@ -57,8 +57,8 @@ class _HistoryImpairedPageState extends State<HistoryImpairedPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Image(
-                          image: AssetImage(inspired),
-                          width: 180,
+                          image: AssetImage(sickills),
+                          width: 150,
                         ),
                         Text(
                           'No History Found\nPlay a game first!',

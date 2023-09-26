@@ -28,119 +28,143 @@ class _SuccessPageState extends State<SuccessPage> {
         return true;
       },
       child: Scaffold(
+        backgroundColor: lightPink,
         body: Padding(
-          padding: const EdgeInsets.only(left: 38, right: 38, top: 95),
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text('Good job!',
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: fontColor)),
-              const Text('You have scanned and described 5 object!',
-                  softWrap: true,
-                  style: TextStyle(fontSize: 25, color: fontColor)),
-              SizedBox(
-                height: 220,
-                child: ListView(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    itemExtent: 35,
-                    children: [
-                      ListTile(
-                        title: Text(
-                          widget.gameObj.obj[0].objName,
-                          style: const TextStyle(fontSize: 23),
-                        ),
-                        leading: const Icon(Icons.add_task),
-                      ),
-                      ListTile(
-                        title: Text(
-                          widget.gameObj.obj[1].objName,
-                          style: const TextStyle(fontSize: 23),
-                        ),
-                        leading: const Icon(Icons.add_task),
-                      ),
-                      ListTile(
-                        title: Text(
-                          widget.gameObj.obj[2].objName,
-                          style: const TextStyle(fontSize: 23),
-                        ),
-                        leading: const Icon(Icons.add_task),
-                      ),
-                      ListTile(
-                        title: Text(
-                          widget.gameObj.obj[3].objName,
-                          style: const TextStyle(fontSize: 23),
-                        ),
-                        leading: const Icon(Icons.add_task),
-                      ),
-                      ListTile(
-                        title: Text(
-                          widget.gameObj.obj[4].objName,
-                          style: const TextStyle(fontSize: 23),
-                        ),
-                        leading: const Icon(Icons.add_task),
-                      ),
-                    ]),
+              const Text(
+                'Good job!',
+                style: styleB35
+              ),
+
+              const SizedBox(height: 8,),
+              Image.asset(
+                kingCircleills,
+                width: 160,
               ),
               const SizedBox(
-                height: 20,
+                height: 8,
               ),
-              const Text('Share with your friend!\nGive him this code below',
-                  softWrap: true,
-                  style: TextStyle(fontSize: 25, color: fontColor)),
-              const SizedBox(
-                height: 20,
-              ),
+
               Container(
-                  width: double.maxFinite,
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Color(0xff666666),
-                  ),
-                  child: GestureDetector(
-                    onTap: () {
-                      textToSpeech(widget.gameObj.code);
-                    },
-                    child: Center(
-                      child: Text(widget.gameObj.code,
-                          style: const TextStyle(
-                              fontSize: 30,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600)),
+                width: double.infinity,
+                padding: const EdgeInsets.all(10),
+                decoration: const BoxDecoration(
+                  color: white,
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "You have scanned\n5 objects!",
+                      style: styleB20,
                     ),
-                  )),
+                    ListView(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      itemExtent: 35,
+                      children: [
+                        ListTile(
+                          title: Text(
+                            widget.gameObj.obj[0].objName,
+                            style: const TextStyle(fontSize: 23),
+                          ),
+                          leading: const Icon(Icons.add_task),
+                        ),
+                        ListTile(
+                          title: Text(
+                            widget.gameObj.obj[1].objName,
+                            style: const TextStyle(fontSize: 23),
+                          ),
+                          leading: const Icon(Icons.add_task),
+                        ),
+                        ListTile(
+                          title: Text(
+                            widget.gameObj.obj[2].objName,
+                            style: const TextStyle(fontSize: 23),
+                          ),
+                          leading: const Icon(Icons.add_task),
+                        ),
+                        ListTile(
+                          title: Text(
+                            widget.gameObj.obj[3].objName,
+                            style: const TextStyle(fontSize: 23),
+                          ),
+                          leading: const Icon(Icons.add_task),
+                        ),
+                        ListTile(
+                          title: Text(
+                            widget.gameObj.obj[4].objName,
+                            style: const TextStyle(fontSize: 23),
+                          ),
+                          leading: const Icon(Icons.add_task),
+                        ),
+                      ]
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    const Text('Share with your friend!\nGive him this code below',
+                        softWrap: true,
+                        style: styleR20
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 60,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        color: Color(0xff666666),
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          textToSpeech(widget.gameObj.code);
+                        },
+                        child: Center(
+                          child: Text(widget.gameObj.code,
+                              style: const TextStyle(
+                                  fontSize: 30,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      )
+                    ),
+
+                  ],
+                ),
+              ),
+              
               const SizedBox(
                 height: 20,
               ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 25),
-                    width: double.infinity,
-                    child: ElevatedButton(
-                        onPressed: () async {
-                          await deletePhoto();
-                          Navigator.pop(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: appOrange,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 20),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 15),
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        await deletePhoto();
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: appOrange,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
                         ),
-                        child: const Text('Go Back',
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ))),
-                  ),
+                      ),
+                      child: const Text('Go Back',
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ))),
                 ),
               ),
             ],

@@ -149,7 +149,7 @@ class _LearnGamePageState extends State<LearnGamePage> {
         {
           'model': 'gpt-3.5-turbo-instruct',
           'prompt': promptController.text,
-          'max_tokens': 250,
+          'max_tokens': 150,
           'temperature': 0,
           'top_p': 1,
         }

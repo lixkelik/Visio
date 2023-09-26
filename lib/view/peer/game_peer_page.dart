@@ -146,7 +146,7 @@ class _GamePeerState extends State<GamePeer> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Image(image: AssetImage(inspired)),
+                          const Image(image: AssetImage(sickills), width: 70),
                           Text(
                             'No official game',
                             textAlign: TextAlign.center,

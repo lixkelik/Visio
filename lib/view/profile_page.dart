@@ -78,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-            const SizedBox(height: 8,),
+            const SizedBox(height: 15,),
             const SizedBox(
               width: double.infinity,
               child: Text(
@@ -88,7 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 8,
             ),
             Container(
                 width: double.infinity,
@@ -245,7 +245,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Image.asset(warningLogo, width: 60, height: 60,),
+                Image.asset(logoutills, width: 60,),
                 const SizedBox(height: 5),
                 const Text('Log Out!', style: styleB20,),
                 const Text('Are you sure want to logout ?\nYou need to login again if you logout!', style: styleR15, textAlign: TextAlign.center,),
@@ -282,7 +282,6 @@ class _ProfilePageState extends State<ProfilePage> {
         );
       },
     );
-    
   }
 
   signOut() async{

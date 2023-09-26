@@ -138,9 +138,10 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
           }
         );
         // ignore: use_build_context_synchronously
-        Navigator.pushReplacement(
+        Navigator.pushAndRemoveUntil(
           context, 
-          MaterialPageRoute(builder: (context) => const MainPage())
+          MaterialPageRoute(builder: (context) => const MainPage()),
+          (route) => false
         );
       } on FirebaseAuthException catch(e){
         String errorMessage = "An error occurred. Please try again later.";

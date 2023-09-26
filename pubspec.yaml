@@ -30,18 +30,6 @@ dependencies:
   path_provider: ^2.1.1
   flutter_dotenv: ^5.1.0
   http: ^1.1.0
-  change_app_package_name: ^1.1.0
-
-flutter_native_splash:
-  android: true
-  ios: true
-  web: false
-  background_image: "assets/image/splash_screen.png"
-  android_12:
-    image: assets/image/splash_logo.png
-    color: "#CDE0FF"
-
-
 
 dev_dependencies:
   flutter_test:

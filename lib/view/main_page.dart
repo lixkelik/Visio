@@ -6,6 +6,7 @@ import 'package:visio/view/peer/choose_game_page.dart';
 import 'package:visio/view/peer/history_peer_page.dart';
 import 'package:visio/view/peer/home_peer_page.dart';
 import 'package:visio/view/profile_page.dart';
+import 'package:visio/view/widget/exit_dialog.dart';
 
 import 'impaired/explore_page.dart';
 
@@ -32,23 +33,7 @@ class _MainPageState extends State<MainPage> {
     if(userRoles != null){
       return WillPopScope(
         onWillPop: () async{
-        final shouldExit = await showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Exit App'),
-            content: const Text('Are you sure you want to exit?'),
-            actions: [
-              TextButton(
-                  child: const Text('No'),
-                  onPressed: () => Navigator.of(context).pop(false),
-                ),
-                TextButton(
-                  child: const Text('Yes'),
-                  onPressed: () => Navigator.of(context).pop(true),
-                ),
-            ],
-          )
-        );
+        final shouldExit = await showExitDialog(context);
         return shouldExit ?? false;
       },
         child: Scaffold(
@@ -113,8 +98,7 @@ class _MainPageState extends State<MainPage> {
                   image: AssetImage(
                     helloills,
                   ),
-                  width: 406,
-                  height: 373,
+                  width: 270,
                 ),
               ),
               SizedBox(height: 10,),
