@@ -97,29 +97,30 @@ class _MainPageState extends State<MainPage> {
             ? HistoryImpairedPage(auth.currentUser!.uid)
             : HistoryPeerPage(auth.currentUser!.uid),
             ProfilePage(userRoles!),
-            //add page here
           ][currentPageIndex],
         ),
       );
     } else {
-      return Scaffold(
+      return const Scaffold(
+        backgroundColor: lightPink,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Center(
+              Center(
                 child: Image(
                   image: AssetImage(
-                    welcome
+                    helloills,
                   ),
-                  width: 150,
-                  height: 150,
+                  width: 406,
+                  height: 373,
                 ),
               ),
-              const SizedBox(height: 10,),
+              SizedBox(height: 10,),
               Center(
-                child: Text('Welcome to Tac Tile!',
-                  style: styleSB25)
+                child: Text('Welcome to Visio!',
+                  style: styleSB25
+                )
               ),
             ],
           ),

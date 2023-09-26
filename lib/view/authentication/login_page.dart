@@ -55,123 +55,129 @@ class _LoginPageState extends State<LoginPage> {
         resizeToAvoidBottomInset: false,
         body: Form(
           key: _formKey,
-          child: SizedBox(
+          child: Container(
             width: double.infinity,
             height: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: pagePadding),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                const SizedBox(height: 60,),
+                Image.asset(
+                  helloills,
+                  width: 134,
+                  height: 123,
+                ),
+                const SizedBox(height: 10,),
+                const Text(
+                  'Hello!',
+                  style: styleB35
+                ),
+                const Text(
+                  'Welcome to Visio!',
+                  style: styleR20
+                ),
+                const SizedBox(height: 10,),
                 Container(
-                  margin: const EdgeInsets.only(top: 120),
-                  child: Image.asset(
-                    appLogo,
-                    width: 77,
-                    height: 77,
+                  padding: const EdgeInsets.all(18),
+                  decoration: const BoxDecoration(
+                    color: lightBlue,
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Email',
+                        style: styleSB20
+                      ),
+                      const SizedBox(height: 5,),
+                      TextFormField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if(value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          } else if(!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)){
+                            return 'Please enter a valid email address';
+                          }
+                          return null;
+                        },
+                        decoration: inputDec('Email', hint: 'email@example.com'),
+                      ),
+
+                      const SizedBox(height: 18,),
+
+                      const Text(
+                        'Password',
+                        style: styleSB20
+                      ),
+                      const SizedBox(height: 5,),
+                      TextFormField(
+                        controller: passwordController,
+                        obscureText: _obscure,
+                        validator: (value) {
+                          if(value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }else if(value.length < 6) {
+                            return 'Password must be at least 6 characters';
+                          }
+                          return null;
+                        },
+                        decoration: inputDec('Password', hint: "*******", isPassword: true ,obscure: _obscure, togglePass:  (value) {setState(() {
+                          _obscure = value;
+                        });},),
+                      ),
+                    ],
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: fontColor,
-                    ),
-                  )
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 30, left: 38, right: 38),
-                  child: TextFormField(
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) {
-                      if(value == null || value.isEmpty) {
-                        return 'Please enter your email';
-                      } else if(!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)){
-                        return 'Please enter a valid email address';
-                      }
-                      return null;
-                    },
-                    decoration: inputDec('Email', hint: 'email@example.com'),
-                  ),
-                ),
-        
-                Container(
-                  margin: const EdgeInsets.only(top: 25, left: 38, right: 38),
-                  child: TextFormField(
-                    controller: passwordController,
-                    obscureText: _obscure,
-                    validator: (value) {
-                      if(value == null || value.isEmpty) {
-                        return 'Please enter your password';
-                      }else if(value.length < 6) {
-                        return 'Password must be at least 6 characters';
-                      }
-                      return null;
-                    },
-                    decoration: inputDec('Password', isPassword: true ,obscure: _obscure, togglePass:  (value) {setState(() {
-                      _obscure = value;
-                    });},),
-                  ),
-                ),
+                
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 38, vertical: 15),
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: _isLoading ? null : login,
-                              
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: appOrange,
-                                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: _isLoading ? null : login,
+                          
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: appOrange,
+                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: _isLoading 
+                            ? const CircularProgressIndicator()
+                            :const Text(
+                              'Login',
+                              style: styleWSB25
+                            )
+                        ),
+                      ),
+                      const SizedBox(height: 10,),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
+                        },
+                        child: RichText(
+                          text: const TextSpan(
+                            text: 'Don\'t have an account?',
+                            style: styleR15,
+                            children: [
+                              TextSpan(
+                                text: ' Register here',
+                                style: TextStyle(
+                                  color: appOrange,
+                                  fontWeight: FontWeight.w600
                                 ),
-                              ),
-                              child: _isLoading 
-                                ? const CircularProgressIndicator()
-                                :const Text(
-                                  'Login',
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                  )
-                                )
-                            ),
+                              )
+                            ]
                           ),
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 45),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
-                          },
-                          child: RichText(
-                            text: TextSpan(
-                              text: 'Don\'t have an account?',
-                              style: styleR15,
-                              children: const [
-                                TextSpan(
-                                  text: ' Register here',
-                                  style: TextStyle(
-                                    color: appOrange,
-                                    fontWeight: FontWeight.w600
-                                  ),
-                                )
-                              ]
-                            ),
-                          ),
-                        ),
-                      ),
+                      const SizedBox(height: 25,)
                     ],
                   ),
                 ),
