@@ -55,6 +55,7 @@ class _MainPageState extends State<MainPage> {
           resizeToAvoidBottomInset: false,
           bottomNavigationBar: NavigationBar(
             animationDuration: const Duration(milliseconds: 1000),
+            height: 85,
             destinations:  <Widget> [
               (userRoles == 1) 
               ? const NavigationDestination(

@@ -88,155 +88,132 @@ class _DescribePageState extends State<DescribePage> {
               : const Center(child: CircularProgressIndicator(),)
             ),
           ),
-          Align(
-            child: DraggableScrollableSheet(
-              initialChildSize: 0.65,
-              minChildSize: 0.5,
-              maxChildSize: 0.65,
-              builder:(_, ScrollController scrollController) => 
-                Container(
-                  width: double.maxFinite,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: SingleChildScrollView(
-                    controller: scrollController,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 38, vertical: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Touch it!',
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: fontColor
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(top: 270),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+            ),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      color: lightBlue,
+                      borderRadius: BorderRadius.circular(30)
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Touch & describe it!',
+                          style: styleB25,
+                        ),
+                        const SizedBox(height: 10,),
+                        const Text(
+                          'What is the texture? Is it soft or hard? and the weight, is it light or heavy? How about the size? Is it big or small? What is the function of the object?',
+                          softWrap: true,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: fontColor
+                          )
+                        ),
+                        const SizedBox(height: 15),
+                        TextField(
+                          maxLength: 200,
+                          keyboardType: TextInputType.multiline,
+                          maxLines: null,
+                          controller: textController,
+                          decoration: const InputDecoration(
+                            fillColor: white,
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.all(Radius.circular(30))
                             ),
+                            hintText: 'Enter text here Or talk',
                           ),
-                          const SizedBox(height: 15,),
-                          const Text(
-                            'What is the texture? Is it soft or hard? and the weight, is it light or heavy? How about the size? Is it big or small? What is the function of the object?',
-                            softWrap: true,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: fontColor
-                            )
-                          ),
-                            
-                          const SizedBox(height: 15,),
-                          
-                          const Text(
-                            'Describe it here!\nYou can type or speak!',
-                            softWrap: true,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.w600,
-                              color: fontColor
-                            )
-                          ),
-                          const SizedBox(height: 10,),
-                          SizedBox(
-                            width: double.maxFinite,
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                foregroundColor: Colors.white, 
-                                backgroundColor: appOrange,
-                                fixedSize: const Size(100, 100),
-                                shape: const CircleBorder(),
-                                
-                              ),
-                              onPressed: () => speech.isNotListening ? _startListening() : _stopListening(),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children:  [
-                                  Icon(
-                                    speech.isNotListening ? Icons.mic_off : Icons.mic, 
-                                    size: 35,
-                                  ),
-                                  const Text(
-                                    'Speak',
-                                    style: TextStyle(
-                                      fontSize: 16
-                                    ),
-                                  )
-                                ],
-                              ), 
-                            )
-                          ),
-                            
-                          const SizedBox(height: 15),
-                          TextField(
-                            maxLength: 200,
-                            keyboardType: TextInputType.multiline,
-                            maxLines: null,
-                            controller: textController,
-                            decoration: const InputDecoration(
-                              fillColor: Color(0xffE9E9E9),
-                              filled: true,
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(Radius.circular(10))
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(Radius.circular(10))
-                              ),
-                              hintText: 'Enter text here Or talk',
-                            ),
-                          ),
-                            
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: (){
-                                if(textController.text.isNotEmpty || textController.text != ''){
-                                  String description = textController.text;
-                                  ItemObject item = ItemObject(image: image, objName: objName, description: description, colaboratorDesc: '-');
-                                  objects.add(item);
-                                  if(objects.length < 5) {
-                                    Navigator.pushReplacement(
-                                      context, 
-                                      MaterialPageRoute(builder: (context) => ScanObjectPage(title, objects))
-                                    );
-                                  }else{
-                                    Game gameObj = Game(place: title, obj: objects, code: '', createdTime: Timestamp.now(), createdBy: '', playedBy: '-', isPlayed: false, colaboratorUid: '-', colaboratorTime: Timestamp.now());
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => LoadingPage(gameObj))
-                                    );
-                                  }
-                                }else{
-                                  textToSpeech('Please tell me the description of the object first!');
-                                }
-                              },
-                              
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: appOrange,
-                                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              child: const Text(
-                                'Next!',
-                                style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                )
-                              )
-                            ),
-                          ),
-                        ]
-                      ),
+                        ),
+                      ]
                     ),
                   ),
-                ),
-            )
+                  const SizedBox(height: 10,),
+                  SizedBox(
+                    width: double.maxFinite,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white, 
+                        backgroundColor: appOrange,
+                        fixedSize: const Size(120, 120),
+                        shape: const CircleBorder(),
+                        
+                      ),
+                      onPressed: () => speech.isNotListening ? _startListening() : _stopListening(),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children:  [
+                          Icon(
+                            speech.isNotListening ? Icons.mic_off : Icons.mic, 
+                            size: 35,
+                          ),
+                          const Text(
+                            'Speak',
+                            style: TextStyle(
+                              fontSize: 16
+                            ),
+                          )
+                        ],
+                      ), 
+                    )
+                  ),
+                  const SizedBox(height: 10,),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: (){
+                        if(textController.text.isNotEmpty || textController.text != ''){
+                          String description = textController.text;
+                          ItemObject item = ItemObject(image: image, objName: objName, description: description, colaboratorDesc: '-');
+                          objects.add(item);
+                          if(objects.length < 5) {
+                            Navigator.pushReplacement(
+                              context, 
+                              MaterialPageRoute(builder: (context) => ScanObjectPage(title, objects))
+                            );
+                          }else{
+                            Game gameObj = Game(place: title, obj: objects, code: '', createdTime: Timestamp.now(), createdBy: '', playedBy: '-', isPlayed: false, colaboratorUid: '-', colaboratorTime: Timestamp.now());
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoadingPage(gameObj))
+                            );
+                          }
+                        }else{
+                          textToSpeech('Please tell me the description of the object first!');
+                        }
+                      },
+                      
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: appOrange,
+                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: const Text(
+                        'Next!',
+                        style: styleWSB25
+                      )
+                    ),
+                  ),
+                ]
+              ),
+            ),
           ),
         ]
       ),

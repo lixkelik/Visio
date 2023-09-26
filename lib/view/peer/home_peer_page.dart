@@ -34,65 +34,60 @@ class _HomePeerPageState extends State<HomePeerPage> {
   Widget build(BuildContext context) {
    
     return Scaffold(
+      backgroundColor: lightPink,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 60,
-            ),
-            // profile picture and name
-            Container(
-              width: 93,
-              height: 93,
-              margin: const EdgeInsets.only(right: 12),
-              child: const Image(image: AssetImage(profilePic)),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            (user != null)
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 40,
+              ),
+              (user != null)
                 ? Text(
                     "Howdy, ${user!.name}!",
                     style: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: fontColor,
+                      fontWeight: FontWeight.w500
                     ),
                     overflow: TextOverflow.ellipsis,
                   )
                 : skeletonBox(140, 30),
-            const SizedBox(height: 20),
-            // xp bar
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Container(
+              const Text(
+                "Let’s be smart Together!",
+                style: styleB25
+              ),
+              const SizedBox(height: 10),
+              Image.asset(
+                drinkCircleills,
+                width: 180,
+                height: 180
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              
+              const SizedBox(height: 10),
+              Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: appOrange,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
+                  color: white,
+                  borderRadius: BorderRadius.circular(30),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     const Text('Badges gained',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: white,
-                            fontWeight: FontWeight.bold)),
+                        style: styleB15),
                     const SizedBox(height: 10),
                     Container(
                       height: 55,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: white),
+                        borderRadius: BorderRadius.circular(30),
+                        color: lightBlue
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
@@ -125,7 +120,7 @@ class _HomePeerPageState extends State<HomePeerPage> {
                               )
                             : const SizedBox(),
                             const SizedBox(width: 10),
-
+        
                             (expTotal >= 120)
                             ? const Tooltip(
                                 triggerMode: TooltipTriggerMode.tap,
@@ -137,7 +132,7 @@ class _HomePeerPageState extends State<HomePeerPage> {
                               )
                             : const SizedBox(),
                             const SizedBox(width: 10),
-
+        
                             (expTotal >= 300)
                             ? const Tooltip(
                                 triggerMode: TooltipTriggerMode.tap,
@@ -151,51 +146,48 @@ class _HomePeerPageState extends State<HomePeerPage> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
                         Expanded(
-                          // flex: 1,
                           child: Container(
-                            height: 85,
+                            height: 70,
                             decoration: BoxDecoration(
-                                color: white,
+                                color: lightBlue,
                                 borderRadius:
-                                    BorderRadius.circular(10)),
+                                    BorderRadius.circular(30)),
                             child: Column(
                               mainAxisAlignment:
                                   MainAxisAlignment.center,
                               children: [
-                                // SizedBox(height: 20),
-                                Text('Total Games', style: styleR15),
-                                const SizedBox(height: 10),
+                                const Text('Total Games', style: styleR15),
+                                const SizedBox(height: 5),
                                 Text(
                                   '$gameTotal',
-                                  style: styleB25
+                                  style: styleB20
                                 ),
                               ],
                             ),
                           ),
                         ),
-                        const SizedBox(width: 20),
+                        const SizedBox(width: 10),
                         Expanded(
-                          // flex: 1,
                           child: Container(
-                            height: 85,
+                            height: 70,
                             decoration: BoxDecoration(
-                                color: white,
+                                color: lightBlue,
                                 borderRadius:
-                                    BorderRadius.circular(10)),
+                                    BorderRadius.circular(30)),
                             child: Column(
                               mainAxisAlignment:
                                   MainAxisAlignment.center,
                               children: [
-                                Text('XP Gained',
+                                const Text('XP Gained',
                                     style: styleR15),
-                                const SizedBox(height: 10),
+                                const SizedBox(height: 5),
                                 Text(
                                   '$expTotal',
-                                  style: styleB25
+                                  style: styleB20
                                 ),
                               ],
                             ),
@@ -206,28 +198,17 @@ class _HomePeerPageState extends State<HomePeerPage> {
                   ],
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            // game button
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 40), // Set the left and right padding
-              child: InkWell(
+              const SizedBox(height: 20),
+
+              // game button
+              InkWell(
                 onTap: () {
                   updateCurrentPageIndex(1);
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: green,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
+                    color: white,
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -237,24 +218,22 @@ class _HomePeerPageState extends State<HomePeerPage> {
                         child: const Text("Let's Play a\n Game!",
                             style: TextStyle(
                                 fontSize: 25,
-                                color: white,
+                                color: fontColor,
                                 fontWeight: FontWeight.bold)),
                       ),
                       Expanded(
                           child: Image.asset(
-                        clickMe,
-                        height: 110,
+                        coolills,
+                        height: 90,
                       )),
                     ],
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            // article button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: InkWell(
+              const SizedBox(height: 20),
+
+              // article button
+              InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -262,40 +241,29 @@ class _HomePeerPageState extends State<HomePeerPage> {
                         builder: (context) => const ArticlePeer()),
                   );
                 },
-                // tampilannya
+
                 child: Container(
                   height: 285,
                   decoration: BoxDecoration(
-                    color: appYellow,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
+                    color: white,
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  // tulisan artikel dll
+
                   child: Column(
-                    children: <Widget>[
+                    children: [
                       Container(
                         decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10),
-                                topRight: Radius.circular(10)),
-                            color: appYellow),
-                        padding: const EdgeInsets.all(15),
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30)),
+                            color: white),
+                        padding: const EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
                               "Today's fun article!",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: white,
-                                  fontWeight: FontWeight.bold),
+                              style: styleB15,
                             ),
                             const SizedBox(height: 10),
                             ClipRRect(
@@ -305,12 +273,9 @@ class _HomePeerPageState extends State<HomePeerPage> {
                                 width: double.infinity,
                               ),
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 8),
                             const Text('What is an Airport ?',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: white)),
+                                style: styleB20),
                           ],
                         ),
                       ),
@@ -318,8 +283,8 @@ class _HomePeerPageState extends State<HomePeerPage> {
                         child: Container(
                           decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10)),
+                                  bottomLeft: Radius.circular(30),
+                                  bottomRight: Radius.circular(30)),
                               color: appOrange),
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -346,11 +311,11 @@ class _HomePeerPageState extends State<HomePeerPage> {
                   ),
                 ),
               ),
-            ),
-
-            // end page
-            const SizedBox(height: 50)
-          ],
+        
+              // end page
+              const SizedBox(height: 50)
+            ],
+          ),
         ),
       ),
     );

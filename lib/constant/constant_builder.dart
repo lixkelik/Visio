@@ -17,6 +17,7 @@ const Color whiteGrey = Color(0xffF6F6F6);
 const Color lightBlue = Color(0xffCDE0FF);
 const Color lightPurple = Color(0xffDED5F1);
 const Color lightPink = Color(0xffFFCDCD);
+const Color lightGreen = Color(0xffB2EAC0);
 
 const appLogo = 'assets/image/visio_logo/app_logo.png';
 const splashLogo = 'assets/image/visio_logo/splash_logo.png';
@@ -43,6 +44,7 @@ const readills = 'assets/image/illustration/read_ills.png';
 const sickills = 'assets/image/illustration/sick_ills.png';
 const togetherills = 'assets/image/illustration/together_ills.png';
 const profile = 'assets/image/illustration/profile.png';
+const warningLogo = 'assets/image/warning.png';
 
 const badge1 = 'assets/image/illustration/badge1.png';
 const badge2 = 'assets/image/illustration/badge2.png';
@@ -71,5 +73,7 @@ const TextStyle styleB25 = TextStyle(fontSize: 25,fontWeight: FontWeight.bold,co
 const TextStyle styleB30 = TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: fontColor);
 const TextStyle styleB35 = TextStyle(fontSize: 35,fontWeight: FontWeight.bold,color: fontColor);
 
+const TextStyle styleWSB20 = TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: white);
 const TextStyle styleWSB25 = TextStyle(fontSize: 25,fontWeight: FontWeight.w600,color: white);
 const TextStyle styleWSB30 = TextStyle(fontSize: 30,fontWeight: FontWeight.w600,color: white);
+

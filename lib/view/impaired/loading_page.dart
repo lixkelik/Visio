@@ -30,13 +30,13 @@ class _LoadingPageState extends State<LoadingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: (gameObj.code == '')
-            ? Center(
+            ? const Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const CircularProgressIndicator(color: appOrange, ),
-                    const SizedBox(height: 20),
+                    CircularProgressIndicator(color: appOrange, ),
+                    SizedBox(height: 20),
                     Text(
                       'Uploading file please wait...',
                       style: styleB15,

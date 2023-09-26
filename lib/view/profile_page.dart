@@ -29,96 +29,75 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
-        padding:
-            const EdgeInsets.only(left: 38, right: 38, top: 55, bottom: 10),
-        height: double.infinity,
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 10),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              children: [
-                Container(
-                  width: 93,
-                  height: 93,
-                  margin: const EdgeInsets.only(right: 12),
-                  child: const Image(image: AssetImage(profilePic)),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  (user != null)
-                      ? Text(
-                          user!.name,
-                          style: const TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        )
-                      : skeletonBox(140, 30),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  (user != null)
-                      ? Text(
-                          user!.email,
-                          style: const TextStyle(
-                            fontSize: 20,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        )
-                      : skeletonBox(170, 20)
-                ])
-              ],
-            ),
             Container(
-              width: double.infinity,
-              margin: const EdgeInsets.symmetric(vertical: 20),
-              child: ElevatedButton(
-                  onPressed: () {
-                    signOut();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginPage()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: appOrange,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: appOrange,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 93,
+                    height: 93,
+                    margin: const EdgeInsets.only(right: 12),
+                    child: const Image(image: AssetImage(profilePic)),
                   ),
-                  child: const Text('Logout',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ))),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    (user != null)
+                        ? Text(
+                            user!.name,
+                            style: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: white
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          )
+                        : skeletonBox(140, 30),
+                    (user != null)
+                        ? Text(
+                            user!.email,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              color: white
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          )
+                        : skeletonBox(170, 20)
+                  ])
+                ],
+              ),
             ),
+            const SizedBox(height: 8,),
             const SizedBox(
               width: double.infinity,
-              child: Text('Preference',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  )),
+              child: Text(
+                'Preference',
+                style: styleB30,
+                textAlign: TextAlign.center,
+              ),
             ),
             const SizedBox(
               height: 10,
             ),
             Container(
                 width: double.infinity,
-                height: 95,
                 decoration: const BoxDecoration(
-                  color: Color(0xffF0F0F0),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: lightBlue,
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
                 ),
                 child: Container(
-                  margin: const EdgeInsets.all(6),
+                  margin: const EdgeInsets.all(15),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -136,7 +115,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Row(children: [
                         Container(
                           decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
                             color: white,
                           ),
                           width: 75,
@@ -145,12 +124,11 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Text(speechRate.toStringAsFixed(2),
                                 style: const TextStyle(
                                   fontSize: 18,
-                                  fontWeight: FontWeight.bold
+                                  fontWeight: FontWeight.w600
                                 )),
                           ),
                         ),
-                        SizedBox(
-                          width: 220,
+                        Expanded(
                           child: Slider(
                               activeColor: appOrange,
                               max: 1,
@@ -168,18 +146,15 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 )),
-            const SizedBox(
-              height: 15,
-            ),
+            const SizedBox(height: 10,),
             Container(
                 width: double.infinity,
-                height: 95,
                 decoration: const BoxDecoration(
-                  color: Color(0xffF0F0F0),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: lightBlue,
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
                 ),
                 child: Container(
-                  margin: const EdgeInsets.all(6),
+                  margin: const EdgeInsets.all(15),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -196,7 +171,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Row(children: [
                         Container(
                           decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
                             color: white,
                           ),
                           width: 75,
@@ -205,12 +180,11 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Text(volume.toStringAsFixed(2),
                                 style: const TextStyle(
                                   fontSize: 18,
-                                  fontWeight: FontWeight.bold
+                                  fontWeight: FontWeight.w600
                                 )),
                           ),
                         ),
-                        SizedBox(
-                          width: 220,
+                        Expanded(
                           child: Slider(
                               activeColor: appOrange,
                               max: 2,
@@ -228,22 +202,90 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 )),
-            const SizedBox(
-              height: 15,
+            const SizedBox(height: 20,),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                  onPressed: () {
+                    showPopUp();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                      side: const BorderSide(color: Colors.red,width: 3),
+                    ),
+                  ),
+                  child: const Text('Logout',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.red,
+                      ))),
             ),
-            Expanded(
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                child: const Image(image: AssetImage(walkingMan)),
-              ),
-            )
           ],
         ),
       ),
     );
   }
 
-  signOut() async {
+  showPopUp() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20)
+          ),
+          child: Container(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(warningLogo, width: 60, height: 60,),
+                const SizedBox(height: 5),
+                const Text('Log Out!', style: styleB20,),
+                const Text('Are you sure want to logout ?\nYou need to login again if you logout!', style: styleR15, textAlign: TextAlign.center,),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('No'),
+                    ),
+
+                    ElevatedButton(
+                      onPressed: () {
+                        signOut();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                      ),
+                      child: const Text('Logout', style: TextStyle(color: white)),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+    
+  }
+
+  signOut() async{
     await auth.signOut();
   }
 

@@ -20,8 +20,8 @@ class ArticlePeer extends StatelessWidget {
         child: Column(children: [
           // gambar artikel
           Image.asset(articleBg),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
+          const Padding(
+            padding: EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -29,7 +29,7 @@ class ArticlePeer extends StatelessWidget {
                   'What is an Airport ?',
                   style: styleB25
                 ),
-                const SizedBox(height: 16.0),
+                SizedBox(height: 16.0),
                 Text(
                   ''' An airport is a place where airplanes can land or take off. Most airports in the world have only a long strip of level ground called a runway. Many airports have buildings which are used to hold airplanes and passengers. A building that holds passengers waiting for their planes or luggage is called a terminal. The sections between planes and the terminal are called "gates". 
   Airports also have buildings called hangars to hold planes when they are not used. Some airports have buildings to control the airport, like a control tower which tells planes where to go. An international airport is a large airport that airplanes can use to fly to and from other countries. A domestic airport is an airport which is usually smaller and only has airplanes coming from different places in the same country. Most international airports have shops and restaurants for airplane passengers to use.
@@ -41,12 +41,16 @@ class ArticlePeer extends StatelessWidget {
             ),
           ),
           // reward biar lucu
-          Text(
+          Image.asset(readills, width: 92, height: 113),
+          const SizedBox(height: 20),
+          const Text(
             "Now you know!",
             style: styleB15
           ),
-          const SizedBox(height: 20),
-          Image.asset(inspired, width: 200, height: 200),
+
+          const SizedBox(height: 30),
+          
+          
         ]),
       ),
     );

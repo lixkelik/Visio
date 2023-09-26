@@ -9,78 +9,151 @@ class ChooseGamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 38, vertical: 50),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 40, bottom: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Choose & play a game",
-              style: styleB25,
+            const Text(
+              "Hey!",
+              style: styleR20,
             ),
-            const SizedBox(height: 20,),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (context) => const GamePeer()));
-              },
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: appOrange,
-                    width: 3
-                  ),
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(play, width: 110, height: 110),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Describe with a\nfriend',
-                      style: styleR20,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
+            const Text(
+              "Let's play a game!",
+              style: styleB30,
+            ),
+            const Text(
+              "There are two types of games.\nIf you want to help your friend to describe an object, choose describe with friend. If you want to learn something new, choose Learn about your surroundings!",
+              style: styleR15,
             ),
             const SizedBox(height: 10,),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (context) => const LearnGamePage()));
-              },
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: appOrange,
-                    width: 3
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(10),
+              decoration: const BoxDecoration(
+                color: lightPurple,
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(builder: (context) => const GamePeer())
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: white,
+                            padding: const EdgeInsets.all(5),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: SizedBox(
+                            height: 180,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  togetherills,
+                                  height: 80,
+                                ),
+                                const Text(
+                                  "Describe With\n Friend",
+                                  style: styleSB15,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8,),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context, 
+                              MaterialPageRoute(builder: (context) => const LearnGamePage())
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: white,
+                            padding: const EdgeInsets.all(5),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: Container(
+                            height: 180,
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            decoration: const BoxDecoration(
+                              color: white,
+                              borderRadius: BorderRadius.all(Radius.circular(30))
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  readills,
+                                  height: 80,
+                                ),
+                                const Text(
+                                  "Learn about your\n surroundings",
+                                  style: styleSB15,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(learn, width: 110, height: 110),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Learn about your\nsurrounding',
-                      style: styleR20,
-                      textAlign: TextAlign.center,
+                  const SizedBox(height: 8,),
+      
+                  ElevatedButton(
+                    onPressed: () {
+                      
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: white,
+                      padding: const EdgeInsets.all(10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ),
-                  ],
-                ),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: white,
+                        borderRadius: BorderRadius.circular(30)
+                      ),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            sickills,
+                            height: 93,
+                          ),
+                          const Text(
+                            "Another exciting game\nComing soon!",
+                            style: styleSB15,
+                            textAlign: TextAlign.center,
+                          ),
+                          
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-
           ],
         ),
       ),

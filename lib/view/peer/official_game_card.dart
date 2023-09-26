@@ -13,7 +13,7 @@ class OfficialGameCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5),
       width: double.infinity,
       decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: BorderRadius.all(Radius.circular(30)),
           color: appOrange),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Padding(
@@ -23,6 +23,7 @@ class OfficialGameCard extends StatelessWidget {
             style: const TextStyle(
               color: white,
               fontSize: 20,
+              fontWeight: FontWeight.w600
             ),
             overflow: TextOverflow.fade,
           ),
@@ -38,8 +39,8 @@ class OfficialGameCard extends StatelessWidget {
             decoration: const BoxDecoration(
                 color: green,
                 borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
+                  topRight: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
                 )),
             padding: const EdgeInsets.all(8),
             width: 110,

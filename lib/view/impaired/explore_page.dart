@@ -81,165 +81,159 @@ class _ExplorePageState extends State<ExplorePage> {
                         // 2 button
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            margin: const EdgeInsets.only(top: 16),
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                foregroundColor: Colors.white,
-                                backgroundColor: appOrange,
-                                fixedSize: const Size(100, 100),
-                                shape: const CircleBorder(),
-                                alignment: Alignment.center,
-                              ),
-                              onPressed: () {
-                                if (objText == '') {
-                                  textToSpeech("No object detected!");
-                                } else {
-                                  textToSpeech(objText);
-                                }
-                              },
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.volume_up_rounded,
-                                    size: 37,
-                                  ),
-                                  Text(
-                                    'Hear',
-                                    style: TextStyle(fontSize: 18),
-                                  )
-                                ],
-                              ),
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: appOrange,
+                              fixedSize: const Size(120, 120),
+                              shape: const CircleBorder(),
+                              alignment: Alignment.center,
+                            ),
+                            onPressed: () {
+                              if (objText == '') {
+                                textToSpeech("No object detected!");
+                              } else {
+                                textToSpeech(objText);
+                              }
+                            },
+                            child: const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.volume_up_rounded,
+                                  size: 37,
+                                ),
+                                Text(
+                                  'Hear',
+                                  style: TextStyle(fontSize: 18),
+                                )
+                              ],
                             ),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            margin: const EdgeInsets.only(top: 16),
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                foregroundColor: Colors.white,
-                                backgroundColor: appOrange,
-                                fixedSize: const Size(100, 100),
-                                shape: const CircleBorder(),
-                                alignment: Alignment.center,
-                              ),
-                              onPressed: () {
-                                // tampilin pop up
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: appOrange,
+                              fixedSize: const Size(120, 120),
+                              shape: const CircleBorder(),
+                              alignment: Alignment.center,
+                            ),
+                            onPressed: () {
+                              // tampilin pop up
 
-                                if (objText == '') {
-                                  textToSpeech("No object detected!");
-                                } else {
-                                  completionFun().then((_) {
-                                    textToSpeech(responseGPT);
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          contentPadding: const EdgeInsets.all(16.0),
-                                          content: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  // icon untuk close
-                                                  IconButton(
-                                                    icon: const Icon(Icons.close),
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
+                              if (objText == '') {
+                                textToSpeech("No object detected!");
+                              } else {
+                                completionFun().then((_) {
+                                  textToSpeech(responseGPT);
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        contentPadding: const EdgeInsets.all(16.0),
+                                        content: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                // icon untuk close
+                                                IconButton(
+                                                  icon: const Icon(Icons.close),
+                                                  onPressed: () {
+                                                    Navigator.of(context)
+                                                        .pop();
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+
+                                            // icon content
+                                            // button
+                                            Container(
+                                              margin: const EdgeInsets.only(
+                                                  top: 16),
+                                              child: Center(
+                                                child: TextButton(
+                                                  style: TextButton.styleFrom(
+                                                    foregroundColor:
+                                                        Colors.white,
+                                                    backgroundColor:
+                                                        appOrange,
+                                                    fixedSize:
+                                                        const Size(120, 120),
+                                                    shape:
+                                                        const CircleBorder(),
+                                                    alignment:
+                                                        Alignment.center,
                                                   ),
-                                                ],
-                                              ),
-
-                                              // icon content
-                                              // button
-                                              Container(
-                                                margin: const EdgeInsets.only(
-                                                    top: 16),
-                                                child: Center(
-                                                  child: TextButton(
-                                                    style: TextButton.styleFrom(
-                                                      foregroundColor:
-                                                          Colors.white,
-                                                      backgroundColor:
-                                                          appOrange,
-                                                      fixedSize:
-                                                          const Size(100, 100),
-                                                      shape:
-                                                          const CircleBorder(),
-                                                      alignment:
-                                                          Alignment.center,
-                                                    ),
-                                                    onPressed: () {
-                                                      if (responseGPT == '') {
-                                                        textToSpeech(
-                                                            "No definition!");
-                                                      } else {
-                                                        textToSpeech(
-                                                            responseGPT);
-                                                      }
-                                                    },
-                                                    child: const Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Icon(
-                                                          Icons
-                                                              .volume_up_rounded,
-                                                          size: 37,
-                                                        ),
-                                                        Text(
-                                                          'Hear',
-                                                          style: TextStyle(
-                                                              fontSize: 18),
-                                                        )
-                                                      ],
-                                                    ),
+                                                  onPressed: () {
+                                                    if (responseGPT == '') {
+                                                      textToSpeech(
+                                                          "No definition!");
+                                                    } else {
+                                                      textToSpeech(
+                                                          responseGPT);
+                                                    }
+                                                  },
+                                                  child: const Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                        Icons
+                                                            .volume_up_rounded,
+                                                        size: 37,
+                                                      ),
+                                                      Text(
+                                                        'Hear',
+                                                        style: TextStyle(
+                                                            fontSize: 18),
+                                                      )
+                                                    ],
                                                   ),
                                                 ),
                                               ),
-                                              const SizedBox(height: 16),
-                                              // text
-                                              Center(
-                                                child: Text(
-                                                  objText,
-                                                  style: const TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
+                                            ),
+                                            const SizedBox(height: 16),
+                                            // text
+                                            Center(
+                                              child: Text(
+                                                objText,
+                                                style: const TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                              Center(child: Text(responseGPT)),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  });
-                                }
-                              },
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.school_rounded,
-                                    size: 37,
-                                  ),
-                                  Text(
-                                    'Learn',
-                                    style: TextStyle(fontSize: 18),
-                                  )
-                                ],
-                              ),
+                                            ),
+                                            Center(child: Text(responseGPT)),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                });
+                              }
+                            },
+                            child: const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.school_rounded,
+                                  size: 37,
+                                ),
+                                Text(
+                                  'Learn',
+                                  style: TextStyle(fontSize: 18),
+                                )
+                              ],
                             ),
                           ),
                         ),

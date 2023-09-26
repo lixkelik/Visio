@@ -41,144 +41,151 @@ class _GamePeerState extends State<GamePeer> {
         title: const Text('Describe With Friend!'),
         backgroundColor: appOrange,
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 38, right: 38, top: 20),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                'Find A Game',
-                style: styleB30
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Text(
+              'Find A Game',
+              style: styleB30
+            ),
+            const SizedBox(height: 10),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                color: lightBlue,
+                borderRadius: BorderRadius.circular(30),
               ),
-              const SizedBox(height: 20),
-              Text(
-                'Enter game Code that shared by your friends!',
-                style: styleSB25
-              ),
-              const SizedBox(height: 15),
-              TextField(
-                controller: textController,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: appOrange, width: 3)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: appOrange, width: 3)),
-                  hintText: 'Type code here...',
-                  filled: true,
-                  fillColor: whiteGrey,
-                ),
-              ),
-              Text(
-                errorText,
-                style: const TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.red),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () {
-                      
-                      findGame();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: appOrange,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 20),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Enter game Code that\nis shared by your friends!',
+                    style: styleSB20
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    controller: textController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide.none,
                       ),
+                      hintText: 'Type code here...',
+                      filled: true,
+                      fillColor: white,
                     ),
-                    child: const Text('Play!',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ))),
-              ),
-              const SizedBox(height: 20),
-              const SizedBox(
-                width: double.infinity,
-                child: Text(
-                  'OR',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600,
-                      color: fontColor),
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: Text(
-                  'Play Official Games!',
-                  textAlign: TextAlign.center,
-                  style: styleB25
-                ),
-              ),
-              const SizedBox(height: 20),
-              StreamBuilder<QuerySnapshot>(
-                  stream: getGame
-                      .where('createdBy', isEqualTo: 'Carbonara')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Column(children: [
-                        skeletonBox(double.infinity, 80),
-                        const SizedBox(height: 15),
-                        skeletonBox(double.infinity, 80),
-                      ]);
-                    } else if (snapshot.data!.docs.isEmpty) {
-                      return Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Image(image: AssetImage(inspired)),
-                            Text(
-                              'No official game',
-                              textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    errorText,
+                    style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.red),
+                  ),
+                  const SizedBox(height: 8),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            findGame();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: appOrange,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 20),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: const Text('Play!',
                               style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: fontColor.withOpacity(0.5),
-                              ),
-                            )
-                          ],
-                        ),
-                      );
-                    } else {
-                      return Column(
-                        children: (snapshot.data!).docs.map((e) {
-                          List<dynamic> items = e['obj'];
-                          List<ItemObject> itemObject = items
-                              .map((e) => ItemObject(
-                                  image: e['image'],
-                                  objName: e['objName'],
-                                  description: e['description'],
-                                  colaboratorDesc: e['colaboratorDesc']))
-                              .toList();
-                          Game gameObj = Game(
-                              place: e['place'],
-                              obj: itemObject,
-                              code: e['code'],
-                              createdBy: e['createdBy'],
-                              playedBy: e['playedBy'],
-                              createdTime: e['createdTime'],
-                              colaboratorTime: e['colaboratorTime'],
-                              isPlayed: e['isPlayed'],
-                              colaboratorUid: e['colaboratorUid']);
-                          return OfficialGameCard(gameObj, 'Carbonara');
-                        }).toList(),
-                      );
-                    }
-                  }),
-            ],
-          ),
+                                fontSize: 30,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              ))),
+                    ),
+                ],
+              ),
+            ),
+            
+            const SizedBox(height: 15),
+            const SizedBox(
+              width: double.infinity,
+              child: Text(
+                'OR',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 25,
+                    color: fontColor),
+              ),
+            ),
+            const SizedBox(
+              width: double.infinity,
+              child: Text(
+                'Play Official Games!',
+                textAlign: TextAlign.center,
+                style: styleB25
+              ),
+            ),
+            const SizedBox(height: 20),
+            StreamBuilder<QuerySnapshot>(
+                stream: getGame
+                    .where('createdBy', isEqualTo: 'Carbonara')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Column(children: [
+                      skeletonBox(double.infinity, 80),
+                    ]);
+                  } else if (snapshot.data!.docs.isEmpty) {
+                    return Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Image(image: AssetImage(inspired)),
+                          Text(
+                            'No official game',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: fontColor.withOpacity(0.5),
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Column(
+                      children: (snapshot.data!).docs.map((e) {
+                        List<dynamic> items = e['obj'];
+                        List<ItemObject> itemObject = items
+                            .map((e) => ItemObject(
+                                image: e['image'],
+                                objName: e['objName'],
+                                description: e['description'],
+                                colaboratorDesc: e['colaboratorDesc']))
+                            .toList();
+                        Game gameObj = Game(
+                            place: e['place'],
+                            obj: itemObject,
+                            code: e['code'],
+                            createdBy: e['createdBy'],
+                            playedBy: e['playedBy'],
+                            createdTime: e['createdTime'],
+                            colaboratorTime: e['colaboratorTime'],
+                            isPlayed: e['isPlayed'],
+                            colaboratorUid: e['colaboratorUid']);
+                        return OfficialGameCard(gameObj, 'Carbonara');
+                      }).toList(),
+                    );
+                  }
+                }),
+          ],
         ),
       ),
     );
@@ -188,6 +195,11 @@ class _GamePeerState extends State<GamePeer> {
     if(textController.text == ""){
       setState(() {
         errorText = "Please enter the game code!";
+      });
+      Future.delayed(const Duration(seconds: 3), () {
+        setState(() {
+          errorText = '';
+        });
       });
     }else {
       try {

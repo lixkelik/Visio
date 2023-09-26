@@ -53,115 +53,124 @@ class _GameImpairedState extends State<GameImpaired> {
   Widget build(BuildContext context) {
     return  Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 38, right: 38, top: 80),
-          child: Column(
-            children: [
-              const Text(
-                'Scan 5 objects around you and describe them',
-                softWrap: true,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w600,
-                  color: fontColor,
-                )
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
+        child: Column(
+          children: [
+            Image.asset(
+              readills,
+              width: 92,
+              height: 113,
+            ),
+            const Text(
+              'Let\'s Play!',
+              textAlign: TextAlign.center,
+              style: styleB35
+            ),
+            const Text(
+              'Scan 5 objects around\nyou and describe them',
+              softWrap: true,
+              textAlign: TextAlign.center,
+              style: styleR20
+            ),
+            const SizedBox(height: 15),
+            Container(
+              padding: const EdgeInsets.all(15),
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: lightPink,
+                borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
-              const SizedBox(height: 35),
-              const Text(
-                'Where are you?',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 30,
-      
-                )
-              ),
-              
-              const SizedBox(height: 15),
-              TextField(
-                maxLength: 20,
-                controller: textController,
-                decoration: const InputDecoration(
-                  fillColor: Color(0xffE9E9E9),
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.all(Radius.circular(10))
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Where are you?',
+                    textAlign: TextAlign.center,
+                    style: styleB25
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.all(Radius.circular(10))
-                  ),
-                  hintText: 'Enter text here Or talk',
-                ),
-              ),
-      
-              const SizedBox(height: 15),
-      
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: (){
-                    if(textController.text.isNotEmpty || textController.text != ''){
-                      String text = textController.text;
-                      textController.clear();
-                      items.clear();
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => ScanObjectPage(text, items))
-                      );
-                    }else{
-                      textToSpeech('Please tell me where are you first!');
-                    }
-                  },
-                  
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: appOrange,
-                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: const Text(
-                    'Start Playing!',
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    )
-                  )
-                ),
-              ),
-
-              const SizedBox(height: 80),
-              TextButton(
-                style: TextButton.styleFrom(
-                  foregroundColor: Colors.white, 
-                  backgroundColor: appOrange,
-                  fixedSize: const Size(130, 130),
-                  
-                ),
-                onPressed: () => speech.isNotListening ? _startListening() : _stopListening(),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children:  [
-                    Icon(
-                      speech.isNotListening ? Icons.mic_off : Icons.mic, 
-                      size: 35,
-                    ),
-                    const Text(
-                      'Speak',
-                      style: TextStyle(
-                        fontSize: 16
+                  const SizedBox(height: 15),
+                  TextField(
+                    maxLength: 20,
+                    controller: textController,
+                    decoration: const InputDecoration(
+                      fillColor: white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.all(Radius.circular(30))
                       ),
-                    )
-                  ],
-                ), 
-                
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.all(Radius.circular(30))
+                      ),
+                      hintText: 'Enter text here Or talk',
+                    ),
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: (){
+                        if(textController.text.isNotEmpty || textController.text != ''){
+                          String text = textController.text;
+                          textController.clear();
+                          items.clear();
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(builder: (context) => ScanObjectPage(text, items))
+                          );
+                        }else{
+                          textToSpeech('Please tell me where are you first!');
+                        }
+                      },
+                      
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: appOrange,
+                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: const Text(
+                        'Start Playing!',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        )
+                      )
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 20),
+            TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white, 
+                backgroundColor: appOrange,
+                fixedSize: const Size(120, 120),
+                shape: const CircleBorder(),
+              ),
+              onPressed: () => speech.isNotListening ? _startListening() : _stopListening(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children:  [
+                  Icon(
+                    speech.isNotListening ? Icons.mic_off : Icons.mic, 
+                    size: 35,
+                  ),
+                  const Text(
+                    'Speak',
+                    style: TextStyle(
+                      fontSize: 16
+                    ),
+                  )
+                ],
+              ), 
+              
+            ),
+          ],
         ),
       ),
     );
