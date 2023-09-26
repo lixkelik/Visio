@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 export 'package:flutter/material.dart';
 export 'package:visio/view/widget/skeleton.dart';
 
-const Color white = Colors.white;
+const Color white = Color(0xffFBFBFB);
 const Color lightGrey = Color(0xffAFAFAF);
 const Color darkGrey = Color(0xff666666);
-const Color appOrange = Color(0xffff983a);
+const Color appOrange = Color(0xffFF9839);
 const Color green = Color(0xff74E087);
 const Color appYellow = Color(0xffFFC000);
 const Color fontColor = Color(0xff3F3F3F);
 const Color selectedNavBar = Color(0xffFFC000);
 const Color whiteGrey = Color(0xffF6F6F6);
-const Color lightBlue = Color(0xffC5DFDF);
+const Color lightBlue = Color(0xffCDE0FF);
+const Color lightPurple = Color(0xffDED5F1);
+const Color lightPinik = Color(0xffFFCDCD);
 
 const appLogo = 'assets/image/visio_logo/app_logo.png';
 const splashLogo = 'assets/image/visio_logo/splash_logo.png';
@@ -27,6 +29,17 @@ const inspired = 'assets/image/illustration/inspired.png';
 const welcome = 'assets/image/illustration/welcome.png';
 const play = 'assets/image/illustration/play.png';
 const learn = 'assets/image/illustration/learn.png';
+
+const balloonills = 'assets/image/illustration/balloon_ills.png';
+const coolills = 'assets/image/illustration/cool_ills.png';
+const drinkills = 'assets/image/illustration/drink_ills.png';
+const helloills = 'assets/image/illustration/hello_ills.png';
+const kingills = 'assets/Image/illustration/king_ills.png';
+const loveills = 'assets/image/illustration/love_ills.png';
+const readills = 'assets/image/illustration/read_ills.png';
+const sickills = 'assets/image/illustration/sick_ills.png';
+const togetherills = 'assets/image/illustration/together_ills.png';
+const profile = 'assets/image/illustration/profile.png';
 
 const badge1 = 'assets/image/illustration/badge1.png';
 const badge2 = 'assets/image/illustration/badge2.png';
