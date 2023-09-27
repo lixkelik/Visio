@@ -26,11 +26,12 @@ dependencies:
   firebase_storage: ^11.1.2
   flutter_native_splash: ^2.2.16
   intl: ^0.18.1
-  image: ^3.0.2
   path_provider: ^2.1.1
   flutter_dotenv: ^5.1.0
   http: ^1.1.0
   permission_handler: ^11.0.0
+  get: ^4.6.5
+  flutter_tflite: ^1.0.1
 
 dev_dependencies:
   flutter_test:

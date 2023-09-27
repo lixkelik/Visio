@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:camera/camera.dart';
 import 'package:visio/constant/constant_builder.dart';
+import 'package:visio/tflite/camera_view1.dart';
 import 'package:visio/tflite/recognition.dart';
 import 'package:visio/tflite/box_widget.dart';
 import 'package:visio/view/impaired/texttospeech.dart';
@@ -12,7 +13,6 @@ import 'package:visio/factory/response_model.dart';
 import '../../tflite/camera_view.dart';
 import 'package:http/http.dart' as http;
 
-/// [HomeView] stacks [CameraView] and [BoxWidget]s with bottom sheet for stats
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
 
@@ -44,12 +44,9 @@ class _ExplorePageState extends State<ExplorePage> {
       key: scaffoldKey,
       backgroundColor: Colors.black,
       body: Stack(
-        children: <Widget>[
+        children: [
           // Camera View
-          CameraView(resultsCallback),
-
-          // Bounding boxes
-          boundingBoxes(results),
+          const CameraViewScreen(),
 
           // Bottom Sheet
           Align(
