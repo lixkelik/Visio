@@ -63,7 +63,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             overflow: TextOverflow.ellipsis,
                           )
-                        : skeletonBox(140, 30),
+                        : Container(
+                          margin: const EdgeInsets.only(bottom: 15),
+                          child: skeletonBox(140, 40)),
                     (user != null)
                         ? Text(
                             user!.email,
