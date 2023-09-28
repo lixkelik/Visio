@@ -282,11 +282,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ElevatedButton(
                       onPressed: () {
                         signOut();
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginPage()),
-                        );
+                        popAndPushPage();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
@@ -314,6 +310,14 @@ class _ProfilePageState extends State<ProfilePage> {
         this.user = user;
       });
     }
+  }
+
+  popAndPushPage(){
+    Navigator.pushAndRemoveUntil(
+      context, 
+      MaterialPageRoute(builder: (context) => const LoginPage()),
+      (route) => false
+    );
   }
 
   void pageSpeech() {

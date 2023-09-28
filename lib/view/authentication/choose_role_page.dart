@@ -121,6 +121,11 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
   Future register() async{
     //ROLES 1 = VISUALLY IMPAIRED, 2 = SIGHTED PEER
     if(_selectedRoles == 1 || _selectedRoles == 2){
+      if(mounted){
+        setState(() {
+          _isLoading = true;
+        });
+      }
       try{
         await auth.createUserWithEmailAndPassword(email: widget.email.trim(), password: widget.password.trim());
       
@@ -137,12 +142,7 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
             
           }
         );
-        // ignore: use_build_context_synchronously
-        Navigator.pushAndRemoveUntil(
-          context, 
-          MaterialPageRoute(builder: (context) => const MainPage()),
-          (route) => false
-        );
+        popAndPushPage();
       } on FirebaseAuthException catch(e){
         String errorMessage = "An error occurred. Please try again later.";
         if (e.code == 'weak-password') {
@@ -155,12 +155,22 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
         showSnackBar(errorMessage, Colors.red, context);
         
       }finally {
-        setState(() {
-          _isLoading = false;
-        });
+        if(mounted){
+          setState(() {
+            _isLoading = false;
+          });
+        }
       }
     }else{
       showSnackBar('Select a role first!', Colors.red, context);
     }
+  }
+
+  popAndPushPage(){
+    Navigator.pushAndRemoveUntil(
+      context, 
+      MaterialPageRoute(builder: (context) => const MainPage()),
+      (route) => false
+    );
   }
 }

@@ -174,25 +174,28 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void pushPage(){
-      Navigator.pushReplacement(
-        context, 
-        MaterialPageRoute(builder: (context) => const MainPage())
-      );
-    }
+  popAndPushPage(){
+    Navigator.pushAndRemoveUntil(
+      context, 
+      MaterialPageRoute(builder: (context) => const MainPage()),
+      (route) => false
+    );
+  }
 
   Future login() async{
     if(_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
+      if(mounted){
+        setState(() {
+          _isLoading = true;
+        });
+      }
       try {
         await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim()
         );
         
-        pushPage();
+        popAndPushPage();
 
       } on FirebaseAuthException catch (e) {
         String errorMessage = "An error occurred. Please try again later.";
@@ -203,16 +206,14 @@ class _LoginPageState extends State<LoginPage> {
         } else {
           errorMessage = 'An error occurred. Please try again later.';
         }
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(errorMessage),
-            backgroundColor: Colors.red,
-          ),
-        );
+        showSnackBar(errorMessage, Colors.red, context);
+        
       } finally {
-        setState(() {
-          _isLoading = false;
-        });
+        if(mounted){
+          setState(() {
+            _isLoading = false;
+          });
+        }
       }
     }
 
