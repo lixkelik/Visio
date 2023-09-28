@@ -178,7 +178,7 @@ class _GameImpairedState extends State<GameImpaired> {
   }
 
   void pageSpeech(){
-    textToSpeech('You are at: game page!, lets play a game and scan 5 objects. Start by tell me where you are.');
+    textToSpeech('You are at: game page. Lets play a game and scan 5 objects. Start by tell me where you are.');
   }
 
 }

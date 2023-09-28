@@ -7,7 +7,6 @@ import 'package:visio/tflite/classifier.dart';
 import 'package:visio/tflite/image_utils.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 
-/// Manages separate Isolate instance for inference
 class IsolateUtils {
   static const String debugName = "InferenceIsolate";
 
@@ -33,9 +32,9 @@ class IsolateUtils {
 
     await for (final IsolateData isolateData in port) {
       Classifier classifier = Classifier(
-          interpreter:
-              Interpreter.fromAddress(isolateData.interpreterAddress),
-          labels: isolateData.labels);
+        interpreter: Interpreter.fromAddress(isolateData.interpreterAddress),
+        labels: isolateData.labels
+      );
       image_lib.Image? image = ImageUtils.convertCameraImage(isolateData.cameraImage);
       if (Platform.isAndroid) {
         image = image_lib.copyRotate(image!, 90);

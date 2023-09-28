@@ -32,21 +32,33 @@ class _GamePeerState extends State<GamePeer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        leading: Container(
+          margin: const EdgeInsets.all(7),
+          decoration: BoxDecoration(
+            color: appOrange.withOpacity(0.7),
+            shape: BoxShape.circle
+          ),
+          child: IconButton(
+            onPressed: (() => Navigator.pop(context)), 
+            icon: const Icon(Icons.arrow_back),
+            tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+            splashRadius: 24,
+            color: white,
+            padding: EdgeInsets.zero,
+            alignment: Alignment.center,
+            iconSize: 24,
+            enableFeedback: true,
+          ),
         ),
-        title: const Text('Describe With Friend!'),
-        backgroundColor: appOrange,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         physics: const BouncingScrollPhysics(),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
             const Text(
               'Find A Game',
               style: styleB30
@@ -54,7 +66,7 @@ class _GamePeerState extends State<GamePeer> {
             const SizedBox(height: 10),
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: lightBlue,
                 borderRadius: BorderRadius.circular(30),
@@ -64,7 +76,7 @@ class _GamePeerState extends State<GamePeer> {
                 children: [
                   const Text(
                     'Enter game Code that\nis shared by your friends!',
-                    style: styleSB20
+                    style: styleR20
                   ),
                   const SizedBox(height: 10),
                   TextField(
@@ -193,13 +205,17 @@ class _GamePeerState extends State<GamePeer> {
 
   Future<void> findGame() async{
     if(textController.text == ""){
-      setState(() {
-        errorText = "Please enter the game code!";
-      });
-      Future.delayed(const Duration(seconds: 3), () {
+      if(mounted){
         setState(() {
-          errorText = '';
+          errorText = "Please enter the game code!";
         });
+      }
+      Future.delayed(const Duration(seconds: 3), () {
+        if(mounted){
+          setState(() {
+            errorText = '';
+          });
+        }
       });
     }else {
       try {
@@ -236,9 +252,11 @@ class _GamePeerState extends State<GamePeer> {
 
           if(game.isPlayed == false){
             textController.clear();
-            setState(() {
-              errorText = "";
-            });
+            if(mounted){
+              setState(() {
+                errorText = "";
+              });
+            }
             
             Navigator.push(
               context,
@@ -247,9 +265,11 @@ class _GamePeerState extends State<GamePeer> {
                       DescribePeerPage(game, 0, false)),
             );
           }else{
-            setState(() {
-              errorText = "Game is already played";
-            });
+            if(mounted){
+              setState(() {
+                errorText = "Game is already played";
+              });
+            }
           }
           
         } else {

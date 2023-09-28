@@ -28,6 +28,7 @@ class _ExplorePageState extends State<ExplorePage> {
 
   String objText = '';
   String responseGPT = '';
+  bool _isLearning = false;
   late ResponseModel _responseModel;
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
@@ -45,13 +46,10 @@ class _ExplorePageState extends State<ExplorePage> {
       backgroundColor: Colors.black,
       body: Stack(
         children: <Widget>[
-          // Camera View
           CameraView(resultsCallback),
 
-          // Bounding boxes
           boundingBoxes(results),
 
-          // Bottom Sheet
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -129,96 +127,7 @@ class _ExplorePageState extends State<ExplorePage> {
                               } else {
                                 completionFun().then((_) {
                                   textToSpeech(responseGPT);
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        contentPadding: const EdgeInsets.all(16.0),
-                                        content: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                // icon untuk close
-                                                IconButton(
-                                                  icon: const Icon(Icons.close),
-                                                  onPressed: () {
-                                                    Navigator.of(context)
-                                                        .pop();
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-
-                                            // icon content
-                                            // button
-                                            Container(
-                                              margin: const EdgeInsets.only(
-                                                  top: 16),
-                                              child: Center(
-                                                child: TextButton(
-                                                  style: TextButton.styleFrom(
-                                                    foregroundColor:
-                                                        Colors.white,
-                                                    backgroundColor:
-                                                        appOrange,
-                                                    fixedSize:
-                                                        const Size(120, 120),
-                                                    shape:
-                                                        const CircleBorder(),
-                                                    alignment:
-                                                        Alignment.center,
-                                                  ),
-                                                  onPressed: () {
-                                                    if (responseGPT == '') {
-                                                      textToSpeech(
-                                                          "No definition!");
-                                                    } else {
-                                                      textToSpeech(
-                                                          responseGPT);
-                                                    }
-                                                  },
-                                                  child: const Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Icon(
-                                                        Icons
-                                                            .volume_up_rounded,
-                                                        size: 37,
-                                                      ),
-                                                      Text(
-                                                        'Hear',
-                                                        style: TextStyle(
-                                                            fontSize: 18),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            const SizedBox(height: 16),
-                                            // text
-                                            Center(
-                                              child: Text(
-                                                objText,
-                                                style: const TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ),
-                                            Center(child: Text(responseGPT)),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
+                                  showLearnDialog();
                                 });
                               }
                             },
@@ -271,7 +180,9 @@ class _ExplorePageState extends State<ExplorePage> {
         this.results = results;
         if (results.isNotEmpty) {
           if (objText != results.last.label) {
-            textToSpeech(results.last.label);
+            if(_isLearning == false){
+              textToSpeech(results.last.label);
+            }
           }
           objText = results.last.label;
           clearObjText();
@@ -286,12 +197,15 @@ class _ExplorePageState extends State<ExplorePage> {
   }
 
   void pageSpeech() {
-    textToSpeech('You are at: Explore Page!');
+    textToSpeech('You are at: Explore Page.');
   }
 
   completionFun() async {
     if(mounted){
-      setState(() => responseGPT = 'Loading..');
+      setState(() {
+         responseGPT = 'Loading..';
+         _isLearning = true;
+      });
     }
     final response =
         await http.post(Uri.parse('https://api.openai.com/v1/completions'),
@@ -302,8 +216,8 @@ class _ExplorePageState extends State<ExplorePage> {
             body: jsonEncode({
               'model': 'gpt-3.5-turbo-instruct',
               'prompt':
-                  'Explain briefly under 30 words about daily object named $objText',
-              'max_tokens': 50,
+                  'Explain briefly under 30 words about daily object named $objText and explain it like you explain to a children with visually impaired, also tell them an important fact about the object!',
+              'max_tokens': 80,
               'temperature': 0,
               'top_p': 1
             }));
@@ -312,7 +226,102 @@ class _ExplorePageState extends State<ExplorePage> {
       setState(() {
         _responseModel = ResponseModel.fromJson(json.decode(response.body));
         responseGPT = _responseModel.choices[0].text;
+        responseGPT = responseGPT.replaceAll('\n\n', '');
       });
     }
+  }
+
+  void showLearnDialog(){
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30)
+          ),
+          child: Container(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () {
+                      setState(() {
+                        _isLearning = false;
+                      });
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+          
+                // icon content
+                // button
+                
+                const SizedBox(height: 16),
+                // text
+                Center(
+                  child: Text(
+                    objText,
+                    style: styleSB20,
+                  ),
+                ),
+                const SizedBox(height: 10,),
+                Center(child: Text(responseGPT)),
+                const SizedBox(height: 10,),
+                Center(
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor:
+                          Colors.white,
+                      backgroundColor:
+                          appOrange,
+                      fixedSize:
+                          const Size(120, 120),
+                      shape:
+                          const CircleBorder(),
+                      alignment:
+                          Alignment.center,
+                    ),
+                    onPressed: () async {
+                      if (responseGPT == '') {
+                        textToSpeech("No definition!");
+                      } else {
+                        textToSpeech(responseGPT);
+                        await flutterTts.awaitSpeakCompletion(true).then((value) {
+                          setState(() {
+                            _isLearning = false;
+                          });
+                        });
+                      }
+                    },
+                    child: const Column(
+                      mainAxisAlignment:
+                          MainAxisAlignment
+                              .center,
+                      children: [
+                        Icon(
+                          Icons
+                              .volume_up_rounded,
+                          size: 37,
+                        ),
+                        Text(
+                          'Hear',
+                          style: TextStyle(
+                              fontSize: 18),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

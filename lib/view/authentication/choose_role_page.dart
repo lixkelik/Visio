@@ -95,7 +95,7 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: register,
+                onPressed: (_isLoading == true) ? null : register,
                 
                 style: ElevatedButton.styleFrom(
                   backgroundColor: appOrange,

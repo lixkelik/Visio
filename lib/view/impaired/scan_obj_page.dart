@@ -156,6 +156,8 @@ class _ScanObjectPageState extends State<ScanObjectPage> {
                                                 context, 
                                                 MaterialPageRoute(builder: (context) => DescribePage(title, image, objects, objText)),
                                               );
+                                            }else{
+                                              textToSpeech('error!');
                                             }
                                           } catch (e) {
                                             textToSpeech('An error occured, please try again later.');

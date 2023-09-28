@@ -31,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 10),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -205,28 +205,45 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 )),
             const SizedBox(height: 20,),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                  onPressed: () {
-                    showPopUp();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    shape: RoundedRectangleBorder(
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      side: const BorderSide(color: Colors.red,width: 3),
+                      border: Border.all(
+                        color: Colors.red,
+                        width: 2,
+                      )
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        showPopUp();
+                      },
+                      child: const Text(
+                        'Logout',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.red,
+                        )
+                      )
                     ),
                   ),
-                  child: const Text('Logout',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.red,
-                      ))),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'All Rights Reserved\n2023 © Carbonara Team',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: lightGrey
+                    )
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -300,6 +317,6 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void pageSpeech() {
-    textToSpeech('You are at: Profile page!');
+    textToSpeech('You are at: Profile page.');
   }
 }

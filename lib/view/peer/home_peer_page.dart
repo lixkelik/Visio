@@ -96,7 +96,7 @@ class _HomePeerPageState extends State<HomePeerPage> {
                             ? const Text(
                               'You don\'t have any badges!'
                               , style: TextStyle(
-                                color: Colors.grey,
+                                color: Color.fromARGB(255, 131, 131, 131),
                                 fontStyle: FontStyle.italic
                               ))
                             : const SizedBox(),

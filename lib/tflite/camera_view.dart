@@ -1,5 +1,4 @@
 import 'dart:isolate';
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:visio/tflite/classifier.dart';
@@ -48,7 +47,6 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
     predicting = false;
   }
 
-  /// Initializes the camera by setting [cameraController]
   void initializeCamera() {
     cameraController = CameraController(cameras[0], ResolutionPreset.medium, enableAudio: false);
     Size s = MediaQuery.of(context).size;
@@ -70,9 +68,7 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
       return Container();
     }
     
-    return AspectRatio(
-        aspectRatio: 3/4,
-        child: CameraPreview(cameraController!));
+    return CameraPreview(cameraController!);
   }
 
   onLatestImageAvailable(CameraImage cameraImage) async {
@@ -85,8 +81,7 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
       });
     }
 
-    var isolateData = IsolateData(
-        cameraImage, classifier.interpreter.address, classifier.labels);
+    var isolateData = IsolateData(cameraImage, classifier.interpreter.address, classifier.labels);
 
     Map<String, dynamic> inferenceResults = await inference(isolateData);
 
@@ -101,8 +96,7 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
 
   Future<Map<String, dynamic>> inference(IsolateData isolateData) async {
     ReceivePort responsePort = ReceivePort();
-    isolateUtils.sendPort
-        .send(isolateData..responsePort = responsePort.sendPort);
+    isolateUtils.sendPort.send(isolateData..responsePort = responsePort.sendPort);
     var results = await responsePort.first;
     return results;
   }
@@ -124,11 +118,11 @@ class _CameraViewState extends State<CameraView> with WidgetsBindingObserver {
 
   @override
   void dispose() {
+    super.dispose();
     WidgetsBinding.instance.removeObserver(this);
     if(cameraController != null){
       cameraController!.dispose();
     }
     isolateUtils.dispose();
-    super.dispose();
   }
 }

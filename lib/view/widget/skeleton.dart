@@ -7,8 +7,8 @@ ClipRRect skeletonBox(double width, double height){
       width: width,
       height: height,
       child: const LinearProgressIndicator(
-        color: Color.fromARGB(255, 204, 204, 204),
-        backgroundColor: Color.fromARGB(255, 214, 214, 214),
+        color: Color.fromARGB(255, 211, 211, 211),
+        backgroundColor: Color.fromARGB(255, 232, 232, 232),
       )
     )
   );

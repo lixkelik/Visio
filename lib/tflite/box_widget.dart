@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:visio/tflite/recognition.dart';
 
-/// Individual bounding box
 class BoxWidget extends StatelessWidget {
   final Recognition result;
 
   const BoxWidget({Key? key, required this.result}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // Color for bounding box
-    Color color = Colors.primaries[
-        (result.label.length + result.label.codeUnitAt(0) + result.id) %
-            Colors.primaries.length];
+    Color color = const Color(0xffFF9839);
 
     return Positioned(
       left: result.renderLocation.left,
@@ -24,20 +20,7 @@ class BoxWidget extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(color: color, width: 3),
             borderRadius: const BorderRadius.all(Radius.circular(2))),
-        child: Align(
-          alignment: Alignment.topLeft,
-          child: FittedBox(
-            child: Container(
-              color: color,
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  
-                ],
-              ),
-            ),
-          ),
-        ),
+        
       ),
     );
   }

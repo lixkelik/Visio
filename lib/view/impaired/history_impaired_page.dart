@@ -104,6 +104,6 @@ class _HistoryImpairedPageState extends State<HistoryImpairedPage> {
   }
 
   void pageSpeech() {
-    textToSpeech('You are at: History Page!');
+    textToSpeech('You are at: History Page.');
   }
 }

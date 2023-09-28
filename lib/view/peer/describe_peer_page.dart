@@ -35,6 +35,12 @@ class _DescribePageState extends State<DescribePeerPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    textController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -91,108 +97,105 @@ class _DescribePageState extends State<DescribePeerPage> {
               ),
               child: SingleChildScrollView(
                 controller: scrollController,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 38, vertical: 20),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Describe ${game.obj[objectCount].objName}!',
-                          style: styleB30
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: lightBlue,
+                          borderRadius: BorderRadius.circular(30),
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          'What is the color? Shape? Material? Where this object usually belong? Tell me fun fact about this object.',
-                          softWrap: true,
-                          textAlign: TextAlign.left,
-                          style: styleR15
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        const SizedBox(height: 15),
-                        TextFormField(
-                          maxLength: 200,
-                          maxLines: null,
-                          keyboardType: TextInputType.multiline,
-                          controller: textController,
-                          decoration: const InputDecoration(
-                            fillColor: Color(0xffE9E9E9),
-                            filled: true,
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                            hintText: 'Type here...',
-                          ),
-                          validator: (value) {
-                            if(value == null || value.isEmpty){
-                              return "Please describe the object first!";
-                            }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(height: 15),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                              onPressed: () {
-                                if(_formKey.currentState!.validate()){
-                                  String description = textController.text;
-                                  game.obj[objectCount].colaboratorDesc =
-                                      description;
-                                  if (objectCount < 4) {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                // ke page selanjutnya
-                                                DescribePeerPage(
-                                                    game,
-                                                    objectCount + 1,
-                                                    isOfficial)));
-                                  
-                                  } else {
-                                    if(!isOfficial){
-                                      game.isPlayed = true;
-                                      game.colaboratorUid = user!.uid;
-                                      game.playedBy = user!.name;
-                                      game.colaboratorTime = Timestamp.now();
-                                      saveToFirestore(game);
-                                    }
-                                    Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => SuccessPeerPage(
-                                                game) // loading page
-                                            ));
-                                  }
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: appOrange,
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 20),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Describe ${game.obj[objectCount].objName}!',
+                              style: styleB30
+                            ),
+                            const SizedBox(height: 5,),
+                            const Text(
+                              'What is the color? Shape? Material? Where this object usually belong? Tell me fun fact about this object.',
+                              softWrap: true,
+                              textAlign: TextAlign.left,
+                              style: styleR15
+                            ),
+                            const SizedBox(height: 15),
+                            TextFormField(
+                              maxLength: 200,
+                              maxLines: null,
+                              keyboardType: TextInputType.multiline,
+                              controller: textController,
+                              decoration: const InputDecoration(
+                                fillColor: white,
+                                filled: true,
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(30))),
+                                hintText: 'Type here...',
                               ),
-                              child: const Text('Next!',
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                  ))),
+                              validator: (value) {
+                                if(value == null || value.isEmpty){
+                                  return "Please describe the object first!";
+                                }
+                                return null;
+                              },
+                            ),
+                          ],
                         ),
-                      ]),
-                ),
+                      ),
+                      
+                      const SizedBox(height: 15),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              if(_formKey.currentState!.validate()){
+                                String description = textController.text;
+                                game.obj[objectCount].colaboratorDesc =
+                                    description;
+                                if (objectCount < 4) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              // ke page selanjutnya
+                                              DescribePeerPage(
+                                                  game,
+                                                  objectCount + 1,
+                                                  isOfficial)));
+                                
+                                } else {
+                                  if(!isOfficial){
+                                    game.isPlayed = true;
+                                    game.colaboratorUid = user!.uid;
+                                    game.playedBy = user!.name;
+                                    game.colaboratorTime = Timestamp.now();
+                                    saveToFirestore(game);
+                                  }
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SuccessPeerPage(
+                                              game) // loading page
+                                          ));
+                                }
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: appOrange,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 20),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            child: const Text('Next!',
+                                style: styleWSB25)),
+                      ),
+                    ]),
               ),
             ),
           )),
