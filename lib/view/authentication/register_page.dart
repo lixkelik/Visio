@@ -33,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async{
-        final shouldExit = showExitDialog(context);
+        final shouldExit = await showExitDialog(context);
         return shouldExit ?? false;
       },
       child: Scaffold(
