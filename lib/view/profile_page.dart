@@ -52,31 +52,34 @@ class _ProfilePageState extends State<ProfilePage> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    (user != null)
-                        ? Text(
-                            user!.name,
-                            style: const TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: white
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          )
-                        : Container(
-                          margin: const EdgeInsets.only(bottom: 15),
-                          child: skeletonBox(140, 40)),
-                    (user != null)
-                        ? Text(
-                            user!.email,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              color: white
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          )
-                        : skeletonBox(170, 20)
-                  ])
+                  Expanded(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      (user != null)
+                          ? Text(
+                              user!.name,
+                              style: const TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                color: white
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              
+                            )
+                          : Container(
+                            margin: const EdgeInsets.only(bottom: 15),
+                            child: skeletonBox(140, 40)),
+                      (user != null)
+                          ? Text(
+                              user!.email,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                color: white
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            )
+                          : skeletonBox(170, 20)
+                    ]),
+                  )
                 ],
               ),
             ),

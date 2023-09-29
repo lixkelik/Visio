@@ -9,6 +9,7 @@ import 'package:visio/view/peer/home_peer_page.dart';
 import 'package:visio/view/profile_page.dart';
 import 'package:visio/view/widget/exit_dialog.dart';
 
+import '../repository/user_repository.dart';
 import 'impaired/explore_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -25,7 +26,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void initState(){
-    getUserRole();
+    getRole();
     super.initState();
   }
 
@@ -107,15 +108,9 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
-  Future<void> getUserRole() async{
-    if(auth.currentUser != null){
-      QuerySnapshot snapshot = await db.collection('users').where('uid', isEqualTo: auth.currentUser!.uid).get();
-      for (var doc in snapshot.docs) {
-        setState(() {
-          userRoles = int.parse(doc['role'].toString());
-        });
-      }
-    }
+  void getRole() async{
+    userRoles = await getUserRole();
+    setState(() {});
   }
 
   void updateCurrentPageIndex(int index) {

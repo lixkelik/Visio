@@ -1,5 +1,6 @@
 import 'package:visio/constant/constant_builder.dart';
 import 'package:visio/constant/firebase_constant.dart';
+import 'package:visio/repository/user_repository.dart';
 import 'package:visio/view/main_page.dart';
 
 class ChooseRolePage extends StatefulWidget {
@@ -127,22 +128,7 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
         });
       }
       try{
-        await auth.createUserWithEmailAndPassword(email: widget.email.trim(), password: widget.password.trim());
-      
-        db.collection('users').add({
-          'uid': auth.currentUser!.uid,
-          'name': widget.name.trim(),
-          'role': _selectedRoles,
-          'email': widget.email.trim(),
-          'password': widget.password.trim(),
-          'coin': 5
-        }).then((value) {
-          showSnackBar('Account created succesfully!', Colors.green, context);
-        }).catchError(
-          (error) {
-            
-          }
-        );
+        await registerUser(widget.email, widget.password, widget.name, _selectedRoles);
         popAndPushPage();
       } on FirebaseAuthException catch(e){
         String errorMessage = "An error occurred. Please try again later.";

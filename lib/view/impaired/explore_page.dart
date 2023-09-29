@@ -291,10 +291,11 @@ class _ExplorePageState extends State<ExplorePage> {
                         textToSpeech("No definition!");
                       } else {
                         textToSpeech(responseGPT);
-                        await flutterTts.awaitSpeakCompletion(true).then((value) {
+                        await flutterTts.awaitSpeakCompletion(true).then((value) async {
                           setState(() {
                             _isLearning = false;
                           });
+                          await flutterTts.awaitSpeakCompletion(false);
                         });
                       }
                     },
