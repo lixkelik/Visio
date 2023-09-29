@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async{
-        final shouldExit = showExitDialog(context);
+        final shouldExit = await showExitDialog(context);
         return shouldExit ?? false;
       },
       child: Scaffold(

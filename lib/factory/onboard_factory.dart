@@ -19,7 +19,7 @@ final List<Onboard> onboardData = [
   Onboard(
     image: togetherills, 
     title: 'Don\'t have a partner?', 
-    description: 'Don\'t worry! Visio has self learning features where children can ask anything about anything!'
+    description: 'Don\'t worry! Visio has self learning features where children can ask anything they want!'
   ),
   Onboard(
     image: portraitills, 
