@@ -1,7 +1,7 @@
 import 'package:visio/constant/firebase_constant.dart';
 import 'package:visio/factory/user_factory.dart';
+import 'package:visio/repository/user_repository.dart';
 import 'package:visio/view/peer/article_peer_page.dart';
-import 'package:visio/view/repository/firestore_repository.dart';
 import 'package:visio/constant/constant_builder.dart';
 
 class HomePeerPage extends StatefulWidget {
@@ -9,13 +9,11 @@ class HomePeerPage extends StatefulWidget {
   const HomePeerPage({super.key, required this.updateCurrentPageIndex});
 
   @override
-  State<HomePeerPage> createState() =>
-      _HomePeerPageState(updateCurrentPageIndex);
+  State<HomePeerPage> createState() => _HomePeerPageState();
 }
 
 class _HomePeerPageState extends State<HomePeerPage> {
-  final Function(int) updateCurrentPageIndex;
-  _HomePeerPageState(this.updateCurrentPageIndex);
+  _HomePeerPageState();
 
   String uid = '';
   UserVisio? user;
@@ -203,7 +201,7 @@ class _HomePeerPageState extends State<HomePeerPage> {
               // game button
               InkWell(
                 onTap: () {
-                  updateCurrentPageIndex(1);
+                  widget.updateCurrentPageIndex(1);
                 },
                 child: Container(
                   decoration: BoxDecoration(

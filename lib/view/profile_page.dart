@@ -1,8 +1,8 @@
 import 'package:visio/constant/constant_builder.dart';
 import 'package:visio/constant/firebase_constant.dart';
+import 'package:visio/repository/user_repository.dart';
 import 'package:visio/view/authentication/login_page.dart';
 import 'package:visio/factory/user_factory.dart';
-import 'package:visio/view/repository/firestore_repository.dart';
 import 'package:visio/view/impaired/texttospeech.dart';
 
 class ProfilePage extends StatefulWidget {

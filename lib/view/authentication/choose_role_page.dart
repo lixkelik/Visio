@@ -135,6 +135,7 @@ class _ChooseRolePageState extends State<ChooseRolePage> {
           'role': _selectedRoles,
           'email': widget.email.trim(),
           'password': widget.password.trim(),
+          'coin': 5
         }).then((value) {
           showSnackBar('Account created succesfully!', Colors.green, context);
         }).catchError(

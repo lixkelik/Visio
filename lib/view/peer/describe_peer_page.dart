@@ -3,8 +3,9 @@ import 'package:visio/constant/constant_builder.dart';
 import 'package:visio/constant/firebase_constant.dart';
 import 'package:visio/factory/game_factory.dart';
 import 'package:visio/factory/user_factory.dart';
+import 'package:visio/repository/user_repository.dart';
 import 'package:visio/view/peer/success_peer_page.dart';
-import 'package:visio/view/repository/firestore_repository.dart';
+import '../../repository/scan_game_repository.dart';
 
 class DescribePeerPage extends StatefulWidget {
   final Game game;
@@ -13,8 +14,7 @@ class DescribePeerPage extends StatefulWidget {
   const DescribePeerPage(this.game, this.objectCount, this.isOfficial, {super.key});
 
   @override
-  State<DescribePeerPage> createState() =>
-      _DescribePageState(game, objectCount, isOfficial);
+  State<DescribePeerPage> createState() => _DescribePageState(game, objectCount, isOfficial);
 }
 
 class _DescribePageState extends State<DescribePeerPage> {

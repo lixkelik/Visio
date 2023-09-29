@@ -3,8 +3,8 @@ import 'package:visio/constant/firebase_constant.dart';
 import 'package:visio/factory/game_factory.dart';
 import 'package:visio/view/impaired/success_page.dart';
 import 'package:visio/view/impaired/texttospeech.dart';
-import 'package:visio/view/repository/firestore_repository.dart';
 
+import '../../repository/scan_game_repository.dart';
 import 'code_generator.dart';
 
 class LoadingPage extends StatefulWidget {
