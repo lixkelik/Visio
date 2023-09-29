@@ -51,7 +51,7 @@ class _BuyCoinsPageState extends State<BuyCoinsPage> {
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.only(top: 75, left: 20, right: 20, bottom: 20),
+        padding: const EdgeInsets.only(top: 60, left: 20, right: 20, bottom: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -232,7 +232,7 @@ class _BuyCoinsPageState extends State<BuyCoinsPage> {
       }
       pushPage();
     }else{
-      showSnackBar("Please select coin amount!", Colors.red, context);
+      showSnackBar("Please select coin amount first!", Colors.red, context);
     }
     setState(() {
       _isLoading = false;

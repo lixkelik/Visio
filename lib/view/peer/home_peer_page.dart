@@ -310,9 +310,58 @@ class _HomePeerPageState extends State<HomePeerPage> {
                   ),
                 ),
               ),
+              const SizedBox(height: 15,),
+              Container(
+                padding: const EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 8),
+                decoration: BoxDecoration(
+                  color: white,
+                  borderRadius: BorderRadius.circular(30),
+
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: lightBlue
+                      ),
+                      child: const Text(
+                        "Visio supported by*",
+                        style: TextStyle(
+                          color: fontColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 15,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset(pertuniSponsor, height: 54,),
+                        const SizedBox(width: 10,),
+                        Image.asset(wbuSponsor, height:  54,),
+                        const SizedBox(width: 10,),
+                        Image.asset(mitranetraSponsor, height:  54,)
+                      ],
+                    ),
+                    const SizedBox(height: 8,),
+                    const Text(
+                      "*not real, only for example purpose",
+                      style: TextStyle(
+                        color: lightGrey,
+                        fontSize: 10,
+                      )
+                    )
+                  ],
+                ),
+              ),
         
               // end page
-              const SizedBox(height: 50)
+              const SizedBox(height: 15)
             ],
           ),
         ),

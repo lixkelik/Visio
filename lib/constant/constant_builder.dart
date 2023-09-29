@@ -39,6 +39,10 @@ const coinLogo = 'assets/image/illustration/coin_logo.png';
 const coinLove = 'assets/image/illustration/coin_love.png';
 const adsPic = 'assets/image/ads.png';
 
+const pertuniSponsor = 'assets/image/pertuni.png';
+const mitranetraSponsor = 'assets/image/mitranetra.png';
+const wbuSponsor = 'assets/image/wbu.png';
+
 const badge1 = 'assets/image/illustration/badge1.png';
 const badge2 = 'assets/image/illustration/badge2.png';
 const badge3 = 'assets/image/illustration/badge3.png';

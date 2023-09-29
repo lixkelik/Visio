@@ -32,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
