@@ -16,7 +16,6 @@ class Classifier {
   static const String MODEL_FILE_NAME = "detect.tflite";
   static const String LABEL_FILE_NAME = "labelmap.txt";
 
-  /// Input size of image (height = width = 300)
   static const int INPUT_SIZE = 300;
 
   static const double THRESHOLD = 0.6;
@@ -73,18 +72,15 @@ class Classifier {
     return inputImage;
   }
 
-  /// Runs object detection on the input image
   Map<String, dynamic>? predict(image_lib.Image image) {
     if (_interpreter == null) {
       return null;
     }
 
-    // Create TensorImage from image
     TensorImage inputImage = TensorImage.fromImage(image);
 
     inputImage = getProcessedImage(inputImage);
 
-    // TensorBuffers for output tensors
     TensorBuffer outputLocations = TensorBufferFloat(_outputShapes[0]);
     TensorBuffer outputClasses = TensorBufferFloat(_outputShapes[1]);
     TensorBuffer outputScores = TensorBufferFloat(_outputShapes[2]);

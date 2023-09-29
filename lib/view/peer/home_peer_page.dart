@@ -1,21 +1,21 @@
 import 'package:visio/constant/firebase_constant.dart';
 import 'package:visio/factory/user_factory.dart';
+import 'package:visio/repository/user_repository.dart';
 import 'package:visio/view/peer/article_peer_page.dart';
-import 'package:visio/view/repository/firestore_repository.dart';
 import 'package:visio/constant/constant_builder.dart';
+
+import '../widget/coins_widget.dart';
 
 class HomePeerPage extends StatefulWidget {
   final Function(int) updateCurrentPageIndex;
   const HomePeerPage({super.key, required this.updateCurrentPageIndex});
 
   @override
-  State<HomePeerPage> createState() =>
-      _HomePeerPageState(updateCurrentPageIndex);
+  State<HomePeerPage> createState() => _HomePeerPageState();
 }
 
 class _HomePeerPageState extends State<HomePeerPage> {
-  final Function(int) updateCurrentPageIndex;
-  _HomePeerPageState(this.updateCurrentPageIndex);
+  _HomePeerPageState();
 
   String uid = '';
   UserVisio? user;
@@ -65,11 +65,10 @@ class _HomePeerPageState extends State<HomePeerPage> {
                 width: 180,
                 height: 180
               ),
-              const SizedBox(
-                height: 10,
-              ),
               
-              const SizedBox(height: 10),
+              const SizedBox(height: 15),
+              showCoinsWidget(context, _getUserData, bgColor: white, btnBg: appOrange, user: user),
+              const SizedBox(height: 15),
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -198,12 +197,11 @@ class _HomePeerPageState extends State<HomePeerPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
 
-              // game button
               InkWell(
                 onTap: () {
-                  updateCurrentPageIndex(1);
+                  widget.updateCurrentPageIndex(1);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -230,9 +228,8 @@ class _HomePeerPageState extends State<HomePeerPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
 
-              // article button
               InkWell(
                 onTap: () {
                   Navigator.push(
@@ -311,9 +308,56 @@ class _HomePeerPageState extends State<HomePeerPage> {
                   ),
                 ),
               ),
-        
-              // end page
-              const SizedBox(height: 50)
+              const SizedBox(height: 15,),
+              Container(
+                padding: const EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 8),
+                decoration: BoxDecoration(
+                  color: white,
+                  borderRadius: BorderRadius.circular(30),
+
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: lightBlue
+                      ),
+                      child: const Text(
+                        "Visio supported by*",
+                        style: TextStyle(
+                          color: fontColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 15,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset(pertuniSponsor, height: 54,),
+                        const SizedBox(width: 10,),
+                        Image.asset(wbuSponsor, height:  54,),
+                        const SizedBox(width: 10,),
+                        Image.asset(mitranetraSponsor, height:  54,)
+                      ],
+                    ),
+                    const SizedBox(height: 8,),
+                    const Text(
+                      "*not real, only for example purpose",
+                      style: TextStyle(
+                        color: lightGrey,
+                        fontSize: 10,
+                      )
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(height: 15)
             ],
           ),
         ),
@@ -330,7 +374,7 @@ class _HomePeerPageState extends State<HomePeerPage> {
     }
   }
 
-  Future<void> _getUserData() async {
+  void _getUserData() async {
     UserVisio user = await getUserData();
     if(mounted){
       setState(() {

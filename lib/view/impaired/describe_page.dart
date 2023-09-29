@@ -189,9 +189,12 @@ class _DescribePageState extends State<DescribePage> {
                             );
                           }else{
                             Game gameObj = Game(place: title, obj: objects, code: '', createdTime: Timestamp.now(), createdBy: '', playedBy: '-', isPlayed: false, colaboratorUid: '-', colaboratorTime: Timestamp.now());
-                            Navigator.pushReplacement(
+                            Navigator.pushAndRemoveUntil(
                               context,
-                              MaterialPageRoute(builder: (context) => LoadingPage(gameObj))
+                              MaterialPageRoute(
+                                builder: (context) => LoadingPage(gameObj),
+                              ),
+                              (route) => route.isFirst,
                             );
                           }
                         }else{
@@ -222,6 +225,8 @@ class _DescribePageState extends State<DescribePage> {
   }
   Future<void> _evictImage()async{
     await FileImage(img!).evict();
-    setState(() {});
+    if(mounted){
+      setState(() {});
+    }
   }
 }

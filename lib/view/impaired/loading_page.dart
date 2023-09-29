@@ -3,8 +3,8 @@ import 'package:visio/constant/firebase_constant.dart';
 import 'package:visio/factory/game_factory.dart';
 import 'package:visio/view/impaired/success_page.dart';
 import 'package:visio/view/impaired/texttospeech.dart';
-import 'package:visio/view/repository/firestore_repository.dart';
 
+import '../../repository/scan_game_repository.dart';
 import 'code_generator.dart';
 
 class LoadingPage extends StatefulWidget {
@@ -29,23 +29,24 @@ class _LoadingPageState extends State<LoadingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: (gameObj.code == '')
-            ? const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(color: appOrange, ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Uploading file please wait...',
-                      style: styleB15,
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                ),
-              )
-            : SuccessPage(gameObj));
+      body: (gameObj.code == '')
+        ? const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(color: appOrange, ),
+                SizedBox(height: 20),
+                Text(
+                  'Uploading file please wait...',
+                  style: styleB15,
+                  textAlign: TextAlign.center,
+                )
+              ],
+            ),
+          )
+        : SuccessPage(gameObj)
+    );
   }
 
   void pageSpeech() {

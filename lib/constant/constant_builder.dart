@@ -35,6 +35,15 @@ const togetherills = 'assets/image/illustration/together_ills.png';
 const profile = 'assets/image/illustration/profile.png';
 const exitills = 'assets/image/illustration/exit_ills.png';
 const logoutills = 'assets/image/illustration/logout_ills.png';
+const coinLogo = 'assets/image/illustration/coin_logo.png';
+const coinLove = 'assets/image/illustration/coin_love.png';
+const adsPic = 'assets/image/ads.png';
+const splashills = 'assets/image/illustration/splashchar_ills.png';
+const portraitills = 'assets/image/illustration/portrait_ills.png';
+
+const pertuniSponsor = 'assets/image/pertuni.png';
+const mitranetraSponsor = 'assets/image/mitranetra.png';
+const wbuSponsor = 'assets/image/wbu.png';
 
 const badge1 = 'assets/image/illustration/badge1.png';
 const badge2 = 'assets/image/illustration/badge2.png';

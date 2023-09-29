@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-/// Singleton to record size related data
 class CameraViewSingleton {
   static late double ratio;
   static late Size screenSize;

@@ -3,8 +3,9 @@ import 'package:visio/constant/constant_builder.dart';
 import 'package:visio/constant/firebase_constant.dart';
 import 'package:visio/factory/game_factory.dart';
 import 'package:visio/factory/user_factory.dart';
+import 'package:visio/repository/user_repository.dart';
 import 'package:visio/view/peer/success_peer_page.dart';
-import 'package:visio/view/repository/firestore_repository.dart';
+import '../../repository/scan_game_repository.dart';
 
 class DescribePeerPage extends StatefulWidget {
   final Game game;
@@ -13,18 +14,16 @@ class DescribePeerPage extends StatefulWidget {
   const DescribePeerPage(this.game, this.objectCount, this.isOfficial, {super.key});
 
   @override
-  State<DescribePeerPage> createState() =>
-      _DescribePageState(game, objectCount, isOfficial);
+  State<DescribePeerPage> createState() => _DescribePageState();
 }
 
 class _DescribePageState extends State<DescribePeerPage> {
-  Game game;
-  int objectCount;
-  bool isOfficial;
+  late Game game;
+  late int objectCount;
+  late bool isOfficial;
   UserVisio? user;
   final _formKey = GlobalKey<FormState>();
 
-  _DescribePageState(this.game, this.objectCount, this.isOfficial);
 
   TextEditingController textController = TextEditingController();
 
@@ -32,6 +31,9 @@ class _DescribePageState extends State<DescribePeerPage> {
   void initState() {
     super.initState();
     _getUserData();
+    game = widget.game;
+    objectCount = widget.objectCount;
+    isOfficial = widget.isOfficial;
   }
 
   @override
@@ -93,7 +95,7 @@ class _DescribePageState extends State<DescribePeerPage> {
             builder: (_, ScrollController scrollController) => Container(
               width: double.maxFinite,
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: white,
               ),
               child: SingleChildScrollView(
                 controller: scrollController,
@@ -161,7 +163,6 @@ class _DescribePageState extends State<DescribePeerPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              // ke page selanjutnya
                                               DescribePeerPage(
                                                   game,
                                                   objectCount + 1,
@@ -175,12 +176,13 @@ class _DescribePageState extends State<DescribePeerPage> {
                                     game.colaboratorTime = Timestamp.now();
                                     saveToFirestore(game);
                                   }
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => SuccessPeerPage(
-                                              game) // loading page
-                                          ));
+                                  Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SuccessPeerPage(game),
+                                    ),
+                                    (route) => route.isFirst,
+                                  );
                                 }
                               }
                             },
