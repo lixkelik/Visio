@@ -11,22 +11,25 @@ class ReviewPage extends StatefulWidget {
   const ReviewPage(this.gameObj, this.gameCounter, this.uid, this.userRoles, {super.key});
 
   @override
-  State<ReviewPage> createState() => _ReviewPageState(gameObj, gameCounter, uid, userRoles);
+  State<ReviewPage> createState() => _ReviewPageState();
 }
 
 class _ReviewPageState extends State<ReviewPage> {
-  Game gameObj;
-  int gameCounter;
-  String uid;
-  int userRoles;
-  _ReviewPageState(this.gameObj, this.gameCounter, this.uid, this.userRoles);
+  late Game gameObj;
+  late int gameCounter;
+  late String uid;
+  late int userRoles;
 
   @override
   void initState() {
+    super.initState();
     if(userRoles == 1){
       speakDescription();
     }
-    super.initState();
+    gameObj = widget.gameObj;
+    gameCounter = widget.gameCounter;
+    uid = widget.uid;
+    userRoles = widget.userRoles;
   }
 
   @override
