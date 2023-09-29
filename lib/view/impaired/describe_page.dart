@@ -225,6 +225,8 @@ class _DescribePageState extends State<DescribePage> {
   }
   Future<void> _evictImage()async{
     await FileImage(img!).evict();
-    setState(() {});
+    if(mounted){
+      setState(() {});
+    }
   }
 }

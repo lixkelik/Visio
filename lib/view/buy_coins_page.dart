@@ -204,21 +204,27 @@ class _BuyCoinsPageState extends State<BuyCoinsPage> {
   }
 
   void setTotalPrice(String price){
-    setState(() {
-      totalPrice = price;
-    });
+    if(mounted){
+      setState(() {
+        totalPrice = price;
+      });
+    }
   }
 
   void changeIdx(int index){
-    setState(() {
-      amountIndex = index;
-    });
+    if(mounted) {
+      setState(() {
+        amountIndex = index;
+      });
+    }
   }
 
   void buyCoins() async {
-    setState(() {
-      _isLoading = true;
-    });
+    if(mounted){
+      setState(() {
+        _isLoading = true;
+      });
+    }
     if(amountIndex > 0 && amountIndex < 4){
       if(amountIndex == 1){
         coins = coins! + 10;
@@ -234,9 +240,11 @@ class _BuyCoinsPageState extends State<BuyCoinsPage> {
     }else{
       showSnackBar("Please select coin amount first!", Colors.red, context);
     }
-    setState(() {
-      _isLoading = false;
-    });
+    if(mounted){
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   void pushPage(){

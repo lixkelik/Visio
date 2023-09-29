@@ -94,31 +94,30 @@ class _GamePeerState extends State<GamePeer> {
                   Text(
                     errorText,
                     style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.red),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.red
+                    ),
                   ),
                   const SizedBox(height: 8),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                          onPressed: () {
-                            findGame();
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: appOrange,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
+                        onPressed: () {
+                          findGame();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: appOrange,
+                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
                           ),
-                          child: const Text('Play!',
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                              ))),
+                        ),
+                        child: const Text(
+                          'Play!',
+                          style: styleWSB30
+                        )
+                      ),
                     ),
                 ],
               ),
@@ -219,13 +218,11 @@ class _GamePeerState extends State<GamePeer> {
       });
     }else {
       try {
-        DocumentReference docRef =
-            db.collection('games').doc(textController.text);
+        DocumentReference docRef = db.collection('games').doc(textController.text);
         var docSnapshot = await docRef.get();
 
         if (docSnapshot.exists) {
-          final data =
-              docSnapshot.data() as Map<String, dynamic>;
+          final data = docSnapshot.data() as Map<String, dynamic>;
 
           List<dynamic> items = data['obj'];
           List<ItemObject> itemObject = items.map(
@@ -261,8 +258,8 @@ class _GamePeerState extends State<GamePeer> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                      DescribePeerPage(game, 0, false)),
+                builder: (context) => DescribePeerPage(game, 0, false)
+              ),
             );
           }else{
             if(mounted){
@@ -273,20 +270,10 @@ class _GamePeerState extends State<GamePeer> {
           }
           
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Game does not exists'),
-              backgroundColor: Colors.red,
-            ),
-          );
+          showSnackBar('Game does not exists', Colors.red, context);
         }
       } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Error Code: $e'),
-              backgroundColor: Colors.red,
-            ),
-          );
+        showSnackBar('Error Code: $e', Colors.red, context);
       }
     }
   }

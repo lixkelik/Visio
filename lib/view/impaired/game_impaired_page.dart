@@ -136,7 +136,7 @@ class _GameImpairedState extends State<GameImpaired> {
                         style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                          color: white,
                         )
                       )
                     ),
@@ -147,7 +147,7 @@ class _GameImpairedState extends State<GameImpaired> {
             const SizedBox(height: 20),
             TextButton(
               style: TextButton.styleFrom(
-                foregroundColor: Colors.white, 
+                foregroundColor: white, 
                 backgroundColor: appOrange,
                 fixedSize: const Size(120, 120),
                 shape: const CircleBorder(),

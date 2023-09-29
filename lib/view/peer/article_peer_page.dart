@@ -18,7 +18,6 @@ class ArticlePeer extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(children: [
-          // gambar artikel
           Image.asset(articleBg),
           const Padding(
             padding: EdgeInsets.all(20),

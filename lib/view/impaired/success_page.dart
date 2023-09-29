@@ -132,7 +132,7 @@ class _SuccessPageState extends State<SuccessPage> {
                           child: Text(widget.gameObj.code,
                               style: const TextStyle(
                                   fontSize: 30,
-                                  color: Colors.white,
+                                  color: white,
                                   fontWeight: FontWeight.bold)),
                         ),
                       )
@@ -167,7 +167,7 @@ class _SuccessPageState extends State<SuccessPage> {
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w600,
-                            color: Colors.white,
+                            color: white,
                           ))),
                 ),
               ),
@@ -179,8 +179,7 @@ class _SuccessPageState extends State<SuccessPage> {
   }
 
   void pageSpeech() {
-    textToSpeech(
-        'Congratulations! You finish the game, share the code with your friend. The code is ${widget.gameObj.code}');
+    textToSpeech('Congratulations! You finish the game, share the code with your friend. The code is ${widget.gameObj.code}');
   }
 
   Future<void> deletePhoto() async {

@@ -12,7 +12,6 @@ import 'package:visio/factory/response_model.dart';
 import '../../tflite/camera_view.dart';
 import 'package:http/http.dart' as http;
 
-/// [HomeView] stacks [CameraView] and [BoxWidget]s with bottom sheet for stats
 class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
 
@@ -21,7 +20,6 @@ class ExplorePage extends StatefulWidget {
 }
 
 class _ExplorePageState extends State<ExplorePage> {
-  /// Results to draw bounding boxes
   List<Recognition>? results;
 
   Timer? _timer;
@@ -56,7 +54,7 @@ class _ExplorePageState extends State<ExplorePage> {
               width: double.maxFinite,
               height: 221,
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: white,
               ),
               child: Center(
                 child: Column(
@@ -76,12 +74,11 @@ class _ExplorePageState extends State<ExplorePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        // 2 button
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextButton(
                             style: TextButton.styleFrom(
-                              foregroundColor: Colors.white,
+                              foregroundColor: white,
                               backgroundColor: appOrange,
                               fixedSize: const Size(120, 120),
                               shape: const CircleBorder(),
@@ -113,15 +110,13 @@ class _ExplorePageState extends State<ExplorePage> {
                           padding: const EdgeInsets.all(8.0),
                           child: TextButton(
                             style: TextButton.styleFrom(
-                              foregroundColor: Colors.white,
+                              foregroundColor: white,
                               backgroundColor: appOrange,
                               fixedSize: const Size(120, 120),
                               shape: const CircleBorder(),
                               alignment: Alignment.center,
                             ),
                             onPressed: () {
-                              // tampilin pop up
-
                               if (objText == '') {
                                 textToSpeech("No object detected!");
                               } else {
@@ -146,7 +141,6 @@ class _ExplorePageState extends State<ExplorePage> {
                             ),
                           ),
                         ),
-                        // 2 button selesai
                       ],
                     )
                   ],
@@ -159,7 +153,6 @@ class _ExplorePageState extends State<ExplorePage> {
     );
   }
 
-  /// Returns Stack of bounding boxes
   Widget boundingBoxes(List<Recognition>? results) {
     if (results == null) {
       return Container();
@@ -257,12 +250,7 @@ class _ExplorePageState extends State<ExplorePage> {
                     },
                   ),
                 ),
-          
-                // icon content
-                // button
-                
                 const SizedBox(height: 16),
-                // text
                 Center(
                   child: Text(
                     objText,
@@ -275,16 +263,11 @@ class _ExplorePageState extends State<ExplorePage> {
                 Center(
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      foregroundColor:
-                          Colors.white,
-                      backgroundColor:
-                          appOrange,
-                      fixedSize:
-                          const Size(120, 120),
-                      shape:
-                          const CircleBorder(),
-                      alignment:
-                          Alignment.center,
+                      foregroundColor: white,
+                      backgroundColor: appOrange,
+                      fixedSize: const Size(120, 120),
+                      shape: const CircleBorder(),
+                      alignment: Alignment.center,
                     ),
                     onPressed: () async {
                       if (responseGPT == '') {
@@ -300,19 +283,14 @@ class _ExplorePageState extends State<ExplorePage> {
                       }
                     },
                     child: const Column(
-                      mainAxisAlignment:
-                          MainAxisAlignment
-                              .center,
+                      mainAxisAlignment:MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons
-                              .volume_up_rounded,
-                          size: 37,
-                        ),
+                        Icon(Icons.volume_up_rounded, size: 37),
                         Text(
                           'Hear',
                           style: TextStyle(
-                              fontSize: 18),
+                            fontSize: 18
+                          ),
                         )
                       ],
                     ),

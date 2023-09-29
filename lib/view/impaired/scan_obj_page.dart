@@ -11,7 +11,6 @@ import 'package:visio/view/impaired/texttospeech.dart';
 
 import '../../tflite/camera_view.dart';
 
-/// [HomeView] stacks [CameraView] and [BoxWidget]s with bottom sheet for stats
 class ScanObjectPage extends StatefulWidget {
 
   final String title;
@@ -21,20 +20,15 @@ class ScanObjectPage extends StatefulWidget {
   const ScanObjectPage(this.title, this.objects, {super.key});
 
   @override
-  State<ScanObjectPage> createState() => _ScanObjectPageState(title, objects);
+  State<ScanObjectPage> createState() => _ScanObjectPageState();
 }
 
 class _ScanObjectPageState extends State<ScanObjectPage> {
 
-  String title;
-  List<ItemObject> objects; 
+  late String title;
+  late List<ItemObject> objects; 
+  
 
-  _ScanObjectPageState(
-    this.title,
-    this.objects
-  );
-
-  /// Results to draw bounding boxes
   List<Recognition>? results;
   CameraImage? _currentImage;
 
@@ -45,26 +39,29 @@ class _ScanObjectPageState extends State<ScanObjectPage> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   @override
+  void initState() {
+    super.initState();
+    title = widget.title;
+    objects = widget.objects;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.black,
       body: Stack(
         children: <Widget>[
-          // Camera View
-          CameraView(resultsCallback),
-          
-          // Bounding boxes
-          boundingBoxes(results),
 
-          // Bottom Sheet
+          CameraView(resultsCallback),
+          boundingBoxes(results),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
               width: double.maxFinite,
               height: 280,
               decoration: const BoxDecoration(
-                  color: Colors.white,),
+                  color: white,),
               child: Center(
                 child: Column(
                   children: [
@@ -88,7 +85,7 @@ class _ScanObjectPageState extends State<ScanObjectPage> {
                               margin: const EdgeInsets.only(top: 16),
                               child: TextButton.icon(
                                 style: TextButton.styleFrom(
-                                  foregroundColor: Colors.white, 
+                                  foregroundColor: white, 
                                   backgroundColor: appOrange,
                                   alignment: Alignment.center,
                                   shape: const RoundedRectangleBorder(
@@ -101,7 +98,6 @@ class _ScanObjectPageState extends State<ScanObjectPage> {
                                   }else{
                                     textToSpeech(objText);
                                   }
-                                  
                                 },
                                 icon: const Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -127,7 +123,7 @@ class _ScanObjectPageState extends State<ScanObjectPage> {
                               margin: const EdgeInsets.only(top: 16),
                               child: TextButton.icon(
                                 style: TextButton.styleFrom(
-                                  foregroundColor: Colors.white, 
+                                  foregroundColor: white, 
                                   backgroundColor: appOrange,
                                   alignment: Alignment.center,
                                   shape: const RoundedRectangleBorder(
@@ -151,11 +147,7 @@ class _ScanObjectPageState extends State<ScanObjectPage> {
                                             String image = await ImageUtils.saveImage(rgbImage, objText);
                                             if(image != ''){
                                               textToSpeech('$objText Saved! Now let\'s describe the object by touching it. You can describe the texture, the weight, the size, or the function of the object!');
-                                              // ignore: use_build_context_synchronously
-                                              Navigator.pushReplacement(
-                                                context, 
-                                                MaterialPageRoute(builder: (context) => DescribePage(title, image, objects, objText)),
-                                              );
+                                              popPage(image);
                                             }else{
                                               textToSpeech('error!');
                                             }
@@ -201,7 +193,13 @@ class _ScanObjectPageState extends State<ScanObjectPage> {
     );
   }
 
-  /// Returns Stack of bounding boxes
+  popPage(String image){
+    Navigator.pushReplacement(
+      context, 
+      MaterialPageRoute(builder: (context) => DescribePage(title, image, objects, objText)),
+    );
+  }
+
   Widget boundingBoxes(List<Recognition>? results) {
     if (results == null) {
       return Container();

@@ -199,7 +199,6 @@ class _HomePeerPageState extends State<HomePeerPage> {
               ),
               const SizedBox(height: 15),
 
-              // game button
               InkWell(
                 onTap: () {
                   widget.updateCurrentPageIndex(1);
@@ -231,7 +230,6 @@ class _HomePeerPageState extends State<HomePeerPage> {
               ),
               const SizedBox(height: 15),
 
-              // article button
               InkWell(
                 onTap: () {
                   Navigator.push(
@@ -359,8 +357,6 @@ class _HomePeerPageState extends State<HomePeerPage> {
                   ],
                 ),
               ),
-        
-              // end page
               const SizedBox(height: 15)
             ],
           ),
