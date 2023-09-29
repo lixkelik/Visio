@@ -1,6 +1,8 @@
 import 'package:visio/constant/constant_builder.dart';
 
-showExitDialog(context){
+import '../buy_coins_page.dart';
+
+showInsufficientCoinDialog(context){
   return showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -15,35 +17,32 @@ showExitDialog(context){
             children: [
               Image.asset(exitills, width: 60,),
               const SizedBox(height: 5),
-              const Text('Exit App!', style: styleB20,),
-              const Text('Are you sure want to exit from the app ?', style: styleR15, textAlign: TextAlign.center,),
+              const Text('Not enough coins!', style: styleB20,),
+              const Text('Do you want to get or buy some coins?', style: styleR15, textAlign: TextAlign.center,),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pop(false);
+                      Navigator.of(context).pop();
                     },
-                    style: ElevatedButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      )
-                    ),
                     child: const Text('No'),
                   ),
 
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pop(true);
+                      Navigator.pushReplacement(
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context) => const BuyCoinsPage()
+                        )
+                      );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      )
+                      backgroundColor: appOrange,
                     ),
-                    child: const Text('Exit', style: TextStyle(color: white)),
+                    child: const Text('Yes!', style: TextStyle(color: white)),
                   ),
                 ],
               ),

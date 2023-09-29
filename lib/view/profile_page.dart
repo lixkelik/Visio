@@ -4,6 +4,7 @@ import 'package:visio/repository/user_repository.dart';
 import 'package:visio/view/authentication/login_page.dart';
 import 'package:visio/factory/user_factory.dart';
 import 'package:visio/view/impaired/texttospeech.dart';
+import 'package:visio/view/widget/coins_widget.dart';
 
 class ProfilePage extends StatefulWidget {
   final int userRoles;
@@ -41,45 +42,51 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: appOrange,
                 borderRadius: BorderRadius.circular(30),
               ),
-              child: Row(
+              child: Column(
                 children: [
-                  Container(
-                    width: 93,
-                    height: 93,
-                    margin: const EdgeInsets.only(right: 12),
-                    child: const Image(image: AssetImage(profilePic)),
+                  Row(
+                    children: [
+                      Container(
+                        width: 93,
+                        height: 93,
+                        margin: const EdgeInsets.only(right: 12),
+                        child: const Image(image: AssetImage(profilePic)),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          (user != null)
+                              ? Text(
+                                  user!.name,
+                                  style: const TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: white
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                  
+                                )
+                              : Container(
+                                margin: const EdgeInsets.only(bottom: 15),
+                                child: skeletonBox(140, 40)),
+                          (user != null)
+                              ? Text(
+                                  user!.email,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    color: white
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                )
+                              : skeletonBox(170, 20)
+                        ]),
+                      )
+                    ],
                   ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Expanded(
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      (user != null)
-                          ? Text(
-                              user!.name,
-                              style: const TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                                color: white
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              
-                            )
-                          : Container(
-                            margin: const EdgeInsets.only(bottom: 15),
-                            child: skeletonBox(140, 40)),
-                      (user != null)
-                          ? Text(
-                              user!.email,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                color: white
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            )
-                          : skeletonBox(170, 20)
-                    ]),
-                  )
+                  const SizedBox(height: 10),
+                  showCoinsWidget(context, _getUserData,bgColor: white, btnBg: green, user: user),
                 ],
               ),
             ),
@@ -306,7 +313,7 @@ class _ProfilePageState extends State<ProfilePage> {
     await auth.signOut();
   }
 
-  Future<void> _getUserData() async {
+  _getUserData() async {
     UserVisio user = await getUserData();
     if(mounted){
       setState(() {

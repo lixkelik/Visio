@@ -34,6 +34,12 @@ Future<int> getUserCoin() async{
   return doc['coin'];
 }
 
+Future<void> deductCoin(int deduct) async{
+  String uid = await getUid();
+  int newCoin = await getUserCoin() - deduct;
+  await db.collection('users').doc(uid).update({'coin': newCoin});
+}
+
 Future<void> updateCoin(int newCoin) async {
   String uid = await getUid();
   await db.collection('users').doc(uid).update({'coin': newCoin});

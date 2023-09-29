@@ -37,6 +37,7 @@ const exitills = 'assets/image/illustration/exit_ills.png';
 const logoutills = 'assets/image/illustration/logout_ills.png';
 const coinLogo = 'assets/image/illustration/coin_logo.png';
 const coinLove = 'assets/image/illustration/coin_love.png';
+const adsPic = 'assets/image/ads.png';
 
 const badge1 = 'assets/image/illustration/badge1.png';
 const badge2 = 'assets/image/illustration/badge2.png';

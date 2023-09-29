@@ -175,12 +175,13 @@ class _DescribePageState extends State<DescribePeerPage> {
                                     game.colaboratorTime = Timestamp.now();
                                     saveToFirestore(game);
                                   }
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => SuccessPeerPage(
-                                              game) // loading page
-                                          ));
+                                  Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SuccessPeerPage(game),
+                                    ),
+                                    (route) => route.isFirst,
+                                  );
                                 }
                               }
                             },

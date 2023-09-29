@@ -29,23 +29,24 @@ class _LoadingPageState extends State<LoadingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: (gameObj.code == '')
-            ? const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(color: appOrange, ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Uploading file please wait...',
-                      style: styleB15,
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                ),
-              )
-            : SuccessPage(gameObj));
+      body: (gameObj.code == '')
+        ? const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(color: appOrange, ),
+                SizedBox(height: 20),
+                Text(
+                  'Uploading file please wait...',
+                  style: styleB15,
+                  textAlign: TextAlign.center,
+                )
+              ],
+            ),
+          )
+        : SuccessPage(gameObj)
+    );
   }
 
   void pageSpeech() {

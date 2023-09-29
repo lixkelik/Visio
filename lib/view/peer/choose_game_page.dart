@@ -182,6 +182,13 @@ class ChooseGamePage extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: appOrange,
+                    shape: const RoundedRectangleBorder(
+                      
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                    )
+                  ),
                   child: const Text('Sure!'),
                 ),
               ],

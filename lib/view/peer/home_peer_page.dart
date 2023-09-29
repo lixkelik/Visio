@@ -4,6 +4,8 @@ import 'package:visio/repository/user_repository.dart';
 import 'package:visio/view/peer/article_peer_page.dart';
 import 'package:visio/constant/constant_builder.dart';
 
+import '../widget/coins_widget.dart';
+
 class HomePeerPage extends StatefulWidget {
   final Function(int) updateCurrentPageIndex;
   const HomePeerPage({super.key, required this.updateCurrentPageIndex});
@@ -63,11 +65,10 @@ class _HomePeerPageState extends State<HomePeerPage> {
                 width: 180,
                 height: 180
               ),
-              const SizedBox(
-                height: 10,
-              ),
               
-              const SizedBox(height: 10),
+              const SizedBox(height: 15),
+              showCoinsWidget(context, _getUserData, bgColor: white, btnBg: appOrange, user: user),
+              const SizedBox(height: 15),
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -196,7 +197,7 @@ class _HomePeerPageState extends State<HomePeerPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
 
               // game button
               InkWell(
@@ -228,7 +229,7 @@ class _HomePeerPageState extends State<HomePeerPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
 
               // article button
               InkWell(
@@ -328,7 +329,7 @@ class _HomePeerPageState extends State<HomePeerPage> {
     }
   }
 
-  Future<void> _getUserData() async {
+  void _getUserData() async {
     UserVisio user = await getUserData();
     if(mounted){
       setState(() {

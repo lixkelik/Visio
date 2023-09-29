@@ -153,7 +153,7 @@ class _SuccessPageState extends State<SuccessPage> {
                   child: ElevatedButton(
                       onPressed: () async {
                         await deletePhoto();
-                        Navigator.pop(context);
+                        popPage();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: appOrange,
@@ -191,5 +191,12 @@ class _SuccessPageState extends State<SuccessPage> {
         await fileOnDevice.delete();
       }
     }
+  }
+
+  popPage(){
+    Navigator.popUntil(
+      context,
+      (route) => route.isFirst,
+    );
   }
 }

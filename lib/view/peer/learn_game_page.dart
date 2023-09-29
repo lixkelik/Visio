@@ -4,6 +4,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import "package:visio/constant/constant_builder.dart";
 import 'package:visio/factory/response_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:visio/view/buy_coins_page.dart';
+
+import '../../repository/user_repository.dart';
+import '../widget/insufficient_coin_dialog.dart';
 
 class LearnGamePage extends StatefulWidget {
   const LearnGamePage({super.key});
@@ -17,8 +21,14 @@ class _LearnGamePageState extends State<LearnGamePage> {
   late final TextEditingController promptController = TextEditingController();
   String responseText = '';
   late ResponseModel _responseModel;
+  int? coins;
   bool _isLoading = false;
-  bool _isAnswered = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getCoins();
+  }
 
   @override
   void dispose() {
@@ -32,6 +42,38 @@ class _LearnGamePageState extends State<LearnGamePage> {
       resizeToAvoidBottomInset: true,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        actions: [
+          Container(
+            margin: const EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 10,),
+                decoration: BoxDecoration(
+                  color: lightPurple,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context) => const BuyCoinsPage(),
+                  )
+                );
+              },
+              child: Row(
+                children: [
+                  Image.asset(coinLogo, width: 35,),
+                  const SizedBox(width: 8,),
+                  (coins == null) 
+                  ? skeletonBox(40, 30)
+                  : Text(
+                      coins.toString(),
+                      style: styleSB25,
+                    ),
+                ],
+              ),
+            ),
+          ),
+        ],
         leading: Container(
           margin: const EdgeInsets.all(7),
           decoration: BoxDecoration(
@@ -50,6 +92,7 @@ class _LearnGamePageState extends State<LearnGamePage> {
             enableFeedback: true,
           ),
         ),
+        
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
@@ -86,7 +129,6 @@ class _LearnGamePageState extends State<LearnGamePage> {
                     ),
                     child: TextFormField(
                       controller: promptController,
-                      enabled: (_isAnswered) ? false : true,
                       style: const TextStyle(
                         color: fontColor,
                         fontSize: 20
@@ -104,8 +146,12 @@ class _LearnGamePageState extends State<LearnGamePage> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: (){
-                        if(_isLoading || _isAnswered){
-                          null;
+                        if(_isLoading || coins == null || coins == 0){
+                          if(coins == 0){
+                            showInsufficientCoinDialog(context);
+                          }else{
+                            null;
+                          }
                         }else{
                           if(promptController.text.isEmpty){
                             showSnackBar('Please ask a question!', Colors.red, context);
@@ -117,7 +163,7 @@ class _LearnGamePageState extends State<LearnGamePage> {
                       
                       style: ElevatedButton.styleFrom(
                         enableFeedback: true,
-                        backgroundColor: (_isLoading || _isAnswered) ? Colors.grey : appOrange,
+                        backgroundColor: (_isLoading || coins == null || coins == 0) ? Colors.grey : appOrange,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         )
@@ -127,10 +173,19 @@ class _LearnGamePageState extends State<LearnGamePage> {
                         padding: const EdgeInsets.all(10),
                         child: 
                         (_isLoading == false) 
-                        ? const Text(
-                            'Ask!',
-                            style: styleWSB20,
-                          )
+                        ? const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Ask',
+                              style: styleWSB20,
+                            ),
+                            SizedBox(width: 5,),
+                            Text(
+                              '(-1 Coin)'
+                            ),
+                          ],
+                        )
                         : const CircularProgressIndicator()
                       ),
                     ),
@@ -186,32 +241,43 @@ class _LearnGamePageState extends State<LearnGamePage> {
     );
   }
 
+  getCoins() async {
+    coins = await getUserCoin();
+    setState(() {});
+  }
+
   completionFun() async{
-    setState(() {
-    _isLoading = true;
-    });
-    final response = await http.post(
-      Uri.parse('https://api.openai.com/v1/completions'),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${dotenv.env['token']}',
-      },
-      body: jsonEncode(
-        {
-          'model': 'gpt-3.5-turbo-instruct',
-          'prompt': "${promptController.text} and Explain it like you explain to a child, and make sure it easy to understand for them, if the first sentences is not a question then just ignore this!",
-          'max_tokens': 100,
-          'temperature': 0,
-          'top_p': 1,
-        }
-      )
-    );
-    setState(() {
-      _isLoading = false;
-      _isAnswered = true;
-      _responseModel = ResponseModel.fromJson(json.decode(response.body));
-      responseText = _responseModel.choices[0].text;
-      responseText = responseText.replaceAll('\n\n', '');
-    });
+    coins = await getUserCoin();
+    if(coins! > 0){
+      setState(() {
+      _isLoading = true;
+      });
+      final response = await http.post(
+        Uri.parse('https://api.openai.com/v1/completions'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ${dotenv.env['token']}',
+        },
+        body: jsonEncode(
+          {
+            'model': 'gpt-3.5-turbo-instruct',
+            'prompt': "${promptController.text} and Explain it like you explain to a child, and make sure it easy to understand for them, if the first sentences is not a question then just ignore this!",
+            'max_tokens': 100,
+            'temperature': 0,
+            'top_p': 1,
+          }
+        )
+      );
+      await deductCoin(1);
+      getCoins();
+      setState(() {
+        _isLoading = false;
+        _responseModel = ResponseModel.fromJson(json.decode(response.body));
+        responseText = _responseModel.choices[0].text;
+        responseText = responseText.replaceAll('\n\n', '');
+      });
+    }else{
+
+    }
   }
 }
