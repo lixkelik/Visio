@@ -3,10 +3,11 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:visio/constant/constant_builder.dart';
 import 'package:visio/constant/firebase_constant.dart';
 import 'package:visio/firebase_options.dart';
-import 'package:visio/view/authentication/login_page.dart';
 import 'package:visio/view/main_page.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+import 'view/onboarding/onboarding_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +38,7 @@ class _HomePageState extends State<MyApp> {
       
       home: (user != null)
             ? const MainPage()
-            : const LoginPage()
+            : const OnboardingPage()
     );
   }
 }
