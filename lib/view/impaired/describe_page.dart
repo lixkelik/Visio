@@ -148,7 +148,7 @@ class _DescribePageState extends State<DescribePage> {
                     width: double.maxFinite,
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        foregroundColor: Colors.white, 
+                        foregroundColor: white, 
                         backgroundColor: appOrange,
                         fixedSize: const Size(120, 120),
                         shape: const CircleBorder(),
@@ -182,7 +182,7 @@ class _DescribePageState extends State<DescribePage> {
                           String description = textController.text;
                           ItemObject item = ItemObject(image: image, objName: objName, description: description, colaboratorDesc: '-');
                           objects.add(item);
-                          if(objects.length < 5) {
+                          if(objects.length < 3) {
                             Navigator.pushReplacement(
                               context, 
                               MaterialPageRoute(builder: (context) => ScanObjectPage(title, objects))

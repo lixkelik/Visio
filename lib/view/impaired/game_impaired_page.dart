@@ -68,7 +68,7 @@ class _GameImpairedState extends State<GameImpaired> {
               style: styleB35
             ),
             const Text(
-              'Scan 5 objects around\nyou and describe them',
+              'Scan 3 objects around\nyou and describe them',
               softWrap: true,
               textAlign: TextAlign.center,
               style: styleR20
@@ -178,7 +178,7 @@ class _GameImpairedState extends State<GameImpaired> {
   }
 
   void pageSpeech(){
-    textToSpeech('You are at: game page. Lets play a game and scan 5 objects. Start by tell me where you are.');
+    textToSpeech('You are at: game page. Lets play a game and scan 3 objects. Start by telling me where you are.');
   }
 
 }

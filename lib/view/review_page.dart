@@ -15,21 +15,21 @@ class ReviewPage extends StatefulWidget {
 }
 
 class _ReviewPageState extends State<ReviewPage> {
+  late int userRoles;
   late Game gameObj;
   late int gameCounter;
   late String uid;
-  late int userRoles;
 
   @override
   void initState() {
     super.initState();
-    if(userRoles == 1){
-      speakDescription();
-    }
+    userRoles = widget.userRoles;
     gameObj = widget.gameObj;
     gameCounter = widget.gameCounter;
     uid = widget.uid;
-    userRoles = widget.userRoles;
+    if(userRoles == 1){
+      speakDescription();
+    }
   }
 
   @override
@@ -178,8 +178,8 @@ class _ReviewPageState extends State<ReviewPage> {
                     margin: const EdgeInsets.only(top: 16),
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        foregroundColor: Colors.white, 
-                        backgroundColor: Colors.white,
+                        foregroundColor: white, 
+                        backgroundColor: white,
                         fixedSize: const Size(100, 100),
                         shape: const CircleBorder(),
                         alignment: Alignment.center,
@@ -203,7 +203,7 @@ class _ReviewPageState extends State<ReviewPage> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: (){
-                  if(gameCounter < 4){
+                  if(gameCounter < 2){
                     Navigator.push(
                       context, 
                       MaterialPageRoute(builder: (context) => ReviewPage(gameObj, gameCounter+1, uid, userRoles))

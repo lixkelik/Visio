@@ -55,7 +55,7 @@ class SuccessPeerPage extends StatelessWidget {
                     style: styleSB25,
                   ),
                   const Text(
-                    "You’ve described 5 objects\nand helped your friend!",
+                    "You’ve described 3 objects\nand helped your friend!",
                     style: styleR20,
                     textAlign: TextAlign.center,
                   ),

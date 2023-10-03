@@ -158,7 +158,7 @@ class _DescribePageState extends State<DescribePeerPage> {
                                 String description = textController.text;
                                 game.obj[objectCount].colaboratorDesc =
                                     description;
-                                if (objectCount < 4) {
+                                if (objectCount < 2) {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(

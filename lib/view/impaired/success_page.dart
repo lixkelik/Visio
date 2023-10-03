@@ -58,11 +58,11 @@ class _SuccessPageState extends State<SuccessPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "You have scanned\n5 objects!",
+                      "You have scanned\n3 objects!",
                       style: styleB20,
                     ),
                     SizedBox(
-                      height: 190,
+                      height: 140,
                       child: ListView(
                         physics: const BouncingScrollPhysics(),
                         padding: const EdgeInsets.symmetric(vertical: 2),
@@ -85,20 +85,6 @@ class _SuccessPageState extends State<SuccessPage> {
                           ListTile(
                             title: Text(
                               widget.gameObj.obj[2].objName,
-                              style: const TextStyle(fontSize: 23),
-                            ),
-                            leading: const Icon(Icons.add_task),
-                          ),
-                          ListTile(
-                            title: Text(
-                              widget.gameObj.obj[3].objName,
-                              style: const TextStyle(fontSize: 23),
-                            ),
-                            leading: const Icon(Icons.add_task),
-                          ),
-                          ListTile(
-                            title: Text(
-                              widget.gameObj.obj[4].objName,
                               style: const TextStyle(fontSize: 23),
                             ),
                             leading: const Icon(Icons.add_task),
