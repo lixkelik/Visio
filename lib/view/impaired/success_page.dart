@@ -139,7 +139,7 @@ class _SuccessPageState extends State<SuccessPage> {
                   child: ElevatedButton(
                       onPressed: () async {
                         await deletePhoto();
-                        popPage();
+                        await popPage();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: appOrange,

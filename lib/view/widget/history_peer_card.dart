@@ -22,7 +22,7 @@ class HistoryPeerCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -33,7 +33,7 @@ class HistoryPeerCard extends StatelessWidget {
                       style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          color: white),
                     ),
                     const SizedBox(
                       width: 10,
@@ -46,7 +46,7 @@ class HistoryPeerCard extends StatelessWidget {
                   children: [
                     const Icon(
                       Icons.history,
-                      color: Colors.white,
+                      color: white,
                       size: 18,
                     ),
                     const SizedBox(
@@ -56,7 +56,7 @@ class HistoryPeerCard extends StatelessWidget {
                       DateFormat('dd-MMMM-yyyy, HH:mm')
                           .format(gameObj.colaboratorTime.toDate()),
                       style: const TextStyle(
-                          fontSize: 12, color: Colors.white),
+                          fontSize: 12, color: white),
                     )
                   ],
                 ),
@@ -90,14 +90,14 @@ class HistoryPeerCard extends StatelessWidget {
                     Text('See Result',
                         style: TextStyle(
                             fontSize: 20,
-                            color: Colors.white,
+                            color: white,
                             fontWeight: FontWeight.bold)),
                     SizedBox(
                       width: 10,
                     ),
                     Icon(
                       Icons.arrow_right_rounded,
-                      color: Colors.white,
+                      color: white,
                       size: 40,
                     )
                   ],

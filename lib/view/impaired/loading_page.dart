@@ -69,7 +69,7 @@ class _LoadingPageState extends State<LoadingPage> {
 
     List<String> downloadUrl = await uploadImage(gameObj);
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 3; i++) {
       gameObj.obj[i].image = downloadUrl[i];
     }
 
