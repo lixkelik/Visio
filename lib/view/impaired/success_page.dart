@@ -169,7 +169,7 @@ class _SuccessPageState extends State<SuccessPage> {
   }
 
   Future<void> deletePhoto() async {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 3; i++) {
       final fileOnDevice = File(widget.gameObj.obj[i].image);
 
       if (await fileOnDevice.exists()) {
