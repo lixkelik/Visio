@@ -21,6 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool _obscure = true;
+  bool _isValidate = false;
 
   @override
   void dispose(){
@@ -40,6 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Form(
+            autovalidateMode: (_isValidate) ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
             key: _formKey,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: pagePadding),
@@ -210,6 +212,10 @@ class _RegisterPageState extends State<RegisterPage> {
         MaterialPageRoute(builder: 
           (context) => ChooseRolePage(name: name, email: email, password: password)
         ));
+    } else{
+      setState(() {
+        _isValidate = true;
+      });
     }
   }
 }

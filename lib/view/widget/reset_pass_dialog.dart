@@ -1,6 +1,6 @@
 import 'package:visio/constant/constant_builder.dart';
 
-showExitDialog(context){
+resetPassDialog(context, String message, bool error){
   return showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -13,10 +13,14 @@ showExitDialog(context){
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(exitills, width: 60,),
+              (error) ? Image.asset(exitills, width: 60,)
+                      : Image.asset(loveills, width: 60,),
               const SizedBox(height: 5),
-              const Text('Exit App!', style: styleB20,),
-              const Text('Are you sure want to exit from the app ?', style: styleR15, textAlign: TextAlign.center,),
+              Text(
+                (error) ? 'Oops!' : 'Success!', 
+                style: styleB20,
+              ),
+              Text(message, style: styleR15, textAlign: TextAlign.center,),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -31,21 +35,7 @@ showExitDialog(context){
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                       )
                     ),
-                    child: const Text('No'),
-                  ),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).pop(true);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(10),
-                      backgroundColor: Colors.red,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      )
-                    ),
-                    child: const Text('Exit', style: TextStyle(color: white)),
+                    child: const Text('Ok!'),
                   ),
                 ],
               ),

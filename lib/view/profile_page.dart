@@ -286,6 +286,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.all(10),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        )
+                      ),
                       child: const Text('No'),
                     ),
 
@@ -296,6 +302,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
+                        padding: const EdgeInsets.all(10),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        )
                       ),
                       child: const Text('Logout', style: TextStyle(color: white)),
                     ),

@@ -5,6 +5,7 @@ import 'package:visio/view/main_page.dart';
 import 'package:visio/view/widget/exit_dialog.dart';
 
 import 'auth_widget.dart';
+import 'forget_pass_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -20,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool _isLoading = false;
+  bool _isValidate = false;
   bool _obscure = true;
 
   @override
@@ -39,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Form(
+          autovalidateMode: (_isValidate) ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
           key: _formKey,
           child: Container(
             width: double.infinity,
@@ -112,6 +115,18 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: inputDec('Password', hint: "*******", isPassword: true ,obscure: _obscure, togglePass:  (value) {setState(() {
                           _obscure = value;
                         });},),
+                      ),
+
+                      const SizedBox(height: 5,),
+
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgetPassPage()));
+                        },
+                        child: Container(
+                          alignment: Alignment.centerRight,
+                          child: const Text('Forgot Password?', style: styleR15,)
+                        )
                       ),
                     ],
                   ),
@@ -215,6 +230,10 @@ class _LoginPageState extends State<LoginPage> {
           });
         }
       }
+    }else{
+      setState(() {
+        _isValidate = true;
+      });
     }
 
     
