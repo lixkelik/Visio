@@ -106,38 +106,42 @@ class _BuyCoinsPageState extends State<BuyCoinsPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Column(
+                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Not allowed to spend money?",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: white
-                        ),
+                      RichText(
+                        text: const TextSpan(
+                          text: "Not allowed to spend money?",
+                            style: TextStyle(
+                            fontSize: 12,
+                            color: white
+                          ),
+                          children: [
+                            TextSpan(
+                              text: "Don’t worry!",
+                              style: TextStyle(
+                              fontSize: 12,
+                              color: white,
+                              fontWeight: FontWeight.w600
+                            ),
+                            )
+                          ]
+                        )
                       ),
-                      Text(
-                        "Don’t worry!",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: white,
-                          fontWeight: FontWeight.w600
-                        ),
-                      ),
-                      SizedBox(height: 8,),
+                      const SizedBox(height: 8,),
             
-                      Text(
+                      const Text(
                         "Tap here to watch Ads",
                         style: TextStyle(
                           fontSize: 16,
                           color: white,
                         ),
                       ),
-                      Text(
+                      const Text(
                         "AND GET FREE COINS!",
                         style: TextStyle(
                           fontSize: 18,
-                          color: Color(0xffA50000),
+                          color: Color(0xffFBFF3E),
                           fontWeight: FontWeight.bold
                         ),
                       ),
