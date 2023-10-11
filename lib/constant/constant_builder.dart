@@ -81,6 +81,8 @@ const TextStyle styleB30 =
     TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: fontColor);
 const TextStyle styleB35 =
     TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: fontColor);
+    const TextStyle styleB110 =
+    TextStyle(fontSize: 110, fontWeight: FontWeight.bold, color: fontColor);
 
 const TextStyle styleWSB20 =
     TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: white);
@@ -88,3 +90,4 @@ const TextStyle styleWSB25 =
     TextStyle(fontSize: 25, fontWeight: FontWeight.w600, color: white);
 const TextStyle styleWSB30 =
     TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: white);
+
