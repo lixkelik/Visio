@@ -1,14 +1,13 @@
 import "package:visio/constant/constant_builder.dart";
-import "package:visio/view/impaired/braille_letter_introduction_page.dart";
+import "package:visio/view/impaired/braille_letter_answer_page.dart";
 
-class BrailleIntroductionPage extends StatelessWidget {
-  const BrailleIntroductionPage({super.key});
+class BrailleLetterIntroductionPage extends StatelessWidget {
+  const BrailleLetterIntroductionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: lightPink,
       appBar: AppBar(
         leading: Container(
           margin: const EdgeInsets.all(7),
@@ -37,28 +36,30 @@ class BrailleIntroductionPage extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: white,
+                  color: lightBlue,
                   borderRadius: BorderRadius.circular(30),
                 ),
                 width: double.infinity,
                 padding: const EdgeInsets.all(15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
                   children: [
-                    const Text(
-                      "Introduction",
-                      style: styleB30,
+                    Image.asset(exitills, width: 70),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "A - E",
+                            style: styleB30,
+                          ),
+                          const Text(
+                            "The letters A - E only use the top 4 dots in each cell. ",
+                            style: styleR15,
+                          ),
+                          
+                        ],
+                      ),
                     ),
-                    const Text(
-                      "A braille character is represented with a cell. A cell contains of 6 dots. Each dots are represented with number 1 to 6.",
-                      style: styleR15,
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      "Single tap to hear the dot, double tap to select or deselect. Try to touch each dots! ",
-                      style: styleB15,
-                    ),
-                    
                   ],
                 ),
               ),
@@ -69,9 +70,9 @@ class BrailleIntroductionPage extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                       onPressed: (() => Navigator.push(
-                      context, 
-                      MaterialPageRoute(builder: (context) => BrailleLetterIntroductionPage()),
-                    )), 
+                        context, 
+                        MaterialPageRoute(builder: (context) => BrailleLetterAnswerPage()),
+                      )),  
                       style: ElevatedButton.styleFrom(
                         backgroundColor: appOrange,
                         padding: const EdgeInsets.symmetric(
@@ -80,7 +81,7 @@ class BrailleIntroductionPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      child: const Text('Go Back',
+                      child: const Text('Understood',
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w600,

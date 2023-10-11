@@ -1,5 +1,6 @@
 import "package:visio/constant/constant_builder.dart";
 import "package:visio/view/impaired/braille_introduction_page.dart";
+import "package:visio/view/impaired/braille_letter_introduction_page.dart";
 
 class BrailleMenuPage extends StatelessWidget {
   const BrailleMenuPage({super.key});
@@ -127,7 +128,7 @@ class BrailleMenuPage extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const BrailleIntroductionPage()));
+                                              const BrailleLetterIntroductionPage()));
                                 },
                                 child: Image.asset(
                                   helloills, // Replace with your image asset path
@@ -141,7 +142,7 @@ class BrailleMenuPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const Text('Introduction', style: styleB20),
+                          const Text('A - E', style: styleB20),
                         ],
                       ),
                       const SizedBox(
