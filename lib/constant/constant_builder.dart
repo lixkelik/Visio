@@ -15,6 +15,7 @@ const Color lightBlue = Color(0xffCDE0FF);
 const Color lightPurple = Color(0xffDED5F1);
 const Color lightPink = Color(0xffFFCDCD);
 const Color lightGreen = Color(0xffB2EAC0);
+const Color whiteGrey = Color(0xE5E5E5E5);
 
 const appLogo = 'assets/image/visio_logo/app_logo.png';
 const splashLogo = 'assets/image/visio_logo/splash_logo.png';
@@ -61,18 +62,29 @@ const double pagePadding = 20;
 const TextStyle styleR15 = TextStyle(fontSize: 15, color: fontColor);
 const TextStyle styleR20 = TextStyle(fontSize: 20, color: fontColor);
 
-const TextStyle styleSB15 = TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: fontColor);
-const TextStyle styleSB20 = TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: fontColor);
-const TextStyle styleSB25 = TextStyle(fontSize: 25,fontWeight: FontWeight.w600,color: fontColor);
-const TextStyle styleSB30 = TextStyle(fontSize: 30,fontWeight: FontWeight.w600,color: fontColor);
+const TextStyle styleSB15 =
+    TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: fontColor);
+const TextStyle styleSB20 =
+    TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: fontColor);
+const TextStyle styleSB25 =
+    TextStyle(fontSize: 25, fontWeight: FontWeight.w600, color: fontColor);
+const TextStyle styleSB30 =
+    TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: fontColor);
 
-const TextStyle styleB15 = TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: fontColor);
-const TextStyle styleB20 = TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: fontColor);
-const TextStyle styleB25 = TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: fontColor);
-const TextStyle styleB30 = TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: fontColor);
-const TextStyle styleB35 = TextStyle(fontSize: 35,fontWeight: FontWeight.bold,color: fontColor);
+const TextStyle styleB15 =
+    TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: fontColor);
+const TextStyle styleB20 =
+    TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: fontColor);
+const TextStyle styleB25 =
+    TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: fontColor);
+const TextStyle styleB30 =
+    TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: fontColor);
+const TextStyle styleB35 =
+    TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: fontColor);
 
-const TextStyle styleWSB20 = TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: white);
-const TextStyle styleWSB25 = TextStyle(fontSize: 25,fontWeight: FontWeight.w600,color: white);
-const TextStyle styleWSB30 = TextStyle(fontSize: 30,fontWeight: FontWeight.w600,color: white);
-
+const TextStyle styleWSB20 =
+    TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: white);
+const TextStyle styleWSB25 =
+    TextStyle(fontSize: 25, fontWeight: FontWeight.w600, color: white);
+const TextStyle styleWSB30 =
+    TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: white);

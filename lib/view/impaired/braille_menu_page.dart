@@ -1,4 +1,5 @@
 import "package:visio/constant/constant_builder.dart";
+import "package:visio/view/impaired/braille_introduction_page.dart";
 
 class BrailleMenuPage extends StatelessWidget {
   const BrailleMenuPage({super.key});
@@ -43,6 +44,150 @@ class BrailleMenuPage extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
+          Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  // introduction
+                  // ini 1 bulat
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            width: 10, // outer border width
+                            color: whiteGrey,
+                          ),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              width: 5, // inner border width
+                              color: Colors.white,
+                            ),
+                          ),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const BrailleIntroductionPage()));
+                            },
+                            child: Image.asset(
+                              helloills, // Replace with your image asset path
+                              width: 70,
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: lightPink,
+                              shape: CircleBorder(),
+                              padding: EdgeInsets.all(20),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Text('Introduction', style: styleB20),
+                    ],
+                  ),
+
+                  // selesai 1 bulat
+
+                  const SizedBox(height: 12),
+                  // Other data
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // ini bulat pertama
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                width: 10, // outer border width
+                                color: whiteGrey,
+                              ),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  width: 5, // inner border width
+                                  color: Colors.white,
+                                ),
+                              ),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const BrailleIntroductionPage()));
+                                },
+                                child: Image.asset(
+                                  helloills, // Replace with your image asset path
+                                  width: 70,
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: lightPink,
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(20),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Text('Introduction', style: styleB20),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      // ini bulat kedua
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                width: 10, // outer border width
+                                color: whiteGrey,
+                              ),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  width: 5, // inner border width
+                                  color: Colors.white,
+                                ),
+                              ),
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                child: Image.asset(
+                                  helloills, // Replace with your image asset path
+                                  width: 70,
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: lightPink,
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(20),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Text('Introduction', style: styleB20),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              )),
         ]),
       ),
     );
