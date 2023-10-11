@@ -1,6 +1,6 @@
 import "package:visio/constant/constant_builder.dart";
+import "package:visio/view/impaired/braille_menu_page.dart";
 import "package:visio/view/impaired/game_impaired_page.dart";
-import "package:visio/view/impaired/learn_braille_page.dart";
 
 class SelectGamePage extends StatelessWidget {
   const SelectGamePage({super.key});
@@ -45,7 +45,7 @@ class SelectGamePage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LearnBraillePage()));
+                              builder: (context) => const GameImpaired()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: white,
@@ -85,7 +85,7 @@ class SelectGamePage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LearnBraillePage()));
+                              builder: (context) => const BrailleMenuPage()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: white,
@@ -126,52 +126,6 @@ class SelectGamePage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  showPopUp(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          child: Container(
-            padding: const EdgeInsets.all(15),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  sickills,
-                  width: 60,
-                ),
-                const SizedBox(height: 5),
-                const Text(
-                  'Coming Soon!',
-                  style: styleB20,
-                ),
-                const Text(
-                  'Keep supporting Visio\nand wait until new game released :D',
-                  style: styleR15,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: appOrange,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                      )),
-                  child: const Text('Sure!'),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 }
