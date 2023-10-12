@@ -2,9 +2,22 @@ import "package:visio/constant/constant_builder.dart";
 import "package:visio/view/impaired/braille_introduction_page.dart";
 import "package:visio/view/impaired/braille_letter_introduction_page.dart";
 
-class BrailleMenuPage extends StatelessWidget {
+import "texttospeech.dart";
+
+class BrailleMenuPage extends StatefulWidget {
   const BrailleMenuPage({super.key});
 
+  @override
+  State<BrailleMenuPage> createState() => _BrailleMenuPageState();
+}
+
+class _BrailleMenuPageState extends State<BrailleMenuPage> {
+
+  @override
+  void initState() {
+    super.initState();
+    pageSpeech();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +72,7 @@ class BrailleMenuPage extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            width: 10, // outer border width
+                            width: 10,
                             color: whiteGrey,
                           ),
                         ),
@@ -67,8 +80,8 @@ class BrailleMenuPage extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
-                              width: 5, // inner border width
-                              color: Colors.white,
+                              width: 5, 
+                              color: white,
                             ),
                           ),
                           child: ElevatedButton(
@@ -79,14 +92,14 @@ class BrailleMenuPage extends StatelessWidget {
                                       builder: (context) =>
                                           const BrailleIntroductionPage()));
                             },
-                            child: Image.asset(
-                              helloills, // Replace with your image asset path
-                              width: 70,
-                            ),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: lightPink,
-                              shape: CircleBorder(),
-                              padding: EdgeInsets.all(20),
+                              shape: const CircleBorder(),
+                              padding: const EdgeInsets.all(20),
+                            ),
+                            child: Image.asset(
+                              helloills,
+                              width: 70,
                             ),
                           ),
                         ),
@@ -110,7 +123,7 @@ class BrailleMenuPage extends StatelessWidget {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
-                                width: 10, // outer border width
+                                width: 10,
                                 color: whiteGrey,
                               ),
                             ),
@@ -118,8 +131,8 @@ class BrailleMenuPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  width: 5, // inner border width
-                                  color: Colors.white,
+                                  width: 5, 
+                                  color: white,
                                 ),
                               ),
                               child: ElevatedButton(
@@ -130,14 +143,14 @@ class BrailleMenuPage extends StatelessWidget {
                                           builder: (context) =>
                                               const BrailleLetterIntroductionPage()));
                                 },
-                                child: Image.asset(
-                                  helloills, // Replace with your image asset path
-                                  width: 70,
-                                ),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: lightPink,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(20),
+                                  shape: const CircleBorder(),
+                                  padding: const EdgeInsets.all(20),
+                                ),
+                                child: Image.asset(
+                                  helloills, 
+                                  width: 70,
                                 ),
                               ),
                             ),
@@ -156,7 +169,7 @@ class BrailleMenuPage extends StatelessWidget {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
-                                width: 10, // outer border width
+                                width: 10,
                                 color: whiteGrey,
                               ),
                             ),
@@ -164,20 +177,20 @@ class BrailleMenuPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  width: 5, // inner border width
-                                  color: Colors.white,
+                                  width: 5,
+                                  color: white,
                                 ),
                               ),
                               child: ElevatedButton(
                                 onPressed: () {},
-                                child: Image.asset(
-                                  helloills, // Replace with your image asset path
-                                  width: 70,
-                                ),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: lightPink,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(20),
+                                  shape: const CircleBorder(),
+                                  padding: const EdgeInsets.all(20),
+                                ),
+                                child: Image.asset(
+                                  helloills,
+                                  width: 70,
                                 ),
                               ),
                             ),
@@ -192,5 +205,9 @@ class BrailleMenuPage extends StatelessWidget {
         ]),
       ),
     );
+  }
+  
+  void pageSpeech(){
+    textToSpeech('Braille is a special way of reading and writing. It uses tiny raised dots that you can touch with your fingers to feel letters and words. Now select which letter do you want to learn!');
   }
 }

@@ -20,10 +20,10 @@ class _GameImpairedState extends State<GameImpaired> {
 
   @override
   void initState() {
+    super.initState();
     pageSpeech();
     _initSpeech();
     items = [];
-    super.initState();
   }
 
   void _initSpeech() async {
@@ -178,7 +178,7 @@ class _GameImpairedState extends State<GameImpaired> {
   }
 
   void pageSpeech(){
-    textToSpeech('You are at: game page. Lets play a game and scan 3 objects. Start by telling me where you are.');
+    textToSpeech('Lets play a game and scan 3 objects. Start by telling me where you are.');
   }
 
 }

@@ -1,9 +1,22 @@
 import "package:visio/constant/constant_builder.dart";
 import "package:visio/view/impaired/braille_menu_page.dart";
 import "package:visio/view/impaired/game_impaired_page.dart";
+import "package:visio/view/impaired/texttospeech.dart";
 
-class SelectGamePage extends StatelessWidget {
+class SelectGamePage extends StatefulWidget {
   const SelectGamePage({super.key});
+
+  @override
+  State<SelectGamePage> createState() => _SelectGamePageState();
+}
+
+class _SelectGamePageState extends State<SelectGamePage> {
+
+  @override
+  void initState() {
+    super.initState();
+    pageSpeech();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,9 +130,6 @@ class SelectGamePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
                 ],
               ),
             ),
@@ -127,5 +137,9 @@ class SelectGamePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void pageSpeech(){
+    textToSpeech('You are at: game page. Choose the game you want to play!');
   }
 }
