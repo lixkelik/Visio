@@ -124,52 +124,67 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // ini bulat pertama
-                      for (Braille braille in blocks)
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  width: 10, // outer border width
-                                  color: whiteGrey,
-                                ),
-                              ),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    width: 5, // inner border width
-                                    color: Colors.white,
+
+                      Expanded(
+                        child: GridView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2, childAspectRatio: 0.92),
+                            itemCount: blocks.length,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  // bulet2nya
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        width: 10, // outer border width
+                                        color: whiteGrey,
+                                      ),
+                                    ),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                          width: 5, // inner border width
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      BrailleLetterIntroductionPage(
+                                                          brailleData:
+                                                              blocks[index])));
+                                        },
+                                        child: Image.asset(
+                                          blocks[index].imgPath,
+                                          width: 70,
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: lightPink,
+                                          shape: CircleBorder(),
+                                          padding: EdgeInsets.all(20),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                BrailleLetterIntroductionPage(
-                                                    brailleData: braille)));
-                                  },
-                                  child: Image.asset(
-                                    braille.imgPath,
-                                    width: 70,
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: lightPink,
-                                    shape: CircleBorder(),
-                                    padding: EdgeInsets.all(20),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Text(braille.title, style: styleB20),
-                          ],
-                        ),
-                      const SizedBox(
-                        width: 15,
+                                  Expanded(
+                                      child: Text(
+                                    blocks[index].title,
+                                    style: styleB20,
+                                    textAlign: TextAlign.center,
+                                  )),
+                                ],
+                              );
+                            }),
                       ),
                       // ini bulat kedua
                     ],

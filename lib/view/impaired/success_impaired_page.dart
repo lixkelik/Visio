@@ -1,10 +1,16 @@
 import 'package:visio/constant/constant_builder.dart';
+import 'package:visio/view/impaired/texttospeech.dart';
 
 class SuccessImpairedPage extends StatelessWidget {
   const SuccessImpairedPage({super.key});
 
+  void pageSpeech() {
+    textToSpeech('Congratulations! You have learn braille characters.');
+  }
+
   @override
   Widget build(BuildContext context) {
+    pageSpeech();
     return Scaffold(
       backgroundColor: lightGreen,
       body: Padding(

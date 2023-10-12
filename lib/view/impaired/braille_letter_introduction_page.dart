@@ -198,7 +198,7 @@ class _BrailleLetterIntroductionPage
 
   void pageSpeech() {
     textToSpeech(
-        'The letters A - E only use the top 4 dots in each cell. Tap to hear what the dots are. Double click to select or deselect the dot.');
+        '${widget.brailleData.description} Tap to hear what the dots are. Double click to select or deselect the dot.');
   }
 
   void speech(String text) {

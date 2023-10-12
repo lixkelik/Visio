@@ -328,8 +328,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
   }
 
   void pageSpeech() {
-    textToSpeech(
-        'The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch the first dot!');
+    textToSpeech(widget.brailleData.description);
   }
 
   void speech(String text) {
