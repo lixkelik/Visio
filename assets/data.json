@@ -1,0 +1,41 @@
+{
+    "block": [
+      {
+        "title": "A - E",
+        "description": "The letters A - E only use the top 4 dots in each cell.",
+        "imgPath": "assets/image/illustration/king_ills.png",
+        "dots": [1, 2, 4, 5],
+        "letter": [
+          {
+            "letter_name": "A",
+            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
+            "letter_dots": [1]
+          },
+          {
+            "letter_name": "B",
+            "letter_desc": "The letter B has dots 1 and 4. Try to touch dot 1!",
+            "letter_dots": [1, 4]
+          }
+        ]
+      },
+      {
+        "title": "F - J",
+        "description": "The letters F - J use a different set of dots.",
+        "imgPath": "assets/image/illustration/king_ills.png",
+        "dots": [1, 2, 3, 4],
+        "letter": [
+          {
+            "letter_name": "F",
+            "letter_desc": "The letter F has dot 6 only.",
+            "letter_dots": [1, 2]
+          },
+          {
+            "letter_name": "G",
+            "letter_desc": "The letter G has dots 6 and 9.",
+            "letter_dots": [2, 3]
+          }
+        ]
+      }
+    ]
+  }
+  

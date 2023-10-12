@@ -1,8 +1,11 @@
 import "package:visio/constant/constant_builder.dart";
+import "package:visio/model/braille.dart";
 import "package:visio/view/impaired/braille_letter_answer_page.dart";
 
 class BrailleLetterIntroductionPage extends StatefulWidget {
-  const BrailleLetterIntroductionPage({super.key});
+  final Braille brailleData;
+  const BrailleLetterIntroductionPage({Key? key, required this.brailleData})
+      : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
