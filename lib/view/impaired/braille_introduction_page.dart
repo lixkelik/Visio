@@ -1,12 +1,11 @@
 import "package:visio/constant/constant_builder.dart";
 
-import "texttospeech.dart";
-
 class BrailleIntroductionPage extends StatefulWidget {
   const BrailleIntroductionPage({super.key});
 
   @override
-  State<BrailleIntroductionPage> createState() => _BrailleIntroductionPage();
+  // ignore: library_private_types_in_public_api
+  _BrailleIntroductionPage createState() => _BrailleIntroductionPage();
 }
 
 class _BrailleIntroductionPage extends State<BrailleIntroductionPage> {
@@ -76,7 +75,7 @@ class _BrailleIntroductionPage extends State<BrailleIntroductionPage> {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    "Single tap to hear the dot, double tap to select or deselect. Try to touch each dots!",
+                    "Single tap to hear the dot, double tap to select or deselect. Try to touch each dots! ",
                     style: styleB15,
                   ),
                 ],
@@ -100,16 +99,13 @@ class _BrailleIntroductionPage extends State<BrailleIntroductionPage> {
                             padding: const EdgeInsets.all(8),
                             child: ClipOval(
                               child: GestureDetector(
-                                onTap: () {
-                                  String numText = ((row * 3) + col + 1).toString();
-                                  speech("This is dot number $numText.");
-                                },
+                                onTap: () {},
                                 onDoubleTap: () {
                                   setState(() {
                                     toggleNumber((row * 3) + col + 1);
                                   });
                                 },
-                                child: SizedBox(
+                                child: Container(
                                   width: 80,
                                   height: 80,
                                   child: ElevatedButton(
@@ -133,7 +129,7 @@ class _BrailleIntroductionPage extends State<BrailleIntroductionPage> {
                                       ),
                                     ),
                                     child: Center(
-                                      child: Text('$number', style: styleB35),
+                                      child: Text('${number}', style: styleB35),
                                     ),
                                   ),
                                 ),
@@ -220,12 +216,5 @@ class _BrailleIntroductionPage extends State<BrailleIntroductionPage> {
         ),
       ),
     );
-  }
-  void pageSpeech(){
-    textToSpeech('Introduction to braille. A braille character is represented with a cell. A cell contains of 6 dots. Each dots are represented with number 1 to 6. Single tap to hear the dot, double tap to select or deselect. Try to touch each dots!');
-  }
-
-  void speech(String text){
-    textToSpeech(text);
   }
 }
