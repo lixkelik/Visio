@@ -54,5 +54,6 @@ flutter:
     - assets/
     - assets/image/
     - assets/image/illustration/
+    - assets/data.json
 
 

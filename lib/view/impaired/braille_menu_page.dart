@@ -1,9 +1,28 @@
+import "dart:convert";
+import 'dart:core';
+import "package:flutter/services.dart";
 import "package:visio/constant/constant_builder.dart";
+import "package:visio/model/braille.dart";
+import "package:visio/model/letter.dart";
 import "package:visio/view/impaired/braille_introduction_page.dart";
 import "package:visio/view/impaired/braille_letter_introduction_page.dart";
 
-class BrailleMenuPage extends StatelessWidget {
+class BrailleMenuPage extends StatefulWidget {
   const BrailleMenuPage({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _BrailleMenuPage createState() => _BrailleMenuPage();
+}
+
+class _BrailleMenuPage extends State<BrailleMenuPage> {
+  List<Braille> blocks = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadBrailleData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,88 +122,54 @@ class BrailleMenuPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // ini bulat pertama
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                width: 10, // outer border width
-                                color: whiteGrey,
-                              ),
-                            ),
-                            child: Container(
+                      for (Braille braille in blocks)
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  width: 5, // inner border width
-                                  color: Colors.white,
+                                  width: 10, // outer border width
+                                  color: whiteGrey,
                                 ),
                               ),
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const BrailleLetterIntroductionPage()));
-                                },
-                                child: Image.asset(
-                                  helloills, // Replace with your image asset path
-                                  width: 70,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    width: 5, // inner border width
+                                    color: Colors.white,
+                                  ),
                                 ),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: lightPink,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(20),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                BrailleLetterIntroductionPage(
+                                                    brailleData: braille)));
+                                  },
+                                  child: Image.asset(
+                                    braille.imgPath,
+                                    width: 70,
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: lightPink,
+                                    shape: CircleBorder(),
+                                    padding: EdgeInsets.all(20),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          const Text('A - E', style: styleB20),
-                        ],
-                      ),
+                            Text(braille.title, style: styleB20),
+                          ],
+                        ),
                       const SizedBox(
                         width: 15,
                       ),
                       // ini bulat kedua
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                width: 10, // outer border width
-                                color: whiteGrey,
-                              ),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  width: 5, // inner border width
-                                  color: Colors.white,
-                                ),
-                              ),
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                child: Image.asset(
-                                  helloills, // Replace with your image asset path
-                                  width: 70,
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: lightPink,
-                                  shape: CircleBorder(),
-                                  padding: EdgeInsets.all(20),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Text('Introduction', style: styleB20),
-                        ],
-                      ),
                     ],
                   )
                 ],
@@ -192,5 +177,35 @@ class BrailleMenuPage extends StatelessWidget {
         ]),
       ),
     );
+  }
+
+  Future<void> loadBrailleData() async {
+    final jsonString = await rootBundle.loadString('assets/data.json');
+    final jsonData = json.decode(jsonString);
+
+    if (jsonData.containsKey('block')) {
+      for (var block in jsonData['block']) {
+        if (block.containsKey('letter')) {
+          final brailleLetters = block['letter'].map((letterData) {
+            return Letter(
+              letterName: letterData['letter_name'],
+              letterDesc: letterData['letter_desc'],
+              letterDots: List<int>.from(letterData['letter_dots']),
+            );
+          }).toList();
+
+          final brailleBlock = Braille(
+            title: block['title'],
+            description: block['description'],
+            imgPath:
+                block['imgPath'], // If you have an image path in your JSON.
+            dots: List<int>.from(block['dots']),
+            letterList: brailleLetters,
+          );
+
+          blocks.add(brailleBlock);
+        }
+      }
+    }
   }
 }
