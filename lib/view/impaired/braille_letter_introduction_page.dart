@@ -1,8 +1,7 @@
 import "package:visio/constant/constant_builder.dart";
 import "package:visio/model/braille.dart";
 import "package:visio/view/impaired/braille_letter_answer_page.dart";
-
-import "texttospeech.dart";
+import "package:visio/view/impaired/texttospeech.dart";
 
 class BrailleLetterIntroductionPage extends StatefulWidget {
   final Braille brailleData;
@@ -10,10 +9,12 @@ class BrailleLetterIntroductionPage extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<BrailleLetterIntroductionPage> createState() => _BrailleLetterIntroductionPage();
+  State<BrailleLetterIntroductionPage> createState() =>
+      _BrailleLetterIntroductionPage();
 }
 
-class _BrailleLetterIntroductionPage extends State<BrailleLetterIntroductionPage> {
+class _BrailleLetterIntroductionPage
+    extends State<BrailleLetterIntroductionPage> {
   List<int> selectedNumbers = [];
   List<int> correctAns = [1, 2, 4, 5];
 
@@ -103,7 +104,8 @@ class _BrailleLetterIntroductionPage extends State<BrailleLetterIntroductionPage
                             child: ClipOval(
                               child: GestureDetector(
                                 onTap: () {
-                                  String numText = ((row * 3) + col + 1).toString();
+                                  String numText =
+                                      ((row * 3) + col + 1).toString();
                                   speech("This is dot number $numText.");
                                 },
                                 onDoubleTap: () {
@@ -139,7 +141,7 @@ class _BrailleLetterIntroductionPage extends State<BrailleLetterIntroductionPage
                                       ),
                                     ),
                                     child: Center(
-                                      child: Text('$number', style: styleB35),
+                                      child: Text('${number}', style: styleB35),
                                     ),
                                   ),
                                 ),
@@ -186,8 +188,10 @@ class _BrailleLetterIntroductionPage extends State<BrailleLetterIntroductionPage
       ),
     );
   }
-  void pageSpeech(){
-    textToSpeech('The letters A - E only use the top 4 dots in each cell. Tap to hear what the dots are. Double click to select or deselect the dot.');
+
+  void pageSpeech() {
+    textToSpeech(
+        'The letters A - E only use the top 4 dots in each cell. Tap to hear what the dots are. Double click to select or deselect the dot.');
   }
 
   void speech(String text) {

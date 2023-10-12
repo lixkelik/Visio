@@ -11,7 +11,6 @@ class SelectGamePage extends StatefulWidget {
 }
 
 class _SelectGamePageState extends State<SelectGamePage> {
-
   @override
   void initState() {
     super.initState();
@@ -139,7 +138,7 @@ class _SelectGamePageState extends State<SelectGamePage> {
     );
   }
 
-  void pageSpeech(){
+  void pageSpeech() {
     textToSpeech('You are at: game page. Choose the game you want to play!');
   }
 }

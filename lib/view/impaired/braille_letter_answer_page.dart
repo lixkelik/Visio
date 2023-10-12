@@ -29,9 +29,10 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
   }
 
   bool answerIsCorrect() {
-    int len = (selectedNumbers.length <= correctAns.length)
-        ? selectedNumbers.length
-        : correctAns.length;
+    if (selectedNumbers.length != correctAns.length) {
+      return false;
+    }
+    int len = selectedNumbers.length;
     for (int i = 0; i < len; i++) {
       if (selectedNumbers[i] != correctAns[i]) {
         return false;
@@ -140,7 +141,9 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                             child: ClipOval(
                               child: GestureDetector(
                                 onTap: () {
-                                  String numText = ((row * 3) + col + 1).toString();
+                                  // ((row * 3) + col + 1) utk tentukan number
+                                  String numText =
+                                      ((row * 3) + col + 1).toString();
                                   speech("This is dot number $numText.");
                                 },
                                 onDoubleTap: () {
@@ -200,6 +203,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                       bool isCorrect = answerIsCorrect();
                       showModalBottomSheet(
                         context: context,
+                        backgroundColor: Colors.transparent,
                         builder: (BuildContext context) {
                           return Container(
                             decoration: BoxDecoration(
@@ -207,9 +211,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20),
                               ),
-                              color: (isCorrect)
-                                  ? lightGreen
-                                  : lightPink,
+                              color: (isCorrect) ? lightGreen : lightPink,
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(20),
@@ -232,7 +234,6 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                                       ),
                                     ],
                                   ),
-
                                   const SizedBox(
                                     height: 15,
                                   ),
@@ -292,11 +293,13 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
       ),
     );
   }
-  void pageSpeech(){
-    textToSpeech('The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch the first dot!');
+
+  void pageSpeech() {
+    textToSpeech(
+        'The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch the first dot!');
   }
 
-  void speech(String text){
+  void speech(String text) {
     textToSpeech(text);
   }
 }
