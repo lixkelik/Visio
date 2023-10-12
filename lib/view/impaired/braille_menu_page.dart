@@ -1,7 +1,12 @@
+import "dart:convert";
+
+import "package:flutter/services.dart";
 import "package:visio/constant/constant_builder.dart";
 import "package:visio/view/impaired/braille_introduction_page.dart";
 import "package:visio/view/impaired/braille_letter_introduction_page.dart";
 
+import "../../model/braille.dart";
+import "../../model/letter.dart";
 import "texttospeech.dart";
 
 class BrailleMenuPage extends StatefulWidget {
@@ -13,10 +18,13 @@ class BrailleMenuPage extends StatefulWidget {
 
 class _BrailleMenuPageState extends State<BrailleMenuPage> {
 
+  List<Braille> blocks = [];
+
   @override
   void initState() {
     super.initState();
     pageSpeech();
+    loadBrailleData();
   }
   @override
   Widget build(BuildContext context) {
@@ -116,6 +124,7 @@ class _BrailleMenuPageState extends State<BrailleMenuPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // ini bulat pertama
+                      for (Braille braille in blocks)
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -141,7 +150,7 @@ class _BrailleMenuPageState extends State<BrailleMenuPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const BrailleLetterIntroductionPage()));
+                                              BrailleLetterIntroductionPage(brailleData: braille)));
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: lightPink,
@@ -149,13 +158,13 @@ class _BrailleMenuPageState extends State<BrailleMenuPage> {
                                   padding: const EdgeInsets.all(20),
                                 ),
                                 child: Image.asset(
-                                  helloills, 
+                                  braille.imgPath, 
                                   width: 70,
                                 ),
                               ),
                             ),
                           ),
-                          const Text('A - E', style: styleB20),
+                          Text(braille.title, style: styleB20),
                         ],
                       ),
                       const SizedBox(
@@ -207,6 +216,36 @@ class _BrailleMenuPageState extends State<BrailleMenuPage> {
     );
   }
   
+  Future<void> loadBrailleData() async {
+    final jsonString = await rootBundle.loadString('assets/data.json');
+    final jsonData = json.decode(jsonString);
+
+    if (jsonData.containsKey('block')) {
+      for (var block in jsonData['block']) {
+        if (block.containsKey('letter')) {
+          final brailleLetters = block['letter'].map((letterData) {
+            return Letter(
+              letterName: letterData['letter_name'],
+              letterDesc: letterData['letter_desc'],
+              letterDots: List<int>.from(letterData['letter_dots']),
+            );
+          }).toList();
+
+          final brailleBlock = Braille(
+            title: block['title'],
+            description: block['description'],
+            imgPath:
+                block['imgPath'], // If you have an image path in your JSON.
+            dots: List<int>.from(block['dots']),
+            letterList: brailleLetters,
+          );
+
+          blocks.add(brailleBlock);
+        }
+      }
+    }
+  }
+
   void pageSpeech(){
     textToSpeech('Braille is a special way of reading and writing. It uses tiny raised dots that you can touch with your fingers to feel letters and words. Now select which letter do you want to learn!');
   }

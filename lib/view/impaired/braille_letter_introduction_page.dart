@@ -5,14 +5,15 @@ import "package:visio/view/impaired/braille_letter_answer_page.dart";
 import "texttospeech.dart";
 
 class BrailleLetterIntroductionPage extends StatefulWidget {
-  const BrailleLetterIntroductionPage({super.key});
+  final Braille brailleData;
+  const BrailleLetterIntroductionPage({Key? key, required this.brailleData})
+      : super(key: key);
 
   @override
   State<BrailleLetterIntroductionPage> createState() => _BrailleLetterIntroductionPage();
 }
 
-class _BrailleLetterIntroductionPage
-    extends State<BrailleLetterIntroductionPage> {
+class _BrailleLetterIntroductionPage extends State<BrailleLetterIntroductionPage> {
   List<int> selectedNumbers = [];
   List<int> correctAns = [1, 2, 4, 5];
 
