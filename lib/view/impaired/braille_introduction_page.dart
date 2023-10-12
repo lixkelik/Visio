@@ -1,5 +1,4 @@
 import "package:visio/constant/constant_builder.dart";
-import "package:visio/view/impaired/braille_letter_introduction_page.dart";
 
 class BrailleIntroductionPage extends StatefulWidget {
   const BrailleIntroductionPage({super.key});
