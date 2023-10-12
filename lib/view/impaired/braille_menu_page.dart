@@ -72,7 +72,7 @@ class _BrailleMenuPageState extends State<BrailleMenuPage> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            width: 10,
+                            width: 10, // outer border width
                             color: whiteGrey,
                           ),
                         ),
