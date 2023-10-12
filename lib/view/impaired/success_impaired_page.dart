@@ -1,9 +1,7 @@
 import 'package:visio/constant/constant_builder.dart';
-import 'package:visio/factory/game_factory.dart';
 
 class SuccessImpairedPage extends StatelessWidget {
-  final Game game;
-  const SuccessImpairedPage(this.game, {super.key});
+  const SuccessImpairedPage({super.key});
 
   @override
   Widget build(BuildContext context) {

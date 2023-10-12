@@ -1,8 +1,28 @@
 import "package:visio/constant/constant_builder.dart";
-import "package:visio/view/impaired/braille_letter_introduction_page.dart";
 
-class BrailleIntroductionPage extends StatelessWidget {
+class BrailleIntroductionPage extends StatefulWidget {
   const BrailleIntroductionPage({super.key});
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _BrailleIntroductionPage createState() => _BrailleIntroductionPage();
+}
+
+class _BrailleIntroductionPage extends State<BrailleIntroductionPage> {
+  List<int> selectedNumbers = [];
+
+  void toggleNumber(int number) {
+    if (selectedNumbers.contains(number)) {
+      selectedNumbers.remove(number);
+    } else {
+      selectedNumbers.add(number);
+    }
+  }
+
+  String printSortedArray(List<int> numbers) {
+    numbers.sort();
+    return numbers.join(', ');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,65 +53,168 @@ class BrailleIntroductionPage extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         padding:
             const EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
-            child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: white,
-                  borderRadius: BorderRadius.circular(30),
-                ),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: white,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              width: double.infinity,
+              padding: const EdgeInsets.all(15),
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Introduction",
+                    style: styleB30,
+                  ),
+                  Text(
+                    "A braille character is represented with a cell. A cell contains of 6 dots. Each dots are represented with number 1 to 6.",
+                    style: styleR15,
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    "Single tap to hear the dot, double tap to select or deselect. Try to touch each dots! ",
+                    style: styleB15,
+                  ),
+                ],
+              ),
+            ),
+
+            // braille dots
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  for (int row = 0, number = 1; row < 2; row++)
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        for (int col = 0; col < 3; col++, number++)
+                          // setiap dots
+                          Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: ClipOval(
+                              child: GestureDetector(
+                                onTap: () {},
+                                onDoubleTap: () {
+                                  setState(() {
+                                    toggleNumber((row * 3) + col + 1);
+                                  });
+                                },
+                                child: Container(
+                                  width: 80,
+                                  height: 80,
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(white),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          side: BorderSide(
+                                            color: selectedNumbers.contains(
+                                                    (row * 3) + col + 1)
+                                                ? Colors.red
+                                                : Colors.transparent,
+                                            width: 10,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text('${number}', style: styleB35),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                ],
+              ),
+            ),
+
+            // button
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 15),
                 width: double.infinity,
-                padding: const EdgeInsets.all(15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Introduction",
-                      style: styleB30,
-                    ),
-                    const Text(
-                      "A braille character is represented with a cell. A cell contains of 6 dots. Each dots are represented with number 1 to 6.",
-                      style: styleR15,
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      "Single tap to hear the dot, double tap to select or deselect. Try to touch each dots! ",
-                      style: styleB15,
-                    ),
-                    
-                  ],
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 15),
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      onPressed: (() => Navigator.push(
-                      context, 
-                      MaterialPageRoute(builder: (context) => BrailleLetterIntroductionPage()),
-                    )), 
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: appOrange,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 20),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
+                child: ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          // pop up result
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                            child: Container(
+                              padding: const EdgeInsets.all(15),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset(
+                                    exitills,
+                                    width: 60,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  const Text(
+                                    'You have selected dot numbers: ',
+                                    style: styleB20,
+                                  ),
+                                  Text(
+                                    printSortedArray(selectedNumbers),
+                                    style: styleR20,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 10),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        padding: const EdgeInsets.all(10),
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(30)),
+                                        )),
+                                    child: const Text('Okay'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: appOrange,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 20),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
                       ),
-                      child: const Text('Go Back',
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.w600,
-                            color: white,
-                          ))),
-                ),
+                    ),
+                    child: const Text('Submit',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600,
+                          color: white,
+                        ))),
               ),
-            ],
-          ),
+            ),
+          ],
+        ),
       ),
-      
     );
   }
 }
