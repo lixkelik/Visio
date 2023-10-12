@@ -1,7 +1,6 @@
 import 'package:visio/constant/constant_builder.dart';
 import 'package:visio/constant/firebase_constant.dart';
 import 'package:visio/view/impaired/history_impaired_page.dart';
-import 'package:visio/view/impaired/game_impaired_page.dart';
 import 'package:visio/view/impaired/select_game_page.dart';
 import 'package:visio/view/impaired/texttospeech.dart';
 import 'package:visio/view/peer/choose_game_page.dart';
