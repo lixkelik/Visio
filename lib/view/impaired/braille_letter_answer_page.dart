@@ -187,41 +187,76 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                 child: ElevatedButton(
                     onPressed: (() {
                       // bottom pop up, validate the answer and show correct or not
+                      bool isCorrect = answerIsCorrect();
                       showModalBottomSheet(
                         context: context,
                         builder: (BuildContext context) {
                           return Container(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Image.asset(
-                                  logoutills,
-                                  width: 60,
-                                ),
-                                Text('Good Job, That is Correct!'),
-                                ElevatedButton(
-                                    onPressed: (() => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const SuccessImpairedPage()),
-                                        )),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: appOrange,
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 20),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(30),
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                              color: (isCorrect)
+                                  ? lightGreen
+                                  : lightPink, // Replace with your desired color
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        (isCorrect) ? kingills : sickills,
+                                        width: 70,
                                       ),
-                                    ),
-                                    child: const Text('Next',
-                                        style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.w600,
-                                          color: white,
-                                        ))),
-                                // Add any widgets you want in the bottom pop-up
-                              ],
+                                      const SizedBox(width: 10),
+                                      Text(
+                                        (isCorrect)
+                                            ? 'Good Job,\nThat is Correct!'
+                                            : 'Oops,\nTry Again',
+                                        style: styleB25,
+                                      ),
+                                    ],
+                                  ),
+
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    child: ElevatedButton(
+                                        onPressed: (() => (isCorrect)
+                                            ? Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const SuccessImpairedPage()),
+                                              )
+                                            : Navigator.of(context).pop()),
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: appOrange,
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 20),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                          ),
+                                        ),
+                                        child: Text(
+                                            (isCorrect) ? 'Next' : 'Try Again',
+                                            style: const TextStyle(
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.w600,
+                                              color: white,
+                                            ))),
+                                  ),
+                                  // Add any widgets you want in the bottom pop-up
+                                ],
+                              ),
                             ),
                           );
                         },
