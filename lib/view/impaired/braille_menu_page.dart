@@ -6,6 +6,7 @@ import "package:visio/model/braille.dart";
 import "package:visio/model/letter.dart";
 import "package:visio/view/impaired/braille_introduction_page.dart";
 import "package:visio/view/impaired/braille_letter_introduction_page.dart";
+import "package:visio/view/impaired/texttospeech.dart";
 
 class BrailleMenuPage extends StatefulWidget {
   const BrailleMenuPage({super.key});
@@ -22,6 +23,7 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
   void initState() {
     super.initState();
     loadBrailleData();
+    pageSpeech();
   }
 
   @override
@@ -179,6 +181,11 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
     );
   }
 
+  void pageSpeech() {
+    textToSpeech(
+        'Braille is a special way of reading and writing. It uses tiny raised dots that you can touch with your fingers to feel letters and words. Now select which letter do you want to learn!');
+  }
+
   Future<void> loadBrailleData() async {
     final jsonString = await rootBundle.loadString('assets/data.json');
     final jsonData = json.decode(jsonString);
@@ -186,7 +193,8 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
     if (jsonData.containsKey('block')) {
       for (var block in jsonData['block']) {
         if (block.containsKey('letter')) {
-          final brailleLetters = block['letter'].map((letterData) {
+          List<Letter> brailleLetters =
+              block['letter'].map<Letter>((letterData) {
             return Letter(
               letterName: letterData['letter_name'],
               letterDesc: letterData['letter_desc'],
@@ -204,6 +212,7 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
           );
 
           blocks.add(brailleBlock);
+          setState(() {});
         }
       }
     }

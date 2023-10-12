@@ -1,17 +1,24 @@
 import "package:visio/constant/constant_builder.dart";
 import "package:visio/view/impaired/success_impaired_page.dart";
 
+import "texttospeech.dart";
+
 class BrailleLetterAnswerPage extends StatefulWidget {
   const BrailleLetterAnswerPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _BrailleLetterAnswerPage createState() => _BrailleLetterAnswerPage();
+  State<BrailleLetterAnswerPage> createState() => _BrailleLetterAnswerPage();
 }
 
 class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
   List<int> selectedNumbers = [];
   List<int> correctAns = [1];
+
+  @override
+  void initState() {
+    super.initState();
+    pageSpeech();
+  }
 
   void toggleNumber(int number) {
     if (selectedNumbers.contains(number)) {
@@ -22,9 +29,10 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
   }
 
   bool answerIsCorrect() {
-    int len = (selectedNumbers.length <= correctAns.length)
-        ? selectedNumbers.length
-        : correctAns.length;
+    if (selectedNumbers.length != correctAns.length) {
+      return false;
+    }
+    int len = selectedNumbers.length;
     for (int i = 0; i < len; i++) {
       if (selectedNumbers[i] != correctAns[i]) {
         return false;
@@ -132,13 +140,18 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                             padding: const EdgeInsets.all(8),
                             child: ClipOval(
                               child: GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  // ((row * 3) + col + 1) utk tentukan number
+                                  String numText =
+                                      ((row * 3) + col + 1).toString();
+                                  speech("This is dot number $numText.");
+                                },
                                 onDoubleTap: () {
                                   setState(() {
                                     toggleNumber((row * 3) + col + 1);
                                   });
                                 },
-                                child: Container(
+                                child: SizedBox(
                                   width: 80,
                                   height: 80,
                                   child: ElevatedButton(
@@ -166,7 +179,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                                       ),
                                     ),
                                     child: Center(
-                                      child: Text('${number}', style: styleB35),
+                                      child: Text('$number', style: styleB35),
                                     ),
                                   ),
                                 ),
@@ -190,6 +203,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                       bool isCorrect = answerIsCorrect();
                       showModalBottomSheet(
                         context: context,
+                        backgroundColor: Colors.transparent,
                         builder: (BuildContext context) {
                           return Container(
                             decoration: BoxDecoration(
@@ -197,9 +211,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20),
                               ),
-                              color: (isCorrect)
-                                  ? lightGreen
-                                  : lightPink, // Replace with your desired color
+                              color: (isCorrect) ? lightGreen : lightPink,
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(20),
@@ -222,11 +234,10 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                                       ),
                                     ],
                                   ),
-
                                   const SizedBox(
                                     height: 15,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: double.infinity,
                                     child: ElevatedButton(
                                         onPressed: (() => (isCorrect)
@@ -254,7 +265,6 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                                               color: white,
                                             ))),
                                   ),
-                                  // Add any widgets you want in the bottom pop-up
                                 ],
                               ),
                             ),
@@ -282,5 +292,14 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
         ),
       ),
     );
+  }
+
+  void pageSpeech() {
+    textToSpeech(
+        'The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch the first dot!');
+  }
+
+  void speech(String text) {
+    textToSpeech(text);
   }
 }
