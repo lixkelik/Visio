@@ -1,10 +1,15 @@
 import "package:visio/constant/constant_builder.dart";
+import "package:visio/model/braille.dart";
 import "package:visio/view/impaired/success_impaired_page.dart";
 
 import "texttospeech.dart";
 
 class BrailleLetterAnswerPage extends StatefulWidget {
-  const BrailleLetterAnswerPage({super.key});
+  final int counter;
+  final Braille brailleData;
+
+  const BrailleLetterAnswerPage(
+      {super.key, required this.counter, required this.brailleData});
 
   @override
   State<BrailleLetterAnswerPage> createState() => _BrailleLetterAnswerPage();
@@ -12,12 +17,13 @@ class BrailleLetterAnswerPage extends StatefulWidget {
 
 class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
   List<int> selectedNumbers = [];
-  List<int> correctAns = [1];
+  List<int> correctAns = [];
 
   @override
   void initState() {
     super.initState();
     pageSpeech();
+    correctAns = widget.brailleData.letterList[widget.counter].letterDots;
   }
 
   void toggleNumber(int number) {
@@ -99,22 +105,24 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                         ),
                       ),
                       const SizedBox(width: 20),
-                      const Text(
-                        "A",
+                      Text(
+                        widget
+                            .brailleData.letterList[widget.counter].letterName,
                         style: styleB110,
                       ),
                     ],
                   ),
                   // text and letter
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "The letter A has dot 1 only, because A is the first letter of the alphabet.",
+                        widget
+                            .brailleData.letterList[widget.counter].letterDesc,
                         style: styleR15,
                       ),
                       Text(
-                        "Try to touch dot 1!",
+                        "Try to touch dot ${widget.brailleData.letterList[widget.counter].letterDots.toString()}!",
                         style: styleB15,
                       ),
                     ],
@@ -240,14 +248,39 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                                   SizedBox(
                                     width: double.infinity,
                                     child: ElevatedButton(
-                                        onPressed: (() => (isCorrect)
-                                            ? Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
+                                        onPressed: (() {
+                                          // cek apakah jawaban bener atau ga
+                                          // bener -> ijo, salah -> merah
+                                          if (isCorrect) {
+                                            // kalo user click back dari hp, bakal ke select game
+                                            if (widget.counter ==
+                                                widget.brailleData.letterList
+                                                        .length -
+                                                    1) {
+                                              Navigator.pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      // cek apakah semua letter udah ditampilin atau blm
+                                                      builder: (context) =>
+                                                          const SuccessImpairedPage()),
+                                                  (route) => route.isFirst);
+                                            } else {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
                                                     builder: (context) =>
-                                                        const SuccessImpairedPage()),
-                                              )
-                                            : Navigator.of(context).pop()),
+                                                        BrailleLetterAnswerPage(
+                                                      counter:
+                                                          widget.counter + 1,
+                                                      brailleData:
+                                                          widget.brailleData,
+                                                    ),
+                                                  ));
+                                            }
+                                          } else {
+                                            Navigator.of(context).pop();
+                                          }
+                                        }),
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: appOrange,
                                           padding: const EdgeInsets.symmetric(
@@ -295,8 +328,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
   }
 
   void pageSpeech() {
-    textToSpeech(
-        'The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch the first dot!');
+    textToSpeech(widget.brailleData.description);
   }
 
   void speech(String text) {

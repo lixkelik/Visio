@@ -26,6 +26,12 @@ class _BrailleIntroductionPage extends State<BrailleIntroductionPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    pageSpeech();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,

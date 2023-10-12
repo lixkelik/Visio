@@ -16,7 +16,7 @@ class BrailleLetterIntroductionPage extends StatefulWidget {
 class _BrailleLetterIntroductionPage
     extends State<BrailleLetterIntroductionPage> {
   List<int> selectedNumbers = [];
-  List<int> correctAns = [1, 2, 4, 5];
+  List<int> correctAns = [];
 
   void toggleNumber(int number) {
     if (selectedNumbers.contains(number)) {
@@ -24,6 +24,13 @@ class _BrailleLetterIntroductionPage
     } else {
       selectedNumbers.add(number);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    pageSpeech();
+    correctAns = widget.brailleData.dots;
   }
 
   @override
@@ -66,16 +73,16 @@ class _BrailleLetterIntroductionPage
               child: Row(
                 children: [
                   Image.asset(exitills, width: 70),
-                  const Expanded(
+                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "A - E",
+                          widget.brailleData.title,
                           style: styleB30,
                         ),
                         Text(
-                          "The letters A - E only use the top 4 dots in each cell. ",
+                          widget.brailleData.description,
                           style: styleR15,
                         ),
                       ],
@@ -164,8 +171,8 @@ class _BrailleLetterIntroductionPage
                     onPressed: (() => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  const BrailleLetterAnswerPage()),
+                              builder: (context) => BrailleLetterAnswerPage(
+                                  counter: 0, brailleData: widget.brailleData)),
                         )),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: appOrange,
@@ -191,7 +198,7 @@ class _BrailleLetterIntroductionPage
 
   void pageSpeech() {
     textToSpeech(
-        'The letters A - E only use the top 4 dots in each cell. Tap to hear what the dots are. Double click to select or deselect the dot.');
+        '${widget.brailleData.description} Tap to hear what the dots are. Double click to select or deselect the dot.');
   }
 
   void speech(String text) {
