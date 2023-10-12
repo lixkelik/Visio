@@ -20,6 +20,11 @@ class _BrailleIntroductionPage extends State<BrailleIntroductionPage> {
     }
   }
 
+  String printSortedArray(List<int> numbers) {
+    numbers.sort();
+    return numbers.join(', ');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,22 +95,46 @@ class _BrailleIntroductionPage extends State<BrailleIntroductionPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         for (int col = 0; col < 3; col++, number++)
+                          // setiap dots
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                setState(() {
-                                  toggleNumber((row * 3) + col + 1);
-                                });
-                              },
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                  selectedNumbers.contains((row * 3) + col + 1)
-                                      ? Colors.blue
-                                      : Colors.grey,
+                            padding: const EdgeInsets.all(8),
+                            child: ClipOval(
+                              child: GestureDetector(
+                                onTap: () {},
+                                onDoubleTap: () {
+                                  setState(() {
+                                    toggleNumber((row * 3) + col + 1);
+                                  });
+                                },
+                                child: Container(
+                                  width: 80,
+                                  height: 80,
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(white),
+                                      shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          side: BorderSide(
+                                            color: selectedNumbers.contains(
+                                                    (row * 3) + col + 1)
+                                                ? Colors.red
+                                                : Colors.transparent,
+                                            width: 10,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text('${number}', style: styleB35),
+                                    ),
+                                  ),
                                 ),
                               ),
-                              child: Text('${number}'),
                             ),
                           ),
                       ],
@@ -125,17 +154,45 @@ class _BrailleIntroductionPage extends State<BrailleIntroductionPage> {
                       showDialog(
                         context: context,
                         builder: (context) {
-                          return AlertDialog(
-                            title: const Text('Selected Numbers'),
-                            content: Text(selectedNumbers.join(', ')),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('OK'),
+                          // pop up result
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                            child: Container(
+                              padding: const EdgeInsets.all(15),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset(
+                                    exitills,
+                                    width: 60,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  const Text(
+                                    'You have selected dot numbers: ',
+                                    style: styleB20,
+                                  ),
+                                  Text(
+                                    printSortedArray(selectedNumbers),
+                                    style: styleR20,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 10),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        padding: const EdgeInsets.all(10),
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(30)),
+                                        )),
+                                    child: const Text('Okay'),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           );
                         },
                       );
