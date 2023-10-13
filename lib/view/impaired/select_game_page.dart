@@ -1,6 +1,6 @@
 import "package:visio/constant/constant_builder.dart";
 import "package:visio/view/impaired/braille_menu_page.dart";
-import "package:visio/view/impaired/game_impaired_page.dart";
+import 'package:visio/view/impaired/scan_game_impaired_page.dart';
 import "package:visio/view/impaired/texttospeech.dart";
 
 class SelectGamePage extends StatefulWidget {

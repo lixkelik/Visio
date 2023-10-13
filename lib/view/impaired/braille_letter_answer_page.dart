@@ -148,22 +148,24 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                             padding: const EdgeInsets.all(8),
                             child: ClipOval(
                               child: GestureDetector(
-                                onTap: () {
-                                  // ((row * 3) + col + 1) utk tentukan number
-                                  String numText =
-                                      ((row * 3) + col + 1).toString();
-                                  speech("This is dot number $numText.");
-                                },
                                 onDoubleTap: () {
+                                  int selectedNum = (row * 3) + col + 1;
                                   setState(() {
-                                    toggleNumber((row * 3) + col + 1);
+                                    toggleNumber(selectedNum);
                                   });
+                                  selectedNumbers.contains((row * 3) + col + 1)
+                                  ? speech("Dot ${selectedNum.toString()} Selected.")
+                                  : speech("Dot ${selectedNum.toString()} Deselected.");
                                 },
                                 child: SizedBox(
                                   width: 80,
                                   height: 80,
                                   child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      // ((row * 3) + col + 1) utk tentukan number
+                                      String numText = ((row * 3) + col + 1).toString();
+                                      speech("This is dot number $numText.");
+                                    },
                                     style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateProperty.all(

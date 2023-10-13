@@ -106,21 +106,25 @@ class _BrailleIntroductionPage extends State<BrailleIntroductionPage> {
                             padding: const EdgeInsets.all(8),
                             child: ClipOval(
                               child: GestureDetector(
-                                onTap: () {
-                                  String numText =
-                                      ((row * 3) + col + 1).toString();
-                                  speech("This is dot number $numText.");
-                                },
                                 onDoubleTap: () {
+                                  int selectedNum = (row * 3) + col + 1;
                                   setState(() {
-                                    toggleNumber((row * 3) + col + 1);
+                                    toggleNumber(selectedNum);
                                   });
+                                  selectedNumbers.contains((row * 3) + col + 1)
+                                  ? speech("Dot ${selectedNum.toString()} Selected.")
+                                  : speech("Dot ${selectedNum.toString()} Deselected.");
                                 },
                                 child: SizedBox(
                                   width: 80,
                                   height: 80,
                                   child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      String numText =
+                                          ((row * 3) + col + 1).toString();
+                                      speech("This is dot number $numText.");
+                                    },
+                                    
                                     style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateProperty.all(white),

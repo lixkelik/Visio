@@ -53,6 +53,24 @@ class _GameImpairedState extends State<GameImpaired> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      appBar: AppBar(
+        leading: Container(
+          margin: const EdgeInsets.all(7),
+          decoration: BoxDecoration(
+              color: appOrange.withOpacity(0.7), shape: BoxShape.circle),
+          child: IconButton(
+            onPressed: (() => Navigator.pop(context)),
+            icon: const Icon(Icons.arrow_back),
+            tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+            splashRadius: 24,
+            color: white,
+            padding: EdgeInsets.zero,
+            alignment: Alignment.center,
+            iconSize: 24,
+            enableFeedback: true,
+          ),
+        )
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
         child: Column(
@@ -178,7 +196,7 @@ class _GameImpairedState extends State<GameImpaired> {
   }
 
   void pageSpeech(){
-    textToSpeech('You are at: game page. Lets play a game and scan 3 objects. Start by telling me where you are.');
+    textToSpeech('Lets play a game and scan 3 objects. Start by telling me where you are.');
   }
 
 }
