@@ -20,10 +20,10 @@ class _GameImpairedState extends State<GameImpaired> {
 
   @override
   void initState() {
-    pageSpeech();
+    super.initState();
+    textToSpeech('Lets play a game and scan 3 objects. Start by telling me where you are.');
     _initSpeech();
     items = [];
-    super.initState();
   }
 
   void _initSpeech() async {
@@ -55,11 +55,13 @@ class _GameImpairedState extends State<GameImpaired> {
     return  Scaffold(
       appBar: AppBar(
         leading: Container(
-          margin: const EdgeInsets.all(7),
+          margin: const EdgeInsets.all(5),
           decoration: BoxDecoration(
-              color: appOrange.withOpacity(0.7), shape: BoxShape.circle),
+            color: appOrange.withOpacity(0.7),
+            shape: BoxShape.circle
+          ),
           child: IconButton(
-            onPressed: (() => Navigator.pop(context)),
+            onPressed: (() => Navigator.pop(context)), 
             icon: const Icon(Icons.arrow_back),
             tooltip: MaterialLocalizations.of(context).backButtonTooltip,
             splashRadius: 24,
@@ -69,10 +71,12 @@ class _GameImpairedState extends State<GameImpaired> {
             iconSize: 24,
             enableFeedback: true,
           ),
-        )
+        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
         child: Column(
           children: [
             Image.asset(
@@ -194,9 +198,4 @@ class _GameImpairedState extends State<GameImpaired> {
       ),
     );
   }
-
-  void pageSpeech(){
-    textToSpeech('Lets play a game and scan 3 objects. Start by telling me where you are.');
-  }
-
 }
