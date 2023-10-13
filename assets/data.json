@@ -100,8 +100,8 @@
         ]
       },
       {
-        "title": "P until T",
-        "description": "The letters P - T are formed by repeating the same dots as F - J, then adding dot 3 to each cell.",
+        "title": "P - T",
+        "description": "The letters P until T are formed by repeating the same dots as F - J, then adding dot 3 to each cell.",
         "imgPath": "assets/image/illustration/cool_ills.png",
         "dots": [1, 2, 3, 4, 5],
         "letter": [

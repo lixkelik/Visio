@@ -131,7 +131,7 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
                             physics: const NeverScrollableScrollPhysics(),
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2, childAspectRatio: 0.92),
+                                    crossAxisCount: 2, childAspectRatio: 0.88),
                             itemCount: blocks.length,
                             itemBuilder: (context, index) {
                               return Column(
@@ -171,7 +171,7 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
                                         ),
                                         child: Image.asset(
                                           blocks[index].imgPath,
-                                          width: 70,
+                                          height: 70,
                                         ),
                                       ),
                                     ),
