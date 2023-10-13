@@ -33,8 +33,8 @@ class _ExplorePageState extends State<ExplorePage> {
 
   @override
   void initState() {
-    pageSpeech();
     super.initState();
+    textToSpeech('You are at: Explore Page.');
   }
 
   @override
@@ -187,10 +187,6 @@ class _ExplorePageState extends State<ExplorePage> {
   void clearObjText() async {
     _timer?.cancel();
     _timer = Timer(const Duration(seconds: 2), (() => objText = ''));
-  }
-
-  void pageSpeech() {
-    textToSpeech('You are at: Explore Page.');
   }
 
   completionFun() async {

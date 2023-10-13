@@ -19,8 +19,8 @@ class _HistoryImpairedPageState extends State<HistoryImpairedPage> {
 
   @override
   void initState() {
-    pageSpeech();
     super.initState();
+    textToSpeech('You are at: History Page.');
   }
 
   @override
@@ -101,9 +101,5 @@ class _HistoryImpairedPageState extends State<HistoryImpairedPage> {
           ],
           ),
         ));
-  }
-
-  void pageSpeech() {
-    textToSpeech('You are at: History Page.');
   }
 }

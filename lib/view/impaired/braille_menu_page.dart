@@ -227,7 +227,9 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
           );
 
           blocks.add(brailleBlock);
-          setState(() {});
+          if(mounted){
+            setState(() {});
+          }
         }
       }
     }

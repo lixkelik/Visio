@@ -22,7 +22,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
   @override
   void initState() {
     super.initState();
-    pageSpeech();
+    textToSpeech(widget.brailleData.description);
     correctAns = widget.brailleData.letterList[widget.counter].letterDots;
   }
 
@@ -148,22 +148,24 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                             padding: const EdgeInsets.all(8),
                             child: ClipOval(
                               child: GestureDetector(
-                                onTap: () {
-                                  // ((row * 3) + col + 1) utk tentukan number
-                                  String numText =
-                                      ((row * 3) + col + 1).toString();
-                                  speech("This is dot number $numText.");
-                                },
                                 onDoubleTap: () {
+                                  int selectedNum = (row * 3) + col + 1;
                                   setState(() {
-                                    toggleNumber((row * 3) + col + 1);
+                                    toggleNumber(selectedNum);
                                   });
+                                  selectedNumbers.contains((row * 3) + col + 1)
+                                  ? speech("Dot ${selectedNum.toString()} Selected.")
+                                  : speech("Dot ${selectedNum.toString()} Deselected.");
                                 },
                                 child: SizedBox(
                                   width: 80,
                                   height: 80,
                                   child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      // ((row * 3) + col + 1) utk tentukan number
+                                      String numText = ((row * 3) + col + 1).toString();
+                                      speech("This is dot number $numText.");
+                                    },
                                     style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateProperty.all(
@@ -209,6 +211,11 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                     onPressed: (() {
                       // bottom pop up, validate the answer and show correct or not
                       bool isCorrect = answerIsCorrect();
+                      if(isCorrect){
+                        textToSpeech("Good job, that is correct!");
+                      }else{
+                        textToSpeech("Wrong! Try again.");
+                      }
                       showModalBottomSheet(
                         context: context,
                         backgroundColor: Colors.transparent,
@@ -326,11 +333,6 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
       ),
     );
   }
-
-  void pageSpeech() {
-    textToSpeech(widget.brailleData.description);
-  }
-
   void speech(String text) {
     textToSpeech(text);
   }
