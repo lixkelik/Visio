@@ -211,6 +211,11 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                     onPressed: (() {
                       // bottom pop up, validate the answer and show correct or not
                       bool isCorrect = answerIsCorrect();
+                      if(isCorrect){
+                        textToSpeech("Good job, that is correct!");
+                      }else{
+                        textToSpeech("Wrong! Try again.");
+                      }
                       showModalBottomSheet(
                         context: context,
                         backgroundColor: Colors.transparent,

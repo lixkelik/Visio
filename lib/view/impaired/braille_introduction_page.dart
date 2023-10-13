@@ -165,6 +165,9 @@ class _BrailleIntroductionPage extends State<BrailleIntroductionPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () {
+                      (selectedNumbers.isEmpty)
+                      ? speech("Please select any dot number first!")
+                      : speech("You have selected dot numbers: ${selectedNumbers.toString()}");
                       showDialog(
                         context: context,
                         builder: (context) {
