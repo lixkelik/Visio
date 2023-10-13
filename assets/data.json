@@ -8,173 +8,173 @@
         "letter": [
           {
             "letter_name": "A",
-            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
+            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet.",
             "letter_dots": [1]
           },
           {
             "letter_name": "B",
-            "letter_desc": "The letter B has dots 1 and 4. Try to touch dot 1!",
+            "letter_desc": "The letter B has dots 1 and 2, for the second letter of the alphabet.",
+            "letter_dots": [1, 2]
+          },
+          {
+            "letter_name": "C",
+            "letter_desc": "The letter C has dots 1 and 4.",
             "letter_dots": [1, 4]
           },
           {
-            "letter_name": "A",
-            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
-            "letter_dots": [1]
+            "letter_name": "D",
+            "letter_desc": "The letter D has dots 1, 4, and 5.",
+            "letter_dots": [1, 4, 5]
           },
           {
-            "letter_name": "B",
-            "letter_desc": "The letter B has dots 1 and 4. Try to touch dot 1!",
-            "letter_dots": [1, 4]
-          },
-          {
-            "letter_name": "B",
-            "letter_desc": "The letter B has dots 1 and 4. Try to touch dot 1!",
-            "letter_dots": [1, 4]
+            "letter_name": "E",
+            "letter_desc": "The letter E has dots 1 and 5.",
+            "letter_dots": [1, 5]
           }
         ]
       },
       {
         "title": "F - J",
-        "description": "The letters F - J use a different set of dots.",
-        "imgPath": "assets/image/illustration/king_ills.png",
-        "dots": [1, 2, 3, 4],
+        "description": "The letters F - J only use the top 4 dots in each cell.",
+        "imgPath": "assets/image/illustration/drink_ills.png",
+        "dots": [1, 2, 4, 5],
         "letter": [
           {
             "letter_name": "F",
-            "letter_desc": "The letter F has dot 6 only.",
-            "letter_dots": [1, 2]
+            "letter_desc": "The letter F has dots 1, 2, 4.",
+            "letter_dots": [1, 2, 4]
           },
           {
             "letter_name": "G",
-            "letter_desc": "The letter G has dots 6 and 9.",
-            "letter_dots": [2, 3]
+            "letter_desc": "The letter G has dots 1, 2, 4, and 5 - all 4 top dots are full.",
+            "letter_dots": [1, 2, 4, 5]
           },
           {
-            "letter_name": "F",
-            "letter_desc": "The letter F has dot 6 only.",
-            "letter_dots": [1, 2]
+            "letter_name": "H",
+            "letter_desc": "The letter H has dots 1, 2, 5. You can think H as taking away dot 4 from letter G.",
+            "letter_dots": [1, 2, 5]
           },
           {
-            "letter_name": "G",
-            "letter_desc": "The letter G has dots 6 and 9.",
-            "letter_dots": [2, 3]
+            "letter_name": "I",
+            "letter_desc": "The letter I has dots 2 and 4. The letters I does not have dot 1.",
+            "letter_dots": [2, 4]
           },
           {
-            "letter_name": "F",
-            "letter_desc": "The letter F has dot 6 only.",
-            "letter_dots": [1, 2]
+            "letter_name": "J",
+            "letter_desc": "The letter J has dots 2, 4, and 5. the letters J does not have dot 1.",
+            "letter_dots": [2, 4, 5]
           }
         ]
       },
       {
-        "title": "A - E",
-        "description": "The letters A - E only use the top 4 dots in each cell.",
-        "imgPath": "assets/image/illustration/king_ills.png",
-        "dots": [1, 2, 4, 5],
+        "title": "K - O",
+        "description": "The letters K - O are formed by repeating the same dots as A - E, then adding dot 3 to each cell.",
+        "imgPath": "assets/image/illustration/balloon_ills.png",
+        "dots": [1, 2, 3, 4, 5],
         "letter": [
           {
-            "letter_name": "A",
-            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
-            "letter_dots": [1]
+            "letter_name": "K",
+            "letter_desc": "The letter K has dots 1 and 3. It repeats the same dots as A, then adds dot 3.",
+            "letter_dots": [1, 3]
           },
           {
-            "letter_name": "B",
-            "letter_desc": "The letter B has dots 1 and 4. Try to touch dot 1!",
-            "letter_dots": [1, 4]
+            "letter_name": "L",
+            "letter_desc": "The letter L has dots 1, 2, and 3. It repeats the same dots as B, then adds dot 3.",
+            "letter_dots": [1, 2, 3]
           },
           {
-            "letter_name": "A",
-            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
-            "letter_dots": [1]
+            "letter_name": "M",
+            "letter_desc": "The letter B has dots 1, 3, and 4. It repeats the same dots as C, then adds dot 3.",
+            "letter_dots": [1, 3, 4]
           },
           {
-            "letter_name": "B",
-            "letter_desc": "The letter B has dots 1 and 4. Try to touch dot 1!",
-            "letter_dots": [1, 4]
+            "letter_name": "N",
+            "letter_desc": "The letter B has dots 1, 3, 4, and 5. It repeats the same dots as D, then adds dot 3.",
+            "letter_dots": [1, 3, 4, 5]
           },
           {
-            "letter_name": "A",
-            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
-            "letter_dots": [1]
+            "letter_name": "O",
+            "letter_desc": "The letter B has dots 1, 3, and 5. It repeats the same dots as E, then adds dot 3.",
+            "letter_dots": [1, 3, 5]
           }
         ]
       },
       {
-        "title": "A - E",
-        "description": "The letters A - E only use the top 4 dots in each cell.",
-        "imgPath": "assets/image/illustration/king_ills.png",
-        "dots": [1, 2, 4, 5],
+        "title": "P - T",
+        "description": "The letters P - T are formed by repeating the same dots as F - J, then adding dot 3 to each cell.",
+        "imgPath": "assets/image/illustration/cool_ills.png",
+        "dots": [1, 2, 3, 4, 5],
         "letter": [
           {
-            "letter_name": "A",
-            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
-            "letter_dots": [1]
+            "letter_name": "P",
+            "letter_desc": "The letter P has dots 1, 2, 3, and 4. It repeats the same dots as F, then adds dot 3.",
+            "letter_dots": [1, 2, 3, 4]
           },
           {
-            "letter_name": "B",
-            "letter_desc": "The letter B has dots 1 and 4. Try to touch dot 1!",
-            "letter_dots": [1, 4]
+            "letter_name": "Q",
+            "letter_desc": "The letter Q has dots 1, 2, 3, 4, and 5. It repeats the same dots as G, then adds dot 3.",
+            "letter_dots": [1, 2, 3, 4, 5]
           },
           {
-            "letter_name": "A",
-            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
-            "letter_dots": [1]
+            "letter_name": "R",
+            "letter_desc": "The letter R has dots 1, 2, 3, and 5. It repeats the same dots as H, then adds dot 3.",
+            "letter_dots": [1, 2, 3, 5]
           },
           {
-            "letter_name": "B",
-            "letter_desc": "The letter B has dots 1 and 4. Try to touch dot 1!",
-            "letter_dots": [1, 4]
+            "letter_name": "S",
+            "letter_desc": "The letter S has dots 2, 3, and 4. It repeats the same dots as I, then adds dot 3.",
+            "letter_dots": [2, 3, 4]
           },
           {
-            "letter_name": "A",
-            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
-            "letter_dots": [1]
+            "letter_name": "T",
+            "letter_desc": "The letter T has dots 2, 3, 4, and 5. It repeats the same dots as J, then adds dot 3.",
+            "letter_dots": [2, 3, 4, 5]
           }
         ]
       },
       {
-        "title": "A - E",
-        "description": "The letters A - E only use the top 4 dots in each cell.",
+        "title": "U - Z",
+        "description": "The letters U - Z, except W are formed by repeating the same dots as K - O, then adding dot 6 to each cell.",
         "imgPath": "assets/image/illustration/king_ills.png",
-        "dots": [1, 2, 4, 5],
+        "dots": [1, 2, 3, 4, 5, 6],
         "letter": [
           {
-            "letter_name": "A",
-            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
-            "letter_dots": [1]
+            "letter_name": "U",
+            "letter_desc": "The letter U has dots 1, 3, and 6. It repeats the same dots as K, then adds dot 6.",
+            "letter_dots": [1, 3, 6]
           },
           {
-            "letter_name": "B",
-            "letter_desc": "The letter B has dots 1 and 4. Try to touch dot 1!",
-            "letter_dots": [1, 4]
+            "letter_name": "V",
+            "letter_desc": "The letter V has dots 1, 2, 3, and 6. It repeats the same dots as L, then adds dot 6.",
+            "letter_dots": [1, 2, 3, 6]
           },
           {
-            "letter_name": "A",
-            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
-            "letter_dots": [1]
+            "letter_name": "X",
+            "letter_desc": "The letter X has dots 1, 3, 4, and 6. It repeats the same dots as M, then adds dot 6.",
+            "letter_dots": [1, 3, 4, 6]
           },
           {
-            "letter_name": "B",
-            "letter_desc": "The letter B has dots 1 and 4. Try to touch dot 1!",
-            "letter_dots": [1, 4]
+            "letter_name": "Y",
+            "letter_desc": "The letter Y has dots 1, 3, 4, 5, and 6. It repeats the same dots as N, then adds dot 6.",
+            "letter_dots": [1, 3, 4, 5, 6]
           },
           {
-            "letter_name": "A",
-            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
-            "letter_dots": [1]
+            "letter_name": "Z",
+            "letter_desc": "The letter Z has dots 1, 3, 5, and 6. It repeats the same dots as O, then adds dot 6.",
+            "letter_dots": [1, 3, 5, 6]
           }
         ]
       },
       {
-        "title": "A - E",
-        "description": "The letters A - E only use the top 4 dots in each cell.",
-        "imgPath": "assets/image/illustration/king_ills.png",
-        "dots": [1, 2, 4, 5],
+        "title": "W",
+        "description": "The letters W is the only letter that does not fit the pattern.",
+        "imgPath": "assets/image/illustration/read_ills.png",
+        "dots": [2, 4, 5, 6],
         "letter": [
           {
-            "letter_name": "A",
-            "letter_desc": "The letter A has dot 1 only, because A is the first letter of the alphabet. Try to touch dot 1!",
-            "letter_dots": [1]
+            "letter_name": "W",
+            "letter_desc": "The letter W has dot 2 on the left side, and dots 4, 5, and 6 on the right side.",
+            "letter_dots": [2, 4, 5, 6]
           }
         ]
       }
