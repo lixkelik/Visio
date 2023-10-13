@@ -148,7 +148,7 @@ class _BrailleLetterIntroductionPage
                                       ),
                                     ),
                                     child: Center(
-                                      child: Text('${number}', style: styleB35),
+                                      child: Text('$number', style: styleB35),
                                     ),
                                   ),
                                 ),

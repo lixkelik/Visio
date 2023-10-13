@@ -80,7 +80,7 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            width: 10, // outer border width
+                            width: 10,
                             color: whiteGrey,
                           ),
                         ),
@@ -88,8 +88,8 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
-                              width: 5, // inner border width
-                              color: Colors.white,
+                              width: 5,
+                              color: white,
                             ),
                           ),
                           child: ElevatedButton(
@@ -100,14 +100,14 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
                                       builder: (context) =>
                                           const BrailleIntroductionPage()));
                             },
-                            child: Image.asset(
-                              helloills, // Replace with your image asset path
-                              width: 70,
-                            ),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: lightPink,
-                              shape: CircleBorder(),
-                              padding: EdgeInsets.all(20),
+                              shape: const CircleBorder(),
+                              padding: const EdgeInsets.all(20),
+                            ),
+                            child: Image.asset(
+                              helloills,
+                              width: 70,
                             ),
                           ),
                         ),
@@ -128,9 +128,9 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
                       Expanded(
                         child: GridView.builder(
                             shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
+                                const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2, childAspectRatio: 0.92),
                             itemCount: blocks.length,
                             itemBuilder: (context, index) {
@@ -142,7 +142,7 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border: Border.all(
-                                        width: 10, // outer border width
+                                        width: 10,
                                         color: whiteGrey,
                                       ),
                                     ),
@@ -150,8 +150,8 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         border: Border.all(
-                                          width: 5, // inner border width
-                                          color: Colors.white,
+                                          width: 5,
+                                          color: white,
                                         ),
                                       ),
                                       child: ElevatedButton(
@@ -164,14 +164,14 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
                                                           brailleData:
                                                               blocks[index])));
                                         },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: lightPink,
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(20),
+                                        ),
                                         child: Image.asset(
                                           blocks[index].imgPath,
                                           width: 70,
-                                        ),
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: lightPink,
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
                                         ),
                                       ),
                                     ),
@@ -221,7 +221,7 @@ class _BrailleMenuPage extends State<BrailleMenuPage> {
             title: block['title'],
             description: block['description'],
             imgPath:
-                block['imgPath'], // If you have an image path in your JSON.
+                block['imgPath'],
             dots: List<int>.from(block['dots']),
             letterList: brailleLetters,
           );
