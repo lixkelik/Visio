@@ -2,7 +2,7 @@
     "block": [
       {
         "title": "A - E",
-        "description": "The letters A - E only use the top 4 dots in each cell.",
+        "description": "The letters A until E only use the top 4 dots in each cell.",
         "imgPath": "assets/image/illustration/love_ills.png",
         "dots": [1, 2, 4, 5],
         "letter": [
@@ -35,7 +35,7 @@
       },
       {
         "title": "F - J",
-        "description": "The letters F - J only use the top 4 dots in each cell.",
+        "description": "The letters F until J only use the top 4 dots in each cell.",
         "imgPath": "assets/image/illustration/drink_ills.png",
         "dots": [1, 2, 4, 5],
         "letter": [
@@ -68,7 +68,7 @@
       },
       {
         "title": "K - O",
-        "description": "The letters K - O are formed by repeating the same dots as A - E, then adding dot 3 to each cell.",
+        "description": "The letters K until O are formed by repeating the same dots as A - E, then adding dot 3 to each cell.",
         "imgPath": "assets/image/illustration/balloon_ills.png",
         "dots": [1, 2, 3, 4, 5],
         "letter": [
@@ -100,7 +100,7 @@
         ]
       },
       {
-        "title": "P - T",
+        "title": "P until T",
         "description": "The letters P - T are formed by repeating the same dots as F - J, then adding dot 3 to each cell.",
         "imgPath": "assets/image/illustration/cool_ills.png",
         "dots": [1, 2, 3, 4, 5],
@@ -134,7 +134,7 @@
       },
       {
         "title": "U - Z",
-        "description": "The letters U - Z, except W are formed by repeating the same dots as K - O, then adding dot 6 to each cell.",
+        "description": "The letters U until Z, except W are formed by repeating the same dots as K - O, then adding dot 6 to each cell.",
         "imgPath": "assets/image/illustration/king_ills.png",
         "dots": [1, 2, 3, 4, 5, 6],
         "letter": [

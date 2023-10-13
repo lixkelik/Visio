@@ -22,7 +22,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
   @override
   void initState() {
     super.initState();
-    textToSpeech(widget.brailleData.description);
+    textToSpeech(widget.brailleData.letterList[widget.counter].letterDesc);
     correctAns = widget.brailleData.letterList[widget.counter].letterDots;
   }
 
@@ -35,6 +35,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
   }
 
   bool answerIsCorrect() {
+    selectedNumbers.sort();
     if (selectedNumbers.length != correctAns.length) {
       return false;
     }
@@ -98,7 +99,9 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                           shape: const CircleBorder(),
                           alignment: Alignment.center,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          textToSpeech(widget.brailleData.letterList[widget.counter].letterDesc);
+                        },
                         child: const Icon(
                           Icons.volume_up_rounded,
                           size: 25,
@@ -264,6 +267,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                                                 widget.brailleData.letterList
                                                         .length -
                                                     1) {
+                                                      Navigator.pop(context);
                                               Navigator.pushAndRemoveUntil(
                                                   context,
                                                   MaterialPageRoute(
@@ -272,6 +276,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
                                                           const SuccessImpairedPage()),
                                                   (route) => route.isFirst);
                                             } else {
+                                               Navigator.pop(context);
                                               Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
