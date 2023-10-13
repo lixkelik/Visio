@@ -41,10 +41,10 @@ class _DescribePageState extends State<DescribePage> {
   
   @override
   void initState() {
+    super.initState();
     img = File(image);
     _initSpeech();
     _evictImage();
-    super.initState();
   }
 
   void _initSpeech() async {

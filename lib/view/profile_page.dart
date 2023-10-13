@@ -21,7 +21,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     if(widget.userRoles == 1){
-      pageSpeech(); 
+      textToSpeech('You are at: Profile page.');
     }
     _getUserData();
     super.initState();
@@ -338,9 +338,5 @@ class _ProfilePageState extends State<ProfilePage> {
       MaterialPageRoute(builder: (context) => const LoginPage()),
       (route) => false
     );
-  }
-
-  void pageSpeech() {
-    textToSpeech('You are at: Profile page.');
   }
 }

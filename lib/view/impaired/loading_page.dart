@@ -21,9 +21,9 @@ class _LoadingPageState extends State<LoadingPage> {
   @override
   void initState() {
     super.initState();
+    textToSpeech('Please wait, we are uploading your file! We will let you know when it\'s finished');
     gameObj = widget.gameObj;
     saveObj();
-    pageSpeech();
   }
 
   @override
@@ -47,10 +47,6 @@ class _LoadingPageState extends State<LoadingPage> {
           )
         : SuccessPage(gameObj)
     );
-  }
-
-  void pageSpeech() {
-    textToSpeech('Please wait, we are uploading your file! We will let you know when it\'s finished');
   }
 
   Future<void> saveObj() async {

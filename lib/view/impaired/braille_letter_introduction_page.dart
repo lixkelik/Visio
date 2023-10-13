@@ -29,7 +29,7 @@ class _BrailleLetterIntroductionPage
   @override
   void initState() {
     super.initState();
-    pageSpeech();
+    textToSpeech('${widget.brailleData.description} Tap to hear what the dots are. Double click to select or deselect the dot.');
     correctAns = widget.brailleData.dots;
   }
 
@@ -196,11 +196,6 @@ class _BrailleLetterIntroductionPage
         ),
       ),
     );
-  }
-
-  void pageSpeech() {
-    textToSpeech(
-        '${widget.brailleData.description} Tap to hear what the dots are. Double click to select or deselect the dot.');
   }
 
   void speech(String text) {

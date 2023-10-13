@@ -22,7 +22,7 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
   @override
   void initState() {
     super.initState();
-    pageSpeech();
+    textToSpeech(widget.brailleData.description);
     correctAns = widget.brailleData.letterList[widget.counter].letterDots;
   }
 
@@ -328,11 +328,6 @@ class _BrailleLetterAnswerPage extends State<BrailleLetterAnswerPage> {
       ),
     );
   }
-
-  void pageSpeech() {
-    textToSpeech(widget.brailleData.description);
-  }
-
   void speech(String text) {
     textToSpeech(text);
   }
